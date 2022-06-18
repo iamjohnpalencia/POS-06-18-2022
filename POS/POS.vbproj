@@ -1,0 +1,671 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{422E6895-31DE-4233-8F69-7804FF80E495}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>POS.My.MyApplication</StartupObject>
+    <RootNamespace>POS</RootNamespace>
+    <AssemblyName>POS</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\I.T\Desktop\New folder\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>POS.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>POS.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>posicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>868538C630370F2F47C62D4025E0B8A872C633D2</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>POS_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EJOURNAL_PDF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\jjrey\Documents\Visual Studio 2015\Projects\EJournal PDF\Loop Json\bin\Debug\EJOURNAL_PDF.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=1.0.898.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MAIN FORMS\AuditTrail.Designer.vb">
+      <DependentUpon>AuditTrail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\AuditTrail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\Auth.Designer.vb">
+      <DependentUpon>Auth.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\Auth.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\ConfigManager.Designer.vb">
+      <DependentUpon>ConfigManager.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\ConfigManager.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\ChooseLayout.Designer.vb">
+      <DependentUpon>ChooseLayout.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\ChooseLayout.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\ConfirmRefund.Designer.vb">
+      <DependentUpon>ConfirmRefund.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\ConfirmRefund.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\Grocery.Designer.vb">
+      <DependentUpon>Grocery.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\Grocery.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\SettingsForm.Designer.vb">
+      <DependentUpon>SettingsForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\SettingsForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MODULES\EJournal.vb" />
+    <Compile Include="MODULES\NEWPOSMODULE.vb" />
+    <Compile Include="MODULES\pdfSharpMod.vb" />
+    <Compile Include="MODULES\TransactionVariables.vb" />
+    <Compile Include="MODULES\ZXReading.vb" />
+    <Compile Include="SUBFORMS\AddBank.Designer.vb">
+      <DependentUpon>AddBank.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\AddBank.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\AddEditProducts.Designer.vb">
+      <DependentUpon>AddEditProducts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\AddEditProducts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\AddUser.Designer.vb">
+      <DependentUpon>AddUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\AddUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\Loading.Designer.vb">
+      <DependentUpon>Loading.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\Loading.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\MDIFORM.designer.vb">
+      <DependentUpon>MDIFORM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\MDIFORM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\ManageProducts.Designer.vb">
+      <DependentUpon>ManageProducts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\ManageProducts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\Reports.Designer.vb">
+      <DependentUpon>Reports.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\Reports.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\SynctoCloud.Designer.vb">
+      <DependentUpon>SynctoCloud.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\SynctoCloud.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MODULES\DeleteModule.vb" />
+    <Compile Include="MODULES\serverconn.vb" />
+    <Compile Include="MODULES\Simple3Des.vb" />
+    <Compile Include="MODULES\Updatemodule.vb" />
+    <Compile Include="SUBFORMS\About.Designer.vb">
+      <DependentUpon>About.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\About.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\AdvancedCustomReport.Designer.vb">
+      <DependentUpon>AdvancedCustomReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\AdvancedCustomReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\AuditTrailFilter.Designer.vb">
+      <DependentUpon>AuditTrailFilter.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\AuditTrailFilter.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\BegBalance.Designer.vb">
+      <DependentUpon>BegBalance.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\BegBalance.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\CashBreakdown.Designer.vb">
+      <DependentUpon>CashBreakdown.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\CashBreakdown.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\ChangePrice.Designer.vb">
+      <DependentUpon>ChangePrice.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\ChangePrice.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\Changeproductformula.Designer.vb">
+      <DependentUpon>Changeproductformula.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\Changeproductformula.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\CheckingForUpdates.Designer.vb">
+      <DependentUpon>CheckingForUpdates.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\CheckingForUpdates.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\CustomerInfo.Designer.vb">
+      <DependentUpon>CustomerInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\CustomerInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\Discounts.Designer.vb">
+      <DependentUpon>Discounts.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\Discounts.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\ExpenseImage.Designer.vb">
+      <DependentUpon>ExpenseImage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\ExpenseImage.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\ForgotPassword.Designer.vb">
+      <DependentUpon>ForgotPassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\ForgotPassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\Message.Designer.vb">
+      <DependentUpon>Message.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\Message.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\Module1.vb" />
+    <Compile Include="SUBFORMS\NewStockEntry.Designer.vb">
+      <DependentUpon>NewStockEntry.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\NewStockEntry.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\PanelReasonCat.Designer.vb">
+      <DependentUpon>PanelReasonCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\PanelReasonCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\ResetPassword.Designer.vb">
+      <DependentUpon>ResetPassword.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\ResetPassword.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\SelectNewFormula.Designer.vb">
+      <DependentUpon>SelectNewFormula.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\SelectNewFormula.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\SeniorDetails.Designer.vb">
+      <DependentUpon>SeniorDetails.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\SeniorDetails.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\StockAdjustment.Designer.vb">
+      <DependentUpon>StockAdjustment.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\StockAdjustment.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\TakeOut.Designer.vb">
+      <DependentUpon>TakeOut.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\TakeOut.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\TransactionTypeInfo.Designer.vb">
+      <DependentUpon>TransactionTypeInfo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\TransactionTypeInfo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\Addexpense.Designer.vb">
+      <DependentUpon>Addexpense.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\Addexpense.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\Expenses.Designer.vb">
+      <DependentUpon>Expenses.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\Expenses.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\Inventory.Designer.vb">
+      <DependentUpon>Inventory.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\Inventory.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\CouponCode.Designer.vb">
+      <DependentUpon>CouponCode.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\CouponCode.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\HoldOrder.Designer.vb">
+      <DependentUpon>HoldOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\HoldOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\PaymentForm.Designer.vb">
+      <DependentUpon>PaymentForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\PaymentForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\Leaderboards.Designer.vb">
+      <DependentUpon>Leaderboards.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\Leaderboards.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\PendingOrders.Designer.vb">
+      <DependentUpon>PendingOrders.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\PendingOrders.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\DepositSlip.Designer.vb">
+      <DependentUpon>DepositSlip.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\DepositSlip.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MODULES\Addmodule.vb" />
+    <Compile Include="MODULES\connectionmodule.vb" />
+    <Compile Include="MAIN FORMS\POS.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MAIN FORMS\POS.Designer.vb">
+      <DependentUpon>POS.vb</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MODULES\publicfunctions.vb" />
+    <Compile Include="MODULES\Publicvariables.vb" />
+    <Compile Include="MODULES\RetrieveModule.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="MAIN FORMS\Registration.Designer.vb">
+      <DependentUpon>Registration.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MAIN FORMS\Registration.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\TransactionType.Designer.vb">
+      <DependentUpon>TransactionType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\TransactionType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\UserSettings.Designer.vb">
+      <DependentUpon>UserSettings.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\UserSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\ViewLogs.Designer.vb">
+      <DependentUpon>ViewLogs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\ViewLogs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SUBFORMS\WaitFrm.Designer.vb">
+      <DependentUpon>WaitFrm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\WaitFrm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="MAIN FORMS\AuditTrail.resx">
+      <DependentUpon>AuditTrail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\Auth.resx">
+      <DependentUpon>Auth.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\ConfigManager.resx">
+      <DependentUpon>ConfigManager.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\ChooseLayout.resx">
+      <DependentUpon>ChooseLayout.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\ConfirmRefund.resx">
+      <DependentUpon>ConfirmRefund.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\Grocery.resx">
+      <DependentUpon>Grocery.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\SettingsForm.resx">
+      <DependentUpon>SettingsForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\AddBank.resx">
+      <DependentUpon>AddBank.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\AddEditProducts.resx">
+      <DependentUpon>AddEditProducts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\AddUser.resx">
+      <DependentUpon>AddUser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\Loading.resx">
+      <DependentUpon>Loading.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\MDIFORM.resx">
+      <DependentUpon>MDIFORM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\ManageProducts.resx">
+      <DependentUpon>ManageProducts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\Reports.resx">
+      <DependentUpon>Reports.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\SynctoCloud.resx">
+      <DependentUpon>SynctoCloud.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\About.resx">
+      <DependentUpon>About.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\AdvancedCustomReport.resx">
+      <DependentUpon>AdvancedCustomReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\AuditTrailFilter.resx">
+      <DependentUpon>AuditTrailFilter.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\BegBalance.resx">
+      <DependentUpon>BegBalance.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\CashBreakdown.resx">
+      <DependentUpon>CashBreakdown.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\ChangePrice.resx">
+      <DependentUpon>ChangePrice.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\Changeproductformula.resx">
+      <DependentUpon>Changeproductformula.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\CheckingForUpdates.resx">
+      <DependentUpon>CheckingForUpdates.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\CustomerInfo.resx">
+      <DependentUpon>CustomerInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\Discounts.resx">
+      <DependentUpon>Discounts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\ExpenseImage.resx">
+      <DependentUpon>ExpenseImage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\ForgotPassword.resx">
+      <DependentUpon>ForgotPassword.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\Message.resx">
+      <DependentUpon>Message.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\NewStockEntry.resx">
+      <DependentUpon>NewStockEntry.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\PanelReasonCat.resx">
+      <DependentUpon>PanelReasonCat.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\ResetPassword.resx">
+      <DependentUpon>ResetPassword.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\SelectNewFormula.resx">
+      <DependentUpon>SelectNewFormula.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\SeniorDetails.resx">
+      <DependentUpon>SeniorDetails.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\StockAdjustment.resx">
+      <DependentUpon>StockAdjustment.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\TakeOut.resx">
+      <DependentUpon>TakeOut.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\TransactionTypeInfo.resx">
+      <DependentUpon>TransactionTypeInfo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\Addexpense.resx">
+      <DependentUpon>Addexpense.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\Expenses.resx">
+      <DependentUpon>Expenses.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\POS.resx">
+      <DependentUpon>POS.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\Inventory.resx">
+      <DependentUpon>Inventory.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\CouponCode.resx">
+      <DependentUpon>CouponCode.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\HoldOrder.resx">
+      <DependentUpon>HoldOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\PaymentForm.resx">
+      <DependentUpon>PaymentForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\Leaderboards.resx">
+      <DependentUpon>Leaderboards.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\PendingOrders.resx">
+      <DependentUpon>PendingOrders.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\DepositSlip.resx">
+      <DependentUpon>DepositSlip.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MAIN FORMS\Registration.resx">
+      <DependentUpon>Registration.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\TransactionType.resx">
+      <DependentUpon>TransactionType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\UserSettings.resx">
+      <DependentUpon>UserSettings.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\ViewLogs.resx">
+      <DependentUpon>ViewLogs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\WaitFrm.resx">
+      <DependentUpon>WaitFrm.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="posicon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

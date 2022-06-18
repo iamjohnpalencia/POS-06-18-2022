@@ -1,0 +1,5 @@
+pos-aws-cloud.cnk01mqwsyxf.ap-southeast-1.rds.amazonaws.com
+user id=masteradmin
+password=password2021
+database=posrev
+port=3306
