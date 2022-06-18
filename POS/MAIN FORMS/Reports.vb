@@ -150,7 +150,7 @@ Public Class Reports
                 ButtonZReading.Enabled = True
             End If
 
-            LabelDate.Text = "Z-READ DATE: " & Format(StringToDate(S_Zreading), "MMMM dd, yyyy").ToString.ToUpper
+            LabelDate.Text = "Z-READ DATE: " & S_Zreading
         Catch ex As Exception
             AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
 
