@@ -261,6 +261,9 @@ Public Class Inventory
                 b += 10
             Next
 
+            EJournal.UseWriter = False
+            EJournal.PosWriter = False
+
             printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 200 + b)
             PrintPreviewDialog1.Document = printdoc
             PrintPreviewDialog1.ShowDialog()

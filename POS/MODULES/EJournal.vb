@@ -4,29 +4,31 @@ Imports MySql.Data.MySqlClient
 
 Module EJournal
     Property PosWriter As Boolean = False
+    Property UseWriter As Boolean = True
     Public Sub FillEJournalContent(EjornalString As String, LoopText As String(), Position As String, TextFont As Boolean, CopyRow As Boolean)
         EJOURLAN_Content &= EjornalString & vbCrLf
         EJOURNAL_TotalLines += 1
-
-        If PosWriter Then
-            Select Case POS.Reprint
-                Case 1
-                    Select Case CopyRow
-                        Case True
-                            Dim StrChange As String() = {EjornalString}
-                            CreateXMLFile(Position, StrChange, publicfunctions.XML_Writer, TextFont)
-                        Case False
-                            CreateXMLFile(Position, LoopText, publicfunctions.XML_Writer, TextFont)
-                    End Select
-            End Select
-        Else
-            Select Case CopyRow
-                Case True
-                    Dim StrChange As String() = {EjornalString}
-                    CreateXMLFile(Position, StrChange, publicfunctions.XML_Writer, TextFont)
-                Case False
-                    CreateXMLFile(Position, LoopText, publicfunctions.XML_Writer, TextFont)
-            End Select
+        If UseWriter Then
+            If PosWriter Then
+                Select Case POS.Reprint
+                    Case 1
+                        Select Case CopyRow
+                            Case True
+                                Dim StrChange As String() = {EjornalString}
+                                CreateXMLFile(Position, StrChange, publicfunctions.XML_Writer, TextFont)
+                            Case False
+                                CreateXMLFile(Position, LoopText, publicfunctions.XML_Writer, TextFont)
+                        End Select
+                End Select
+            Else
+                Select Case CopyRow
+                    Case True
+                        Dim StrChange As String() = {EjornalString}
+                        CreateXMLFile(Position, StrChange, publicfunctions.XML_Writer, TextFont)
+                    Case False
+                        CreateXMLFile(Position, LoopText, publicfunctions.XML_Writer, TextFont)
+                End Select
+            End If
         End If
     End Sub
 

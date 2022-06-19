@@ -1068,6 +1068,8 @@ Public Class Reports
 
                     Dim XMLName As String = "R" & TrnID & FullDateFormatForSaving().ToString & ".xml"
 
+                    EJournal.UseWriter = True
+                    EJournal.PosWriter = False
 
                     XML_Writer = New XmlTextWriter(pdfSharpMod.XML_Path & XMLName, Encoding.UTF8)
                     XML_Writer.WriteStartDocument(True)
@@ -1541,6 +1543,9 @@ Public Class Reports
 
             TotalLines = CountHeaderLine + ProductLine + BodyLine
             printsales.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), TotalLines)
+
+            EJournal.UseWriter = False
+            EJournal.PosWriter = False
 
             If S_Print_Sales_Report = "YES" Then
                 printsales.Print()
@@ -2090,6 +2095,8 @@ Public Class Reports
 
             CountHeaderLine *= 10
 
+            EJournal.UseWriter = False
+            EJournal.PosWriter = False
 
             If DataGridViewReturns.Rows.Count > 0 Then
 
@@ -3268,6 +3275,10 @@ Public Class Reports
             printdocZRead.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 1020)
 
             Dim XMLName As String = "XREAD" & FullDateFormatForSaving().ToString & ".xml"
+
+            EJournal.UseWriter = True
+            EJournal.PosWriter = False
+
             XML_Writer = New XmlTextWriter(pdfSharpMod.XML_Path & XMLName, Encoding.UTF8)
             XML_Writer.WriteStartDocument(True)
             XML_Writer.Formatting = Formatting.Indented
@@ -3320,6 +3331,10 @@ Public Class Reports
                 printdocZRead.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 1020)
 
                 Dim XMLName As String = "ZREAD" & FullDateFormatForSaving().ToString & ".xml"
+
+                EJournal.UseWriter = True
+                EJournal.PosWriter = False
+
                 XML_Writer = New XmlTextWriter(pdfSharpMod.XML_Path & XMLName, Encoding.UTF8)
                 XML_Writer.WriteStartDocument(True)
                 XML_Writer.Formatting = Formatting.Indented
@@ -3357,7 +3372,7 @@ Public Class Reports
                 'Insert to local zread inv
                 XZreadingInventory(S_Zreading)
 
-                LabelDate.Text = "Z-READ DATE: " & Format(StringToDate(S_Zreading), "MMMM dd, yyyy").ToString.ToUpper
+                LabelDate.Text = "Z-READ DATE: " & S_Zreading
 
                 If S_Zreading = Format(Now().AddDays(1), "yyyy-MM-dd") Then
                     'ButtonZread.Enabled = False
@@ -3404,6 +3419,9 @@ Public Class Reports
             printdocZRead.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 1050)
 
             Dim XMLName As String = "ZREADREP" & FullDateFormatForSaving().ToString & ".xml"
+
+            EJournal.UseWriter = True
+            EJournal.PosWriter = False
 
             XML_Writer = New XmlTextWriter(pdfSharpMod.XML_Path & XMLName, Encoding.UTF8)
             XML_Writer.WriteStartDocument(True)

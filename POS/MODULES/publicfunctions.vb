@@ -393,7 +393,7 @@ Module publicfunctions
         End Try
         Return NUMBERFORMAT(SumTotal)
     End Function
-    Public Function SumOfColumnsToInt(ByVal datagrid As DataGridView, ByVal celltocompute As Integer)
+    Public Function SumOfColumnsToInt(ByVal datagrid As DataGridView, ByVal celltocompute As Integer) As Integer
         Dim SumTotal As Integer
         Try
             With datagrid
@@ -715,7 +715,7 @@ Module publicfunctions
             FillEJournalContent("LESS VAT (OTHER)          0.00", {"LESS VAT (OTHER)", "0.00"}, "LR", False, False)
             RECEIPTLINECOUNT += 10
             RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "ADD VAT", NUMBERFORMAT(ZXVatAmount), FontDefault, 5, 0)
-            FillEJournalContent("ADD VAT          0.00", {"ADD VAT", NUMBERFORMAT(ZXVatAmount)}, "LR", False, False)
+            FillEJournalContent("ADD VAT          " & NUMBERFORMAT(ZXVatAmount), {"ADD VAT", NUMBERFORMAT(ZXVatAmount)}, "LR", False, False)
             RECEIPTLINECOUNT += 10
             RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "DAILY SALES", NUMBERFORMAT(ZXDailySales), FontDefault, 5, 0)
             FillEJournalContent("DAILY SALES          " & NUMBERFORMAT(ZXDailySales), {"DAILY SALES", NUMBERFORMAT(ZXDailySales)}, "LR", False, False)
@@ -1164,7 +1164,7 @@ Module publicfunctions
                             FillEJournalContent("Amount Due:      -" & reader("amountdue"), {"Amount Due: ", "-" & reader("amountdue")}, "LR", False, False)
                             RECEIPTLINECOUNT += 10
                             RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Add VAT: ", reader("vatpercentage") & "-", FontDefaultBold, 11, 0)
-                            FillEJournalContent("Add VAT:      -0.00", {"Add VAT: ", "-" & reader("vatpercentage")}, "LR", False, False)
+                            FillEJournalContent("Add VAT:      -" & reader("vatpercentage"), {"Add VAT: ", "-" & reader("vatpercentage")}, "LR", False, False)
                             RECEIPTLINECOUNT += 10
                             RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Total Amount Due: ", reader("amountdue") & "-", FontDefaultBold, 11, 0)
                             FillEJournalContent("Total Amount Due:      -" & reader("amountdue"), {"Total Amount Due: ", "-" & reader("amountdue")}, "LR", False, False)
@@ -1316,7 +1316,7 @@ Module publicfunctions
                                 FillEJournalContent("Amount Due:      " & reader("amountdue"), {"Amount Due: ", reader("amountdue")}, "LR", False, False)
                                 RECEIPTLINECOUNT += 10
                                 RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Add VAT: ", reader("vatpercentage"), FontDefaultBold, 11, 0)
-                                FillEJournalContent("Amount Due:      0.00", {"Add VAT: ", reader("vatpercentage")}, "LR", False, False)
+                                FillEJournalContent("Amount Due:      " & reader("vatpercentage"), {"Add VAT: ", reader("vatpercentage")}, "LR", False, False)
                                 RECEIPTLINECOUNT += 10
                                 RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Total Amount Due: ", reader("amountdue"), FontDefaultBold, 11, 0)
                                 FillEJournalContent("Total Amount Due:      " & reader("amountdue"), {"Total Amount Due: ", reader("amountdue")}, "LR", False, False)
@@ -1474,8 +1474,8 @@ Module publicfunctions
                         RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Amount Due: ", NUMBERFORMAT(NETSALES), FontDefault, 11, 0)
                         FillEJournalContent("Amount Due:      " & NUMBERFORMAT(NETSALES), {"Amount Due: ", NUMBERFORMAT(NETSALES)}, "LR", False, False)
                         RECEIPTLINECOUNT += 10
-                        RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Add VAT: ", NUMBERFORMAT(VATABLESALES), FontDefault, 11, 0)
-                        FillEJournalContent("Add VAT:      0.00", {"Add VAT: ", NUMBERFORMAT(VATABLESALES)}, "LR", False, False)
+                        RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Add VAT: ", NUMBERFORMAT(VAT12PERCENT), FontDefault, 11, 0)
+                        FillEJournalContent("Add VAT:      " & VAT12PERCENT, {"Add VAT: ", NUMBERFORMAT(VAT12PERCENT)}, "LR", False, False)
                         RECEIPTLINECOUNT += 10
                         RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Total Amount Due: ", NUMBERFORMAT(NETSALES), FontDefaultBold, 11, 0)
                         FillEJournalContent("Total Amount Due:      " & NUMBERFORMAT(NETSALES), {"Total Amount Due: ", NUMBERFORMAT(NETSALES)}, "LR", False, False)
