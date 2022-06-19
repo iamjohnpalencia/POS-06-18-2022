@@ -1316,7 +1316,7 @@ Module publicfunctions
                                 FillEJournalContent("Amount Due:      " & reader("amountdue"), {"Amount Due: ", reader("amountdue")}, "LR", False, False)
                                 RECEIPTLINECOUNT += 10
                                 RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Add VAT: ", reader("vatpercentage"), FontDefaultBold, 11, 0)
-                                FillEJournalContent("Amount Due:      " & reader("vatpercentage"), {"Add VAT: ", reader("vatpercentage")}, "LR", False, False)
+                                FillEJournalContent("Add VAT:      " & reader("vatpercentage"), {"Add VAT: ", reader("vatpercentage")}, "LR", False, False)
                                 RECEIPTLINECOUNT += 10
                                 RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Total Amount Due: ", reader("amountdue"), FontDefaultBold, 11, 0)
                                 FillEJournalContent("Total Amount Due:      " & reader("amountdue"), {"Total Amount Due: ", reader("amountdue")}, "LR", False, False)
@@ -1475,7 +1475,7 @@ Module publicfunctions
                         FillEJournalContent("Amount Due:      " & NUMBERFORMAT(NETSALES), {"Amount Due: ", NUMBERFORMAT(NETSALES)}, "LR", False, False)
                         RECEIPTLINECOUNT += 10
                         RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Add VAT: ", NUMBERFORMAT(VAT12PERCENT), FontDefault, 11, 0)
-                        FillEJournalContent("Add VAT:      " & VAT12PERCENT, {"Add VAT: ", NUMBERFORMAT(VAT12PERCENT)}, "LR", False, False)
+                        FillEJournalContent("Add VAT:      " & NUMBERFORMAT(VAT12PERCENT), {"Add VAT: ", NUMBERFORMAT(VAT12PERCENT)}, "LR", False, False)
                         RECEIPTLINECOUNT += 10
                         RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "Total Amount Due: ", NUMBERFORMAT(NETSALES), FontDefaultBold, 11, 0)
                         FillEJournalContent("Total Amount Due:      " & NUMBERFORMAT(NETSALES), {"Total Amount Due: ", NUMBERFORMAT(NETSALES)}, "LR", False, False)
