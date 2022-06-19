@@ -2044,10 +2044,9 @@ Module publicfunctions
         End Try
     End Sub
 
-    Public Function StringToDate(StringToConvert) As Date
-        Dim iDate As String = StringToConvert
-        Dim oDate As DateTime = Convert.ToDateTime(iDate)
-        Dim FullDate As Date = oDate.Day & " " & oDate.Month & "  " & oDate.Year
+    Public Function StringToDate(ByVal StringToConvert As String) As String
+        Dim expenddt As Date = Date.ParseExact(StringToConvert, "yyyy-MM-dd", DateTimeFormatInfo.InvariantInfo)
+        Dim FullDate As String = expenddt.ToString("MMMM dd, yyyy").ToUpper
         Return FullDate
     End Function
 End Module

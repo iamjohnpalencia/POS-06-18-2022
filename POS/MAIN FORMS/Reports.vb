@@ -150,7 +150,7 @@ Public Class Reports
                 ButtonZReading.Enabled = True
             End If
 
-            LabelDate.Text = "Z-READ DATE: " & S_Zreading
+            LabelDate.Text = "Z-READ DATE: " & StringToDate(S_Zreading)
         Catch ex As Exception
             AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
 
@@ -3372,7 +3372,7 @@ Public Class Reports
                 'Insert to local zread inv
                 XZreadingInventory(S_Zreading)
 
-                LabelDate.Text = "Z-READ DATE: " & S_Zreading
+                LabelDate.Text = "Z-READ DATE: " & StringToDate(S_Zreading)
 
                 If S_Zreading = Format(Now().AddDays(1), "yyyy-MM-dd") Then
                     'ButtonZread.Enabled = False
