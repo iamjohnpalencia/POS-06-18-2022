@@ -203,4 +203,6 @@ Module publicVariables
     '################################################################ EJOURNAL 
     Public EJOURNAL_TotalLines As Integer = 0
     Public EJOURLAN_Content As String = ""
+
+    Public XML_Path As String = ""
 End Module

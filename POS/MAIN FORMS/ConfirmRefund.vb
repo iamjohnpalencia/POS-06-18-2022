@@ -108,7 +108,7 @@ Public Class ConfirmRefund
             printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), TotalLines)
 
             Dim XMLName As String = "R" & TRANSACTIONNUMBER & FullDateFormatForSaving().ToString & ".xml"
-            XML_Writer = New XmlTextWriter(pdfSharpMod.XML_Path & XMLName, Encoding.UTF8)
+            XML_Writer = New XmlTextWriter(XML_Path & XMLName, Encoding.UTF8)
             XML_Writer.WriteStartDocument(True)
             XML_Writer.Formatting = Formatting.Indented
             XML_Writer.Indentation = 2

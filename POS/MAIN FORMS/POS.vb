@@ -1720,7 +1720,7 @@ Public Class POS
                 EJournal.PosWriter = True
 
                 Dim XMLName As String = S_TRANSACTION_NUMBER & FullDateFormatForSaving().ToString & ".xml"
-                XML_Writer = New XmlTextWriter(pdfSharpMod.XML_Path & XMLName, Encoding.UTF8)
+                XML_Writer = New XmlTextWriter(XML_Path & XMLName, Encoding.UTF8)
                 XML_Writer.WriteStartDocument(True)
                 XML_Writer.Formatting = Formatting.Indented
                 XML_Writer.Indentation = 2

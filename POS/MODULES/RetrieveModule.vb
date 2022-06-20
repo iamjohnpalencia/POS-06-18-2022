@@ -717,51 +717,6 @@ Module RetrieveModule
         End Try
         Return RetunSel
     End Function
-
-    Public Function ReturnMunicipalityName(id) As String
-        Dim ServerConn As MySqlConnection = ServerCloudCon()
-        Dim ReturnMun As String = ""
-        Try
-            Dim sql = "SELECT mn_name FROM admin_municipality WHERE mn_id = " & id & ""
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, ServerConn)
-            Using reader As MySqlDataReader = cmd.ExecuteReader()
-                If reader.HasRows Then
-                    While reader.Read
-                        ReturnMun = reader("mn_name")
-                    End While
-                End If
-            End Using
-            cmd.Dispose()
-            ServerConn.Close()
-
-        Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Retrieve Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
-        End Try
-        Return ReturnMun
-    End Function
-    Public Function ReturnProvinceName(id) As String
-        Dim ServerConn As MySqlConnection = ServerCloudCon()
-        Dim ReturnProv As String = ""
-        Try
-            Dim sql = "SELECT province FROM admin_province WHERE add_id = " & id & ""
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, ServerConn)
-            Using reader As MySqlDataReader = cmd.ExecuteReader()
-                If reader.HasRows Then
-                    While reader.Read
-                        ReturnProv = reader("province")
-                    End While
-                End If
-            End Using
-            ServerConn.Close()
-        Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Retrieve Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
-        End Try
-        Return ReturnProv
-    End Function
     Public Sub GetOldGrandtotal()
         Try
             Dim ConnectionLocal As MySqlConnection = LocalhostConn()

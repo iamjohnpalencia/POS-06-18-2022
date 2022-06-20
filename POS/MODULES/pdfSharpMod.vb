@@ -11,9 +11,7 @@ Module pdfSharpMod
     Property PDF_80FontDefault As XFont = New XFont("Tahoma", 6)
     Property PDF_80FontDefaultBold As XFont = New XFont("Tahoma", 7, FontStyle.Bold)
     Property PDF_80FontDefaultLine As XFont = New XFont("Tahoma", 7, FontStyle.Bold)
-    Dim appdataPath As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-    Property XML_Path As String = appdataPath & "\POSV1\"
-    Dim folderPath As String = System.IO.Path.Combine(appdataPath, "\POSV1\EJOURNAL-PDF\")
+
 
     Public Sub PDFCenterText(gfx As XGraphics, text As String, textFont As XFont, X As Integer, Y As Integer)
         Dim Format As XStringFormat = New XStringFormat()
