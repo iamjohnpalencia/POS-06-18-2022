@@ -17,4 +17,8 @@
         Dim url As String = "https://famousbelgianwaffles.com/"
         Process.Start(url)
     End Sub
+
+    Private Sub Label12_DoubleClick(sender As Object, e As EventArgs) Handles Label12.DoubleClick
+        MsgBox("v1.0-062622")
+    End Sub
 End Class

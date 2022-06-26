@@ -360,6 +360,19 @@ Public Class SynctoCloud
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Private Sub filldatagridviewCustomerInfo()
+        Try
+            Dim fields = "*"
+            Dim table = "loc_customer_info WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & ""
+            GLOBAL_SELECT_ALL_FUNCTION(table, fields, DataGridViewCustomerInfo)
+            gettablesize(tablename:="loc_customer_info")
+            countrows(tablename:=table)
+        Catch ex As Exception
+            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
+
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
     Private Sub countrows(ByVal tablename As String)
         Try
             Dim sql = "SELECT COUNT(*) FROM " & tablename & " "
@@ -678,6 +691,20 @@ Public Class SynctoCloud
                         Exit For
                     End If
                 Next
+
+                ThreadLoaddata = New Thread(AddressOf filldatagridviewCustomerInfo)
+                ThreadLoaddata.Start()
+                Threadlist.Add(ThreadLoaddata)
+                For Each t In Threadlist
+                    t.Join()
+                    If (BackgroundWorkerFILLDATAGRIDS.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+
+                        e.Cancel = True
+                        Exit For
+                    End If
+                Next
+
                 ThreadLoaddata = New Thread(AddressOf LoadData2)
                 ThreadLoaddata.Start()
                 Threadlist.Add(ThreadLoaddata)
@@ -815,6 +842,10 @@ Public Class SynctoCloud
     Dim threadListCoupon As List(Of Thread) = New List(Of Thread)
     Dim threadListErrors As List(Of Thread) = New List(Of Thread)
     Dim threadListzreadInventory As List(Of Thread) = New List(Of Thread)
+
+    Dim threadListSenior As List(Of Thread) = New List(Of Thread)
+    Dim threadListCustomerInfo As List(Of Thread) = New List(Of Thread)
+
     Dim thread1 As Thread
     Dim WorkerCanceled As Boolean = False
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As DoWorkEventArgs) Handles BackgroundWorkerSYNCTOCLOUD.DoWork
@@ -957,7 +988,7 @@ Public Class SynctoCloud
                             thread1.Start()
                             threadListErrors.Add(thread1)
                         End If
-                        If i = 75 Then
+                        If i = 70 Then
                             'Errors
                             Dim t1 As New Task(New Action(Sub()
                                                               LabelSeniorDetails.Text = "Syncing Senior Details"
@@ -965,7 +996,18 @@ Public Class SynctoCloud
                             t1.Start()
                             thread1 = New Thread(AddressOf insertseniordetails)
                             thread1.Start()
-                            threadListErrors.Add(thread1)
+                            threadListSenior.Add(thread1)
+                        End If
+
+                        If i = 75 Then
+                            'Errors
+                            Dim t1 As New Task(New Action(Sub()
+                                                              LabelCustInfo.Text = "Syncing Customer Info"
+                                                          End Sub))
+                            t1.Start()
+                            thread1 = New Thread(AddressOf insertcustomerinfo)
+                            thread1.Start()
+                            threadListCustomerInfo.Add(thread1)
                         End If
 
                     Next
@@ -978,6 +1020,16 @@ Public Class SynctoCloud
                     thread1 = New Thread(AddressOf insertinventory)
                     thread1.Start()
                     threadListLOCINV.Add(thread1)
+
+                    For Each t In threadListLOCINV
+                        t.Join()
+                        If (BackgroundWorkerSYNCTOCLOUD.CancellationPending) Then
+                            ' Indicate that the task was canceled.
+                            WorkerCanceled = True
+                            e.Cancel = True
+                            Exit For
+                        End If
+                    Next
                 End If
 
                 For Each t In threadListLOCTRAN
@@ -1134,7 +1186,8 @@ Public Class SynctoCloud
                         Exit For
                     End If
                 Next
-                For Each t In threadListLOCINV
+
+                For Each t In threadListErrors
                     t.Join()
                     If (BackgroundWorkerSYNCTOCLOUD.CancellationPending) Then
                         ' Indicate that the task was canceled.
@@ -1143,7 +1196,16 @@ Public Class SynctoCloud
                         Exit For
                     End If
                 Next
-                For Each t In threadListErrors
+                For Each t In threadListSenior
+                    t.Join()
+                    If (BackgroundWorkerSYNCTOCLOUD.CancellationPending) Then
+                        ' Indicate that the task was canceled.
+                        WorkerCanceled = True
+                        e.Cancel = True
+                        Exit For
+                    End If
+                Next
+                For Each t In threadListCustomerInfo
                     t.Join()
                     If (BackgroundWorkerSYNCTOCLOUD.CancellationPending) Then
                         ' Indicate that the task was canceled.
@@ -2369,6 +2431,70 @@ Public Class SynctoCloud
         Catch ex As Exception
             AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
 
+            Unsuccessful = True
+            BackgroundWorkerSYNCTOCLOUD.CancelAsync()
+            SendErrorReport(ex.ToString)
+        End Try
+    End Sub
+    Private Sub insertcustomerinfo()
+        Try
+            Dim cmd As MySqlCommand
+            Dim cmdloc As MySqlCommand
+
+            Dim server As MySqlConnection = New MySqlConnection
+            server.ConnectionString = CloudConnectionString
+            server.Open()
+
+            Dim local As MySqlConnection = New MySqlConnection
+            local.ConnectionString = LocalConnectionString
+            local.Open()
+
+            With DataGridViewCustomerInfo
+                For i As Integer = 0 To .Rows.Count - 1 Step +1
+                    If WorkerCanceled = True Then
+                        Exit For
+                    End If
+                    cmd = New MySqlCommand("INSERT INTO Triggers_admin_customer_info(`cust_id`,`cust_loc_id`,`cust_transaction_number`,`cust_name`,`cust_tin`,`cust_address`,`cust_business`,`cust_crew_id`,`cust_store_id`,`cust_created_at`,`cust_active`)
+                                             VALUES (@0, @1, @2, @3, @4, @5, @6, @7, @8, @9, @10)", server)
+                    cmd.Parameters.Add("@0", MySqlDbType.Int64).Value = .Rows(i).Cells(0).Value
+                    cmd.Parameters.Add("@1", MySqlDbType.Text).Value = .Rows(i).Cells(1).Value.ToString()
+                    cmd.Parameters.Add("@2", MySqlDbType.Text).Value = .Rows(i).Cells(2).Value.ToString()
+                    cmd.Parameters.Add("@3", MySqlDbType.Text).Value = .Rows(i).Cells(3).Value.ToString
+                    cmd.Parameters.Add("@4", MySqlDbType.Text).Value = .Rows(i).Cells(4).Value.ToString()
+                    cmd.Parameters.Add("@5", MySqlDbType.Text).Value = .Rows(i).Cells(5).Value.ToString()
+                    cmd.Parameters.Add("@6", MySqlDbType.Text).Value = .Rows(i).Cells(6).Value.ToString
+                    cmd.Parameters.Add("@7", MySqlDbType.Text).Value = .Rows(i).Cells(7).Value.ToString
+                    cmd.Parameters.Add("@8", MySqlDbType.Text).Value = .Rows(i).Cells(8).Value.ToString
+                    cmd.Parameters.Add("@9", MySqlDbType.Text).Value = .Rows(i).Cells(9).Value.ToString
+                    cmd.Parameters.Add("@10", MySqlDbType.Text).Value = .Rows(i).Cells(10).Value.ToString
+
+                    LabelRowtoSync.Text = Val(LabelRowtoSync.Text + 1)
+                    LabelCustInfoItem.Text = Val(LabelCustInfoItem.Text) + 1
+
+                    POS.Instance.Invoke(Sub()
+                                            POS.ProgressBar1.Value += 1
+                                        End Sub)
+
+                    ProgressBar1.Value = CInt(LabelRowtoSync.Text)
+                    Label1.Text = "Syncing " & LabelRowtoSync.Text & " of " & LabelTTLRowtoSync.Text & " "
+                    cmd.ExecuteNonQuery()
+                    Dim sql = "UPDATE loc_customer_info SET `synced`='Synced' WHERE id = " & .Rows(i).Cells(0).Value.ToString
+                    cmdloc = New MySqlCommand(sql, local)
+                    cmdloc.ExecuteNonQuery()
+                Next
+                server.Close()
+                local.Close()
+                If WorkerCanceled = False Then
+                    Dim t As New Task(New Action(Sub()
+                                                     LabelCustInfo.Text = "Synced Customer Info"
+                                                     LabelCustInfoTime.Text = LabelTime.Text & " Seconds"
+                                                 End Sub))
+                    t.Start()
+                End If
+            End With
+        Catch ex As Exception
+
+            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
             SendErrorReport(ex.ToString)

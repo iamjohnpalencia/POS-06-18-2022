@@ -2315,236 +2315,6 @@ Public Class Reports
         End Try
     End Sub
 
-    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs)
-        Try
-
-
-            'Dim xlApp As Excel.Application = New Microsoft.Office.Interop.Excel.Application()
-            'Dim raXL As Excel.Range
-            'Dim CountCell As Integer = 0
-
-            'CountCell = DataGridViewCustomReport.Rows.Count + 1
-            'If xlApp Is Nothing Then
-            '    MessageBox.Show("Excel is not properly installed!!")
-            '    Exit Sub
-            'End If
-
-
-            'Dim xlWorkBook As Excel.Workbook
-            'Dim xlWorkSheet As Excel.Worksheet
-            'Dim misValue As Object = System.Reflection.Missing.Value
-
-            'xlWorkBook = xlApp.Workbooks.Add(misValue)
-            'xlWorkSheet = xlWorkBook.Sheets("sheet1")
-
-
-            'xlWorkSheet.Cells(1, 1).Value = "Product Name"
-            'xlWorkSheet.Cells(1, 2).Value = "Transaction Number"
-            'xlWorkSheet.Cells(1, 3).Value = "Quantity"
-            'xlWorkSheet.Cells(1, 4).Value = "Price"
-            'xlWorkSheet.Cells(1, 5).Value = "Total"
-            'xlWorkSheet.Cells(1, 6).Value = "Date"
-
-            'raXL = xlWorkSheet.Range("B1:B" & CountCell)
-            'raXL.NumberFormat = "@"
-            'raXL = xlWorkSheet.Range("C1:C" & CountCell)
-            'raXL.NumberFormat = "@"
-            'raXL = xlWorkSheet.Range("D1:D" & CountCell)
-            'raXL.NumberFormat = "@"
-            'raXL = xlWorkSheet.Range("E1:E" & CountCell)
-            'raXL.NumberFormat = "@"
-
-            'raXL = xlWorkSheet.Range("A1:F1")
-            'raXL.Font.Bold = True
-
-            'Dim RCount As Integer = 3
-
-            'With DataGridViewCustomReport
-            '    For i = 1 To .Rows.Count
-            '        xlWorkSheet.Cells(i + 1, 1).Value = .Rows(i - 1).Cells(0).Value
-            '        xlWorkSheet.Cells(i + 1, 2).Value = .Rows(i - 1).Cells(1).Value
-            '        xlWorkSheet.Cells(i + 1, 3).Value = .Rows(i - 1).Cells(2).Value
-            '        xlWorkSheet.Cells(i + 1, 4).Value = .Rows(i - 1).Cells(3).Value
-            '        xlWorkSheet.Cells(i + 1, 5).Value = .Rows(i - 1).Cells(4).Value
-            '        xlWorkSheet.Cells(i + 1, 6).Value = .Rows(i - 1).Cells(5).Value
-            '        RCount += 1
-            '    Next
-            'End With
-
-            'xlWorkSheet.Cells(RCount, 1).Value = "Total Items"
-            'xlWorkSheet.Cells(RCount, 2).Value = DataGridViewCustomReport.Rows.Count
-            'raXL = xlWorkSheet.Range("A" & RCount)
-            'raXL.Font.Bold = True
-            'RCount += 1
-            'xlWorkSheet.Cells(RCount, 1).Value = "Total Sales"
-            'xlWorkSheet.Cells(RCount, 2).Value = SumOfColumnsToDecimal(DataGridViewCustomReport, 3)
-            'raXL = xlWorkSheet.Range("A" & RCount)
-            'raXL.Font.Bold = True
-            'RCount += 1
-            'xlWorkSheet.Cells(RCount, 1).Value = "VAT"
-            'xlWorkSheet.Cells(RCount, 2).Value = CustomReportVat
-            'raXL = xlWorkSheet.Range("A" & RCount)
-            'raXL.Font.Bold = True
-            'RCount += 1
-            'xlWorkSheet.Cells(RCount, 1).Value = "LESS VAT"
-            'xlWorkSheet.Cells(RCount, 2).Value = CustomReportLessVat
-            'raXL = xlWorkSheet.Range("A" & RCount)
-            'raXL.Font.Bold = True
-            'RCount += 1
-            'xlWorkSheet.Cells(RCount, 1).Value = "Date Generated"
-            'xlWorkSheet.Cells(RCount, 2).Value = FullDate24HR()
-            'raXL = xlWorkSheet.Range("A" & RCount)
-            'raXL.Font.Bold = True
-            'RCount += 1
-
-
-            'raXL = xlWorkSheet.Range("A1", "F1")
-            'raXL.EntireColumn.AutoFit()
-
-            'Dim Path = My.Computer.FileSystem.SpecialDirectories.Desktop & "\Custom Report-" & FullDateFormatForSaving() & ".xls"
-
-            'xlWorkBook.SaveAs(Path, Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue,
-            ' Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue)
-            'xlWorkBook.Close(True, misValue, misValue)
-            'xlApp.Quit()
-
-            'releaseObject(xlWorkSheet)
-            'releaseObject(xlWorkBook)
-            'releaseObject(xlApp)
-
-            'MessageBox.Show("Excel file created , you can find the file " & Path)
-        Catch ex As Exception
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub releaseObject(ByVal obj As Object)
-        Try
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
-            obj = Nothing
-        Catch ex As Exception
-            obj = Nothing
-        Finally
-            GC.Collect()
-        End Try
-    End Sub
-
-
-    'Dim ThreadEJournal As Thread
-    'Dim ThreadListEJournal As List(Of Thread) = New List(Of Thread)
-    'Private Sub BackgroundWorkerEJournal_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerEJournal.DoWork
-    '    Try
-    '        For i = 0 To 100
-    '            BackgroundWorkerEJournal.ReportProgress(i)
-    '            Thread.Sleep(20)
-    '            If i = 0 Then
-    '                ToolStripStatusLabel1.Text = "Loading please wait"
-    '                ThreadEJournal = New Thread(Sub() GenerateTxtFile())
-    '                ThreadEJournal.Start()
-    '                ThreadListEJournal.Add(ThreadEJournal)
-    '            End If
-    '        Next
-    '        For Each t In ThreadListEJournal
-    '            t.Join()
-    '            If (BackgroundWorkerEJournal.CancellationPending) Then
-    '                e.Cancel = True
-    '                Exit For
-    '            End If
-    '        Next
-    '    Catch ex As Exception
-    '        SendErrorReport(ex.ToString)
-    '    End Try
-    'End Sub
-
-    'Private Sub BackgroundWorkerEJournal_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerEJournal.ProgressChanged
-    '    Try
-    '        ToolStripProgressBar1.Value = e.ProgressPercentage
-    '    Catch ex As Exception
-    '        SendErrorReport(ex.ToString)
-    '    End Try
-    'End Sub
-
-    'Private Sub BackgroundWorkerEJournal_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerEJournal.RunWorkerCompleted
-    '    Try
-    '        DisableFormClose = False
-    '        ToolStripButton7.Enabled = True
-    '        ToolStripButton4.Enabled = True
-    '    Catch ex As Exception
-    '        SendErrorReport(ex.ToString)
-    '    End Try
-    'End Sub
-
-
-
-
-
-
-    'Private Sub ToolStripButton10_Click(sender As Object, e As EventArgs) Handles ButtonZread.Click
-    '    Try
-    '        Dim msg = MessageBox.Show("Are you sure you want to generate Z-READ ? Press Yes to continue or No to cancel", "Z-reading", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-
-    '        If msg = DialogResult.Yes Then
-    '            My.Settings.zcounter += 1
-    '            Dim ConnectionLocal As MySqlConnection = LocalhostConn()
-    '            'Fill dgv inv
-    '            GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-    '            'Update inventory
-    '            MainInventorySub()
-    '            'Fill again
-    '            GLOBAL_SELECT_ALL_FUNCTION("loc_pos_inventory", "*", DataGridViewZreadInventory)
-    '            'Print zread
-    '            XreadOrZread = "Z-READ"
-
-    '            printdocXread.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 1000)
-
-    '            If S_Print_XZRead = "YES" Then
-    '                printdocXread.Print()
-    '            Else
-    '                PrintPreviewDialogXread.Document = printdocXread
-    '                PrintPreviewDialogXread.ShowDialog()
-    '            End If
-
-    '            GetOldGrandtotal()
-    '            'Update Zread
-
-    '            S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
-    '            sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
-    '            cmd = New MySqlCommand(sql, ConnectionLocal)
-    '            cmd.ExecuteNonQuery()
-    '            cmd.Dispose()
-
-    '            sql = "UPDATE loc_pos_inventory SET zreading = '" & S_Zreading & "'"
-    '            LocalhostConn.Close()
-    '            cmd = New MySqlCommand(sql, ConnectionLocal)
-    '            cmd.ExecuteNonQuery()
-
-    '            cmd.Dispose()
-    '            ConnectionLocal.Close()
-    '            'Insert to local zread inv
-    '            XZreadingInventory(S_Zreading)
-
-
-    '            If S_Zreading = Format(Now().AddDays(1), "yyyy-MM-dd") Then
-    '                ButtonZread.Enabled = False
-    '                ButtonZreadAdmin.Enabled = False
-    '            End If
-    '            Button7.PerformClick()
-
-    '            SystemLogDesc = "Z-Reading : " & FullDate24HR() & " Crew : " & returnfullname(ClientCrewID)
-    '            SystemLogType = "Z-READ"
-    '            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-
-    '            'S_OLDGRANDTOTAL += GROSSSALE
-
-
-    '        End If
-    '    Catch ex As Exception
-    '        SendErrorReport(ex.ToString)
-    '    End Try
-    'End Sub
-
-    Private Sub ToolStripButton11_Click(sender As Object, e As EventArgs)
-
-    End Sub
     Private Sub PrintDocument2_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdocZRead.PrintPage
         Try
 
@@ -3306,9 +3076,6 @@ Public Class Reports
             GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
         End Try
     End Sub
-    Private Sub printdocZRead_PrintPage_one()
-
-    End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonZReading.Click
         Try
             ReprintZRead = False
@@ -3455,24 +3222,42 @@ Public Class Reports
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles ButtonEJournal.Click
         Try
-            GenerateEJournalV2()
+
             AuditTrail.LogToAuditTral("System", "Reports/Others: Accessed E-JOURNAL, " & ClientCrewID, "Normal")
+
+            EJournalLoadingScreen.Show()
+
+            BackgroundWorkerEJournal.WorkerReportsProgress = True
+            BackgroundWorkerEJournal.WorkerSupportsCancellation = True
+            BackgroundWorkerEJournal.RunWorkerAsync()
 
         Catch ex As Exception
             SendErrorReport(ex.ToString)
         End Try
     End Sub
+    Dim ThreadEJournal As Thread
+    Dim ThreadListEJournal As List(Of Thread) = New List(Of Thread)
 
-    Private Sub GenerateEJournalV2()
+
+
+    Private Sub BackgroundWorkerEJournal_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerEJournal.DoWork
+        Dim ReturnString() As String = {}
         Try
-            Dim Denom As String = ""
+            ThreadEJournal = New Thread(Sub() ReturnString = GenerateEJournalV2())
+            ThreadEJournal.Start()
+            ThreadListEJournal.Add(ThreadEJournal)
 
-            Dim connectionlocal As MySqlConnection = LocalhostConn()
-            Dim sql As String = ""
-            Dim cmd As MySqlCommand
-            Dim dt As DataTable = New DataTable
-            Dim da As MySqlDataAdapter
-
+            For Each t In ThreadListEJournal
+                t.Join()
+            Next
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+        e.Result = ReturnString
+    End Sub
+    Private Sub BackgroundWorkerEJournal_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerEJournal.RunWorkerCompleted
+        Try
+            EJournalLoadingScreen.Close()
             Dim CompleteDirectoryPath As String = ""
 
             If Not Directory.Exists(My.Computer.FileSystem.SpecialDirectories.Desktop & "\E-Journal") Then
@@ -3483,6 +3268,27 @@ Public Class Reports
                 CompleteDirectoryPath = My.Computer.FileSystem.SpecialDirectories.Desktop & "\E-journal\" & FullDateFormatForSaving()
                 Directory.CreateDirectory(CompleteDirectoryPath)
             End If
+
+            Dim CompletePath As String = CompleteDirectoryPath & "\ejournal" & FullDateFormatForSaving() & ".txt"
+
+            AuditTrail.LogToAuditTral("Report", "Reports/Others: E-Journal Generated, " & CompleteDirectoryPath, "Normal")
+
+            File.WriteAllLines(CompletePath, e.Result, Encoding.UTF8)
+
+            MsgBox("Complete")
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
+    Private Function GenerateEJournalV2()
+        Dim ReturnString() As String = {}
+        Try
+
+            Dim connectionlocal As MySqlConnection = LocalhostConn()
+            Dim sql As String = ""
+            Dim cmd As MySqlCommand
+            Dim dt As DataTable = New DataTable
+            Dim da As MySqlDataAdapter
 
             Dim GrandTotalLines As Integer = 0
             Dim WholeContentLine As String = ""
@@ -3504,32 +3310,29 @@ Public Class Reports
             Dim count As Integer
 
             strArr = WholeContentLine.Split("/n")
+
+            EJournalLoadingScreen.Instance.Invoke(Sub()
+                                                      EJournalLoadingScreen.ProgressBar1.Maximum = strArr.Count
+                                                  End Sub)
+
             For count = 0 To strArr.Length - 1
                 TxtFileLine(a) = strArr(count)
                 a += 1
+                EJournalLoadingScreen.Instance.Invoke(Sub()
+                                                          EJournalLoadingScreen.ProgressBar1.Value += 1
+                                                          Console.WriteLine(EJournalLoadingScreen.ProgressBar1.Value)
+                                                      End Sub)
             Next
 
-            Dim CompletePath As String = CompleteDirectoryPath & "\ejournal" & FullDateFormatForSaving() & ".txt"
+            ReturnString = TxtFileLine
 
-            AuditTrail.LogToAuditTral("Report", "Reports/Others: E-Journal Generated, " & CompleteDirectoryPath, "Normal")
-
-            File.WriteAllLines(CompletePath, TxtFileLine, Encoding.UTF8)
-
-            MsgBox("Complete")
         Catch ex As Exception
             AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
 
             SendErrorReport(ex.ToString)
         End Try
-    End Sub
-
-    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles ButtonAuditTrail.Click
-        MDIFORM.newMDIchildReports.Enabled = False
-        MDIFORM.Enabled = False
-        AuditTrail.LogToAuditTral("System", "Reports: Accessed AUDIT TRAIL, " & ClientCrewID, "Normal")
-        AuditTrail.Show()
-    End Sub
-
+        Return ReturnString
+    End Function
     Private Sub ButtonEJournalPDF_Click(sender As Object, e As EventArgs) Handles ButtonEJournalPDF.Click
         Try
             'zreading >= @Fromdate AND zreading <= @ToDate
@@ -3556,6 +3359,10 @@ Public Class Reports
             MsgBox(ex.ToString)
         End Try
     End Sub
-
-
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles ButtonAuditTrail.Click
+        MDIFORM.newMDIchildReports.Enabled = False
+        MDIFORM.Enabled = False
+        AuditTrail.LogToAuditTral("System", "Reports: Accessed AUDIT TRAIL, " & ClientCrewID, "Normal")
+        AuditTrail.Show()
+    End Sub
 End Class

@@ -280,6 +280,12 @@
     <Compile Include="SUBFORMS\Discounts.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="SUBFORMS\EJournalLoadingScreen.Designer.vb">
+      <DependentUpon>EJournalLoadingScreen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SUBFORMS\EJournalLoadingScreen.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SUBFORMS\ExpenseImage.Designer.vb">
       <DependentUpon>ExpenseImage.vb</DependentUpon>
     </Compile>
@@ -540,6 +546,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\Discounts.resx">
       <DependentUpon>Discounts.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SUBFORMS\EJournalLoadingScreen.resx">
+      <DependentUpon>EJournalLoadingScreen.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SUBFORMS\ExpenseImage.resx">
       <DependentUpon>ExpenseImage.vb</DependentUpon>
