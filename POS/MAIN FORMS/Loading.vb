@@ -15,8 +15,7 @@ Public Class Loading
             LabelFOOTER.Text = My.Settings.Footer
             CheckForIllegalCrossThreadCalls = False
 
-            Dim appdataPath As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
-            publicVariables.XML_Path = appdataPath & "\POSV1\"
+            CreateXmlPath()
 
             BackgroundWorker1.WorkerSupportsCancellation = True
             BackgroundWorker1.WorkerReportsProgress = True

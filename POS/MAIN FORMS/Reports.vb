@@ -63,6 +63,8 @@ Public Class Reports
             ComboBoxTransactionType.SelectedIndex = 0
             ToolStripComboBoxStatus.SelectedIndex = 0
 
+            CreateXmlPath()
+
             SelectDisctinctDaily()
             reportsdailytransaction(False)
             reportssystemlogs(False)

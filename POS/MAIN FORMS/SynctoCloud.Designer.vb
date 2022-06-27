@@ -136,6 +136,7 @@ Partial Class SynctoCloud
         Me.LabelDTransactD = New System.Windows.Forms.Label()
         Me.LabelDTransac = New System.Windows.Forms.Label()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.DataGridViewCustomerInfo = New System.Windows.Forms.DataGridView()
         Me.DataGridViewZREADINVENTORY = New System.Windows.Forms.DataGridView()
         Me.Column116 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column117 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -297,10 +298,9 @@ Partial Class SynctoCloud
         Me.LabelSeniorDetailsItem = New System.Windows.Forms.Label()
         Me.LabelSeniorDetailsTime = New System.Windows.Forms.Label()
         Me.LabelSeniorDetails = New System.Windows.Forms.Label()
-        Me.LabelCustInfo = New System.Windows.Forms.Label()
         Me.LabelCustInfoTime = New System.Windows.Forms.Label()
         Me.LabelCustInfoItem = New System.Windows.Forms.Label()
-        Me.DataGridViewCustomerInfo = New System.Windows.Forms.DataGridView()
+        Me.LabelCustInfo = New System.Windows.Forms.Label()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewEXPDET, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -309,6 +309,7 @@ Partial Class SynctoCloud
         CType(Me.DataGridViewEXP, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewTRAN, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
+        CType(Me.DataGridViewCustomerInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewZREADINVENTORY, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DatagridviewSenior, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewERRORS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -326,7 +327,6 @@ Partial Class SynctoCloud
         CType(Me.DataGridViewSYSLOG3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
         Me.TableLayoutPanel1.SuspendLayout()
-        CType(Me.DataGridViewCustomerInfo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'BackgroundWorkerSYNCTOCLOUD
@@ -1328,6 +1328,18 @@ Partial Class SynctoCloud
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
         Me.GroupBox1.Visible = False
+        '
+        'DataGridViewCustomerInfo
+        '
+        Me.DataGridViewCustomerInfo.AllowUserToAddRows = False
+        Me.DataGridViewCustomerInfo.AllowUserToDeleteRows = False
+        Me.DataGridViewCustomerInfo.AllowUserToResizeColumns = False
+        Me.DataGridViewCustomerInfo.AllowUserToResizeRows = False
+        Me.DataGridViewCustomerInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridViewCustomerInfo.Location = New System.Drawing.Point(6, 19)
+        Me.DataGridViewCustomerInfo.Name = "DataGridViewCustomerInfo"
+        Me.DataGridViewCustomerInfo.Size = New System.Drawing.Size(198, 80)
+        Me.DataGridViewCustomerInfo.TabIndex = 63
         '
         'DataGridViewZREADINVENTORY
         '
@@ -2521,16 +2533,6 @@ Partial Class SynctoCloud
         Me.LabelSeniorDetails.TabIndex = 57
         Me.LabelSeniorDetails.Text = "Discount Details"
         '
-        'LabelCustInfo
-        '
-        Me.LabelCustInfo.AutoSize = True
-        Me.LabelCustInfo.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.LabelCustInfo.Location = New System.Drawing.Point(3, 256)
-        Me.LabelCustInfo.Name = "LabelCustInfo"
-        Me.LabelCustInfo.Size = New System.Drawing.Size(126, 14)
-        Me.LabelCustInfo.TabIndex = 59
-        Me.LabelCustInfo.Text = "Customer Information"
-        '
         'LabelCustInfoTime
         '
         Me.LabelCustInfoTime.AutoSize = True
@@ -2552,17 +2554,15 @@ Partial Class SynctoCloud
         Me.LabelCustInfoItem.TabIndex = 61
         Me.LabelCustInfoItem.Text = "0"
         '
-        'DataGridViewCustomerInfo
+        'LabelCustInfo
         '
-        Me.DataGridViewCustomerInfo.AllowUserToAddRows = False
-        Me.DataGridViewCustomerInfo.AllowUserToDeleteRows = False
-        Me.DataGridViewCustomerInfo.AllowUserToResizeColumns = False
-        Me.DataGridViewCustomerInfo.AllowUserToResizeRows = False
-        Me.DataGridViewCustomerInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewCustomerInfo.Location = New System.Drawing.Point(6, 19)
-        Me.DataGridViewCustomerInfo.Name = "DataGridViewCustomerInfo"
-        Me.DataGridViewCustomerInfo.Size = New System.Drawing.Size(198, 80)
-        Me.DataGridViewCustomerInfo.TabIndex = 63
+        Me.LabelCustInfo.AutoSize = True
+        Me.LabelCustInfo.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LabelCustInfo.Location = New System.Drawing.Point(3, 256)
+        Me.LabelCustInfo.Name = "LabelCustInfo"
+        Me.LabelCustInfo.Size = New System.Drawing.Size(126, 14)
+        Me.LabelCustInfo.TabIndex = 59
+        Me.LabelCustInfo.Text = "Customer Information"
         '
         'SynctoCloud
         '
@@ -2591,6 +2591,7 @@ Partial Class SynctoCloud
         CType(Me.DataGridViewTRAN, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
+        CType(Me.DataGridViewCustomerInfo, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewZREADINVENTORY, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DatagridviewSenior, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewERRORS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2610,7 +2611,6 @@ Partial Class SynctoCloud
         Me.Panel1.PerformLayout()
         Me.TableLayoutPanel1.ResumeLayout(False)
         Me.TableLayoutPanel1.PerformLayout()
-        CType(Me.DataGridViewCustomerInfo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

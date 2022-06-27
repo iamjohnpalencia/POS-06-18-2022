@@ -2049,4 +2049,18 @@ Module publicfunctions
         Dim FullDate As String = expenddt.ToString("MMMM dd, yyyy").ToUpper
         Return FullDate
     End Function
+
+    Public Sub CreateXmlPath()
+        Try
+            Dim appdataPath As String = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)
+            publicVariables.XML_Path = appdataPath & "\POSV1\"
+
+            If Not System.IO.Directory.Exists(publicVariables.XML_Path) Then
+                System.IO.Directory.CreateDirectory(publicVariables.XML_Path)
+            End If
+
+        Catch ex As Exception
+            MsgBox(ex.ToString)
+        End Try
+    End Sub
 End Module
