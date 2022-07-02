@@ -26,20 +26,16 @@ Public Class DepositSlip
                                 ,'" & FullDate24HR() & "')"
                 GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                 GLOBAL_SYSTEM_LOGS("DEPOSIT", "Name: " & TextBoxNAME.Text & " Trn.Number: " & TextBoxTRANNUM.Text & " Amount: " & TextBoxAMT.Text)
-                AuditTrail.LogToAuditTral("User", "Deposit: Name; " & TextBoxNAME.Text & " Trn.Number; " & TextBoxTRANNUM.Text & " Amount; " & TextBoxAMT.Text & ", Created By: " & ClientCrewID, "Normal")
+                AuditTrail.LogToAuditTrail("User", "Deposit: Name; " & TextBoxNAME.Text & " Trn.Number; " & TextBoxTRANNUM.Text & " Amount; " & TextBoxAMT.Text & ", Created By: " & ClientCrewID, "Normal")
 
                 MsgBox("Complete!")
                 ClearTextBox(Me)
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Deposit Slip: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Deposit/Button1(): " & ex.ToString, "Critical")
         End Try
     End Sub
-    Private Sub TextBoxAMT_KeyPress(sender As Object, e As KeyPressEventArgs)
-        Numeric(sender:=sender, e:=e)
-    End Sub
+
     Private Sub DepositSlip_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Panel2.Top = (Me.Height - Panel2.Height) / 2
         Panel2.Left = (Me.Width - Panel2.Width) / 2
@@ -54,16 +50,14 @@ Public Class DepositSlip
             Next
             ComboBoxBankName.SelectedIndex = 0
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Deposit Slip: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Deposit/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub TextBoxNAME_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxAMT.KeyPress
         Try
             Numeric(sender, e)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Deposit/KeyPress(Numeric): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub TextBoxNAME_KeyPress_1(sender As Object, e As KeyPressEventArgs) Handles TextBoxTRANNUM.KeyPress, TextBoxNAME.KeyPress
@@ -72,7 +66,7 @@ Public Class DepositSlip
                 e.Handled = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Deposit/KeyPress(DisallowedCharacters): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click

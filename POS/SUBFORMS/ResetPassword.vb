@@ -8,7 +8,7 @@ Public Class ResetPassword
                 e.Handled = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ResetPassword_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -43,9 +43,7 @@ Public Class ResetPassword
                 MessageBox.Show("Password did not match", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Password Reset: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ResetPassword/Button1: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ResetPass()
@@ -54,9 +52,7 @@ Public Class ResetPassword
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             Dim result = cmd.ExecuteNonQuery
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Password Reset: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ResetPassword/ResetPass(): " & ex.ToString, "Critical")
         End Try
     End Sub
 

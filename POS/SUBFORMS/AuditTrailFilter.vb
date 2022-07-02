@@ -25,7 +25,7 @@ Public Class AuditTrailFilter
                 End If
             End Using
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AuditFilter/LoadGroups(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadUserNames()
@@ -43,7 +43,7 @@ Public Class AuditTrailFilter
                 End If
             End Using
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AuditFilter/LoadUserNames(): " & ex.ToString, "Critical")
         End Try
     End Sub
 

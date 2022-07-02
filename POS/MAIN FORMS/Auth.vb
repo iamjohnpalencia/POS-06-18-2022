@@ -14,7 +14,7 @@ Public Class Auth
             BackgroundWorker1.RunWorkerAsync()
             ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Auth/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
@@ -37,7 +37,7 @@ Public Class Auth
                 t.Join()
             Next
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Auth/Get user accounts: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Function IfUserExist(uniqID) As Boolean
@@ -54,7 +54,7 @@ Public Class Auth
                 End If
             End Using
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Auth/IfUserExist(): " & ex.ToString, "Critical")
         End Try
         Return ReturnBool
     End Function
@@ -107,9 +107,7 @@ Public Class Auth
                 Next
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "Auth: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Auth/SyncToLocalUsers(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
@@ -122,7 +120,7 @@ Public Class Auth
             Label4.Text = "No new user(s) available.  "
             Timer1.Start()
         Else
-            AuditTrail.LogToAuditTral("System", "Auth: Update successful, " & Account, "Normal")
+            AuditTrail.LogToAuditTrail("System", "Auth: Update successful, " & Account, "Normal")
             Label4.Text = "New user(s) available.  "
             Dim msg = "New user account has been added" & vbNewLine & Account
             Dim msgs = MsgBox(msg, MsgBoxStyle.OkOnly)
@@ -143,7 +141,7 @@ Public Class Auth
                 Close()
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 End Class

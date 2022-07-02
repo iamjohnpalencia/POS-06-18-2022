@@ -56,7 +56,7 @@
                 End If
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "PaymentForm/ButtonSubmitPayment: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub TextBoxMONEY_TextChanged(sender As Object, e As EventArgs) Handles TextBoxMONEY.TextChanged
@@ -343,7 +343,7 @@
     '    Try
     '        TextBoxCHANGE.Text = Double.Parse(TextBoxMONEY.Text) - Double.Parse(TextBoxTOTALPAY.Text)
     '    Catch ex As Exception
-    '        SendErrorReport(ex.ToString)
+    '        AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
     '    End Try
     'End Sub
 End Class

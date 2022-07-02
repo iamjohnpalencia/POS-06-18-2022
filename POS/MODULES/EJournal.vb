@@ -49,9 +49,7 @@ Module EJournal
             EJOURLAN_Content = ""
             EJOURNAL_TotalLines = 0
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "E-Journal Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModEjournal/InsertIntoEJournal(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -73,9 +71,7 @@ Module EJournal
             DataAdapter = New MySqlDataAdapter(Command)
             DataAdapter.Fill(HeaderStrings)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "E-Journal Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModEjournal/GetHeader(): " & ex.ToString, "Critical")
         End Try
         Return HeaderStrings
     End Function
@@ -92,9 +88,7 @@ Module EJournal
             DataAdapter = New MySqlDataAdapter(Command)
             DataAdapter.Fill(FooterString)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "E-Journal Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModEjournal/GetFooter(): " & ex.ToString, "Critical")
         End Try
         Return FooterString
     End Function
@@ -111,9 +105,7 @@ Module EJournal
             DataAdapter = New MySqlDataAdapter(Command)
             DataAdapter.Fill(ValidityString)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "E-Journal Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModEjournal/GetValidity(): " & ex.ToString, "Critical")
         End Try
         Return ValidityString
     End Function
@@ -133,9 +125,7 @@ Module EJournal
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "E-Journal Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModEjournal/GetRefundFooter(): " & ex.ToString, "Critical")
         End Try
         Return RefundFooterString
     End Function

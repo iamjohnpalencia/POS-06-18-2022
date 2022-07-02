@@ -14,8 +14,7 @@ Public Class ConfirmRefund
     Private Sub ConfirmRefund_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         SettingsForm.Enabled = True
     End Sub
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonSubmit.Click
         Try
             If CheckColumnIfExist("user_code", "loc_users WHERE user_code = '" & Trim(TextBox1.Text) & "' AND user_level IN ('Manager', 'Admin', 'Head Crew')") Then
                 Button3.PerformClick()
@@ -23,9 +22,8 @@ Public Class ConfirmRefund
                 MessageBox.Show("User code does not exist", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Confirm Refund/ButtonSubmit: " & ex.ToString, "Critical")
         End Try
-
     End Sub
     Private Sub DisableCouponTotal(TRANSACTIONNUMBER)
         Try
@@ -34,8 +32,7 @@ Public Class ConfirmRefund
             Dim Command As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
             Command.ExecuteNonQuery()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Confirm Refund: " & ex.ToString, "Critical")
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Confirm Refund/DisableCouponTotal(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub PrintDocument_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
@@ -66,16 +63,16 @@ Public Class ConfirmRefund
             ReceiptFooterOne(sender, e, True, False)
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Confirm Refund: " & ex.ToString, "Critical")
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Confirm Refund/printdoc(): " & ex.ToString, "Critical")
         End Try
-
     End Sub
 
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
         ShowKeyboard()
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim isSuccess As Boolean = True
+        Dim XMLName As String = ""
         Try
 
             Dim ConnectionLocal As MySqlConnection = LocalhostConn()
@@ -94,9 +91,6 @@ Public Class ConfirmRefund
             CountHeaderLine *= 10
             CountFooterLine *= 10
 
-
-
-
             For i As Integer = 0 To Dt.Rows.Count - 1 Step +1
                 ProductLine += 10
                 If Dt(i)(17) > 0 Then
@@ -107,7 +101,7 @@ Public Class ConfirmRefund
             TotalLines = CountHeaderLine + ProductLine + CountFooterLine + BodyLine
             printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), TotalLines)
 
-            Dim XMLName As String = "R" & TRANSACTIONNUMBER & FullDateFormatForSaving().ToString & ".xml"
+            XMLName = "R" & TRANSACTIONNUMBER & FullDateFormatForSaving().ToString & ".xml"
             XML_Writer = New XmlTextWriter(XML_Path & XMLName, Encoding.UTF8)
             XML_Writer.WriteStartDocument(True)
             XML_Writer.Formatting = Formatting.Indented
@@ -124,27 +118,29 @@ Public Class ConfirmRefund
             XML_Writer.WriteEndElement()
             XML_Writer.WriteEndDocument()
             XML_Writer.Close()
-            SaveXMLInfo(XMLName)
 
-            AuditTrail.LogToAuditTral("Transaction", "POS/Transaction Refund: " & TRANSACTIONNUMBER, "Normal")
+
+
+            AuditTrail.LogToAuditTrail("Transaction", "POS/Transaction Refund: " & TRANSACTIONNUMBER, "Normal")
             Dim UserCodeID = returnselect("user_id", "loc_users WHERE user_code = '" & Trim(TextBox1.Text) & "'")
             SettingsForm.INSERTRETURNS(TRANSACTIONNUMBER)
             GLOBAL_SYSTEM_LOGS("REFUND", "Crew: " & ClientCrewID & ", TRN. ID: " & TRANSACTIONNUMBER & ", Code: " & UserCodeID & ", Total: " & REFUNDTOTAL)
             UpdateInventory(True)
             DisableCouponTotal(TRANSACTIONNUMBER)
-
             Close()
+
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Confirm Refund: " & ex.ToString, "Critical")
-
-            MsgBox(ex.ToString)
+            isSuccess = False
+            AuditTrail.LogToAuditTrail("System", "Confirm Refund/Button3: " & ex.ToString, "Critical")
+        Finally
+            If isSuccess Then
+                SaveXMLInfo(XMLName)
+            End If
         End Try
-
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Close()
-
     End Sub
 
     Private Sub ConfirmRefund_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -159,10 +155,8 @@ Public Class ConfirmRefund
             Dim Da As MySqlDataAdapter = New MySqlDataAdapter(Command)
             Dim dt As DataTable = New DataTable
             Da.Fill(dt)
-            Console.WriteLine(Query)
             For i As Integer = 0 To dt.Rows.Count - 1 Step +1
                 Query = "SELECT product_name, formula_id, half_batch FROM loc_admin_products WHERE product_id = " & dt(i)(0) & ""
-                Console.WriteLine(Query)
                 Command = New MySqlCommand(Query, ConnectionLocal)
                 Using reader As MySqlDataReader = Command.ExecuteReader
                     If reader.HasRows Then
@@ -184,7 +178,6 @@ Public Class ConfirmRefund
                     Dim TotalServings As Double = 0
                     Dim TotalUnitCost As Double = 0
                     Query = "SELECT serving_value, unit_cost, origin FROM loc_product_formula WHERE formula_id = " & word & ""
-                    Console.WriteLine(Query)
                     Command = New MySqlCommand(Query, ConnectionLocal)
                     Using reader As MySqlDataReader = Command.ExecuteReader
                         If reader.HasRows Then
@@ -201,9 +194,7 @@ Public Class ConfirmRefund
                 FillDatatable()
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Confirm Refund: " & ex.ToString, "Critical")
-
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Confirm Refund/LoadProducts(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub FillDatatable()
@@ -240,9 +231,7 @@ Public Class ConfirmRefund
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Confirm Refund: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Confirm Refund/FillDatatable(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -252,7 +241,7 @@ Public Class ConfirmRefund
                 e.Handled = True
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
 End Class

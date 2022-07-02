@@ -56,7 +56,7 @@ Public Class AddEditProducts
             decodingstring = encoding
             TextBoxbase64.Text = ImageToBase64(ImageToConvert, encodeType)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddEditProd/convertimage(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -198,21 +198,16 @@ Public Class AddEditProducts
                 Close()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Edit Products: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddEditProd/SubmitbuttonClicked(): " & ex.ToString, "Critical")
         End Try
     End Sub
-
-
-
     Private Sub AddEditProducts_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
             MDIFORM.newMDIchildManageproduct.Enabled = True
             MDIFORM.newMDIchildManageproduct.LoadOthersPending()
             AddNewProduct = True
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddEditProd/FormClosing: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
@@ -236,7 +231,7 @@ Public Class AddEditProducts
                 PictureBoxProductImage.SizeMode = PictureBoxSizeMode.Zoom
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddEditProd/Button3: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim threadList As List(Of Thread) = New List(Of Thread)
@@ -258,9 +253,7 @@ Public Class AddEditProducts
                 t.Join()
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Edit Products: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddEditProd/BackgroundWorker1: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
@@ -280,7 +273,7 @@ Public Class AddEditProducts
                 ToolStripStatusLabel1.Text = "Successfully Uploaded!"
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddEditProd/BackgroundWorker1 Comp: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
@@ -293,7 +286,7 @@ Public Class AddEditProducts
                 e.Handled = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddEditProd/Keypress(DisallowedCharacters): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -301,7 +294,7 @@ Public Class AddEditProducts
         Try
             Numeric(sender, e)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddEditProd/Keypress(Numeric): " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

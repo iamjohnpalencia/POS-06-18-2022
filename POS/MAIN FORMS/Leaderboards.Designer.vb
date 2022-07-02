@@ -146,13 +146,13 @@ Partial Class Leaderboards
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel2.Location = New System.Drawing.Point(20, 0)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1131, 20)
+        Me.Panel2.Size = New System.Drawing.Size(1148, 20)
         Me.Panel2.TabIndex = 85
         '
         'Panel4
         '
         Me.Panel4.Dock = System.Windows.Forms.DockStyle.Right
-        Me.Panel4.Location = New System.Drawing.Point(1151, 0)
+        Me.Panel4.Location = New System.Drawing.Point(1168, 0)
         Me.Panel4.Name = "Panel4"
         Me.Panel4.Size = New System.Drawing.Size(20, 859)
         Me.Panel4.TabIndex = 86
@@ -162,7 +162,7 @@ Partial Class Leaderboards
         Me.Panel8.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.Panel8.Location = New System.Drawing.Point(20, 846)
         Me.Panel8.Name = "Panel8"
-        Me.Panel8.Size = New System.Drawing.Size(1131, 13)
+        Me.Panel8.Size = New System.Drawing.Size(1148, 13)
         Me.Panel8.TabIndex = 90
         '
         'Panel3
@@ -172,7 +172,7 @@ Partial Class Leaderboards
         Me.Panel3.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel3.Location = New System.Drawing.Point(20, 20)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1131, 31)
+        Me.Panel3.Size = New System.Drawing.Size(1148, 31)
         Me.Panel3.TabIndex = 91
         '
         'Label1
@@ -196,16 +196,16 @@ Partial Class Leaderboards
         Me.TableLayoutPanel1.Name = "TableLayoutPanel1"
         Me.TableLayoutPanel1.RowCount = 1
         Me.TableLayoutPanel1.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100.0!))
-        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1131, 255)
+        Me.TableLayoutPanel1.Size = New System.Drawing.Size(1148, 255)
         Me.TableLayoutPanel1.TabIndex = 92
         '
         'GroupBox2
         '
         Me.GroupBox2.Controls.Add(Me.Chart2)
         Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox2.Location = New System.Drawing.Point(681, 3)
+        Me.GroupBox2.Location = New System.Drawing.Point(691, 3)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(447, 249)
+        Me.GroupBox2.Size = New System.Drawing.Size(454, 249)
         Me.GroupBox2.TabIndex = 1
         Me.GroupBox2.TabStop = False
         '
@@ -226,7 +226,7 @@ Partial Class Leaderboards
         Series1.Legend = "Legend1"
         Series1.Name = "Series1"
         Me.Chart2.Series.Add(Series1)
-        Me.Chart2.Size = New System.Drawing.Size(441, 227)
+        Me.Chart2.Size = New System.Drawing.Size(448, 227)
         Me.Chart2.TabIndex = 0
         Me.Chart2.Text = "Chart2"
         '
@@ -236,7 +236,7 @@ Partial Class Leaderboards
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(672, 249)
+        Me.GroupBox1.Size = New System.Drawing.Size(682, 249)
         Me.GroupBox1.TabIndex = 0
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Best Sellers(Top 10)"
@@ -273,7 +273,7 @@ Partial Class Leaderboards
         Me.DatagridviewTOPSELLER.EnableHeadersVisualStyles = False
         Me.DatagridviewTOPSELLER.Location = New System.Drawing.Point(3, 19)
         Me.DatagridviewTOPSELLER.Name = "DatagridviewTOPSELLER"
-        Me.DatagridviewTOPSELLER.Size = New System.Drawing.Size(666, 227)
+        Me.DatagridviewTOPSELLER.Size = New System.Drawing.Size(676, 227)
         Me.DatagridviewTOPSELLER.TabIndex = 5
         '
         'Panel5
@@ -283,7 +283,7 @@ Partial Class Leaderboards
         Me.Panel5.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel5.Location = New System.Drawing.Point(20, 306)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(1131, 31)
+        Me.Panel5.Size = New System.Drawing.Size(1148, 31)
         Me.Panel5.TabIndex = 93
         '
         'Label2
@@ -303,7 +303,7 @@ Partial Class Leaderboards
         Me.Panel6.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel6.Location = New System.Drawing.Point(20, 337)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(1131, 212)
+        Me.Panel6.Size = New System.Drawing.Size(1148, 212)
         Me.Panel6.TabIndex = 94
         '
         'GroupBox5
@@ -312,7 +312,7 @@ Partial Class Leaderboards
         Me.GroupBox5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox5.Location = New System.Drawing.Point(400, 0)
         Me.GroupBox5.Name = "GroupBox5"
-        Me.GroupBox5.Size = New System.Drawing.Size(731, 212)
+        Me.GroupBox5.Size = New System.Drawing.Size(748, 212)
         Me.GroupBox5.TabIndex = 9
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Chart"
@@ -330,7 +330,7 @@ Partial Class Leaderboards
         Series2.Legend = "Legend1"
         Series2.Name = "Series1"
         Me.Chart1.Series.Add(Series2)
-        Me.Chart1.Size = New System.Drawing.Size(725, 190)
+        Me.Chart1.Size = New System.Drawing.Size(742, 190)
         Me.Chart1.TabIndex = 6
         Me.Chart1.Text = "Chart1"
         '
@@ -440,7 +440,7 @@ Partial Class Leaderboards
         Me.Panel9.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel9.Location = New System.Drawing.Point(20, 549)
         Me.Panel9.Name = "Panel9"
-        Me.Panel9.Size = New System.Drawing.Size(1131, 31)
+        Me.Panel9.Size = New System.Drawing.Size(1148, 31)
         Me.Panel9.TabIndex = 95
         '
         'Label4
@@ -458,7 +458,7 @@ Partial Class Leaderboards
         Me.Panel10.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel10.Location = New System.Drawing.Point(20, 580)
         Me.Panel10.Name = "Panel10"
-        Me.Panel10.Size = New System.Drawing.Size(1131, 266)
+        Me.Panel10.Size = New System.Drawing.Size(1148, 266)
         Me.Panel10.TabIndex = 96
         '
         'TabControl1
@@ -471,7 +471,7 @@ Partial Class Leaderboards
         Me.TabControl1.Location = New System.Drawing.Point(0, 0)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1131, 266)
+        Me.TabControl1.Size = New System.Drawing.Size(1148, 266)
         Me.TabControl1.TabIndex = 0
         '
         'TabPage1
@@ -480,7 +480,7 @@ Partial Class Leaderboards
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1123, 237)
+        Me.TabPage1.Size = New System.Drawing.Size(1140, 237)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -518,7 +518,7 @@ Partial Class Leaderboards
         Me.DataGridViewRecentSales.EnableHeadersVisualStyles = False
         Me.DataGridViewRecentSales.Location = New System.Drawing.Point(3, 3)
         Me.DataGridViewRecentSales.Name = "DataGridViewRecentSales"
-        Me.DataGridViewRecentSales.Size = New System.Drawing.Size(1117, 231)
+        Me.DataGridViewRecentSales.Size = New System.Drawing.Size(1134, 231)
         Me.DataGridViewRecentSales.TabIndex = 5
         '
         'Column7
@@ -758,7 +758,7 @@ Partial Class Leaderboards
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None
         Me.AutoScroll = True
         Me.BackColor = System.Drawing.Color.White
-        Me.ClientSize = New System.Drawing.Size(1188, 631)
+        Me.ClientSize = New System.Drawing.Size(1205, 631)
         Me.Controls.Add(Me.Panel10)
         Me.Controls.Add(Me.Panel9)
         Me.Controls.Add(Me.Panel6)

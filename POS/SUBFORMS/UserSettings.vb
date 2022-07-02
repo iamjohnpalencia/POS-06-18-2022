@@ -44,9 +44,7 @@ Public Class UserSettings
 
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "User Settings: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "UserSettings/Usersloadusers(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub deactivateuser()
@@ -59,20 +57,18 @@ Public Class UserSettings
                 Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
                 Dim result = cmd.ExecuteNonQuery()
                 If result = 1 Then
-                    AuditTrail.LogToAuditTral("System", "Users: Deleted successfully, " & fullname, "Normal")
+                    AuditTrail.LogToAuditTrail("System", "Users: Deleted successfully, " & fullname, "Normal")
 
                     MsgBox("Account Deactivated")
                     Usersloadusers()
                     SystemLogType = "USER DEACTIVATION"
                     SystemLogDesc = "Deactivated by :" & returnfullname(ClientCrewID) & " : " & ClientRole
                     GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-                    AuditTrail.LogToAuditTral("User", "Delete User: User ID " & userid & " Deleted By: " & ClientCrewID, "Normal")
+                    AuditTrail.LogToAuditTrail("User", "Delete User: User ID " & userid & " Deleted By: " & ClientCrewID, "Normal")
 
                 End If
             Catch ex As Exception
-                AuditTrail.LogToAuditTral("System", "User Settings: " & ex.ToString, "Critical")
-
-                SendErrorReport(ex.ToString)
+                AuditTrail.LogToAuditTrail("System", "UserSettings/deactivateuser(): " & ex.ToString, "Critical")
             End Try
         End If
     End Sub
@@ -92,7 +88,7 @@ Public Class UserSettings
             AddUser.AddUserText = "ADD USER"
             AddUser.Show()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "UserSettings/ToolStripButton1: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -105,7 +101,7 @@ Public Class UserSettings
                 AddUser.Show()
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "UserSettings/ToolStripButton2: " & ex.ToString, "Critical")
         End Try
     End Sub
 

@@ -46,9 +46,7 @@ Public Class POS
             BegBalance.TopMost = True
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "POS: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -87,8 +85,7 @@ Public Class POS
                 Next
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/Load Category: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/LoadCategory(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim Partners As String = ""
@@ -113,7 +110,7 @@ Public Class POS
                 listviewproductsshow(name, ComboBoxPartners.Text)
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "POS: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/new_Button_click_category(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -123,7 +120,7 @@ Public Class POS
             MessageBox.Show("Sync is on process please wait.", "Syncing", MessageBoxButtons.OK, MessageBoxIcon.Information)
         Else
             If MessageBox.Show("Are you sure you really want to Logout ?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                AuditTrail.LogToAuditTral("User", "User Logout: " & ClientCrewID, "Normal")
+                AuditTrail.LogToAuditTrail("User", "User Logout: " & ClientCrewID, "Normal")
 
                 Enabled = False
                 LOGOUTFROMPOS = True
@@ -237,9 +234,7 @@ Public Class POS
                 TextBoxQTY.Text = 0
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "POS: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/ButtonEnter: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles ButtonPendingOrders.Click
@@ -300,9 +295,7 @@ Public Class POS
                 MsgBox("Maximum sales capacity already reached. Please contact your administrator for immediate solution.")
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "POS: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/ButtonPayMent: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonWaffleUpgrade_Click(sender As Object, e As EventArgs) Handles ButtonWaffleUpgrade.Click
@@ -318,7 +311,7 @@ Public Class POS
 
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/ButtonWaffleUpgrade: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -430,241 +423,12 @@ Public Class POS
 
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/MIX : " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/Mix(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim secondary_value As Double = 0
     Dim stock_secondary As Double = 0
-    'Private Sub UpdateInventory(returnVoid As Boolean)
-    '    Dim SqlCommand As MySqlCommand
-    '    Dim SqlAdapter As MySqlDataAdapter
-    '    Dim SqlDt As DataTable
-    '    Dim UpdateInventoryCon As MySqlConnection = LocalhostConn()
-    '    Try
-    '        Dim Query As String = ""
-    '        If returnVoid Then
-    '            'With ConfirmRefund.DataGridViewInv
-    '            '    For i As Integer = 0 To .Rows.Count - 1 Step +1
-    '            '        Dim TotalQuantity As Double = 0
-    '            '        Dim TotalServingValue As Double = 0
-    '            '        Dim Secondary As Double = 0
-    '            '        Dim ServingValue As Double = 0
-    '            '        Dim TotalPrimary As Double = 0
-    '            '        TotalQuantity = .Rows(i).Cells(2).Value
-    '            '        TotalServingValue = Double.Parse(.Rows(i).Cells(0).Value.ToString)
-    '            '        If .Rows(i).Cells(9).Value.ToString = "Server" Then
-    '            '            Query = "SELECT `secondary_value` FROM `loc_product_formula` WHERE server_formula_id = " & .Rows(i).Cells(1).Value
-    '            '        Else
-    '            '            Query = "SELECT `secondary_value` FROM `loc_product_formula` WHERE formula_id = " & .Rows(i).Cells(1).Value
 
-    '            '        End If
-    '            '        SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
-    '            '        SqlAdapter = New MySqlDataAdapter(SqlCommand)
-    '            '        SqlDt = New DataTable
-    '            '        SqlAdapter.Fill(SqlDt)
-    '            '        For Each row As DataRow In SqlDt.Rows
-    '            '            secondary_value = row("secondary_value")
-    '            '        Next
-    '            '        If .Rows(i).Cells(9).Value.ToString = "Server" Then
-    '            '            Query = "SELECT `stock_secondary` FROM `loc_pos_inventory` WHERE server_inventory_id = " & .Rows(i).Cells(1).Value
-    '            '        Else
-    '            '            Query = "SELECT `stock_secondary` FROM `loc_pos_inventory` WHERE inventory_id = " & .Rows(i).Cells(1).Value
-    '            '        End If
-    '            '        SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
-    '            '        SqlAdapter = New MySqlDataAdapter(SqlCommand)
-    '            '        SqlDt = New DataTable
-    '            '        SqlAdapter.Fill(SqlDt)
-    '            '        For Each row As DataRow In SqlDt.Rows
-    '            '            stock_secondary = row("stock_secondary")
-    '            '        Next
-
-    '            '        'Console.WriteLine(Double.Parse(.Rows(i).Cells(5).Value.ToString) - secondary_value)
-    '            '        Secondary = stock_secondary + TotalServingValue ' 93+93 = 186
-    '            '        ServingValue = Secondary / Double.Parse(.Rows(i).Cells(5).Value.ToString)
-    '            '        TotalPrimary = Secondary / secondary_value
-
-    '            '        'Console.WriteLine("TOTAL SECONDARY " & Secondary)
-    '            '        'Console.WriteLine("TOTAL SERVING " & ServingValue)
-    '            '        ' Console.WriteLine("TOTAL PRIMARY  " & TotalPrimary)
-
-    '            '        If .Rows(i).Cells(9).Value.ToString = "Server" Then
-    '            '            Query = "UPDATE loc_pos_inventory SET stock_secondary = " & Secondary & " , stock_no_of_servings = " & ServingValue & " , stock_primary = " & TotalPrimary & ", date_modified = '" & FullDate24HR() & "' WHERE server_inventory_id = " & .Rows(i).Cells(1).Value
-    '            '        Else
-    '            '            Query = "UPDATE loc_pos_inventory SET stock_secondary = " & Secondary & " , stock_no_of_servings = " & ServingValue & " , stock_primary = " & TotalPrimary & ", date_modified = '" & FullDate24HR() & "' WHERE inventory_id = " & .Rows(i).Cells(1).Value
-    '            '        End If
-    '            '        SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
-    '            '        SqlCommand.ExecuteNonQuery()
-    '            '    Next
-    '            '    UpdateInventoryCon.Close()
-    '            'End With
-    '        Else
-    '            MsgBox("POS")
-    '            With DataGridViewInv
-    '                For i As Integer = 0 To .Rows.Count - 1 Step +1
-    '                    MsgBox("POS")
-
-    '                    Dim TotalQuantity As Double = 0
-    '                    Dim TotalServingValue As Double = 0
-    '                    Dim Secondary As Double = 0
-    '                    Dim ServingValue As Double = 0
-    '                    Dim TotalPrimary As Double = 0
-    '                    TotalQuantity = .Rows(i).Cells(2).Value
-    '                    TotalServingValue = Double.Parse(.Rows(i).Cells(0).Value.ToString)
-    '                    If .Rows(i).Cells(9).Value.ToString = "Server" Then
-    '                        Query = "SELECT `secondary_value` FROM `loc_product_formula` WHERE server_formula_id = " & .Rows(i).Cells(1).Value
-    '                    Else
-    '                        Query = "SELECT `secondary_value` FROM `loc_product_formula` WHERE formula_id = " & .Rows(i).Cells(1).Value
-
-    '                    End If
-    '                    SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
-    '                    SqlAdapter = New MySqlDataAdapter(SqlCommand)
-    '                    SqlDt = New DataTable
-    '                    SqlAdapter.Fill(SqlDt)
-    '                    For Each row As DataRow In SqlDt.Rows
-    '                        secondary_value = row("secondary_value")
-    '                    Next
-    '                    If .Rows(i).Cells(9).Value.ToString = "Server" Then
-    '                        Query = "SELECT `stock_secondary` FROM `loc_pos_inventory` WHERE server_inventory_id = " & .Rows(i).Cells(1).Value
-    '                    Else
-    '                        Query = "SELECT `stock_secondary` FROM `loc_pos_inventory` WHERE inventory_id = " & .Rows(i).Cells(1).Value
-    '                    End If
-    '                    SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
-    '                    SqlAdapter = New MySqlDataAdapter(SqlCommand)
-    '                    SqlDt = New DataTable
-    '                    SqlAdapter.Fill(SqlDt)
-    '                    For Each row As DataRow In SqlDt.Rows
-    '                        stock_secondary = row("stock_secondary")
-    '                    Next
-
-    '                    'Console.WriteLine(Double.Parse(.Rows(i).Cells(5).Value.ToString) - secondary_value)
-    '                    Secondary = stock_secondary - TotalServingValue
-    '                    ServingValue = Secondary / Double.Parse(.Rows(i).Cells(5).Value.ToString)
-    '                    TotalPrimary = Secondary / secondary_value
-
-    '                    'Console.WriteLine("TOTAL SECONDARY " & Secondary)
-    '                    'Console.WriteLine("TOTAL SERVING " & ServingValue)
-    '                    ' Console.WriteLine("TOTAL PRIMARY  " & TotalPrimary)
-    '                    MsgBox(Query)
-    '                    If .Rows(i).Cells(9).Value.ToString = "Server" Then
-    '                        Query = "UPDATE loc_pos_inventory SET stock_secondary = " & Secondary & " , stock_no_of_servings = " & ServingValue & " , stock_primary = " & TotalPrimary & ", date_modified = '" & FullDate24HR() & "' WHERE server_inventory_id = " & .Rows(i).Cells(1).Value
-    '                    Else
-    '                        Query = "UPDATE loc_pos_inventory SET stock_secondary = " & Secondary & " , stock_no_of_servings = " & ServingValue & " , stock_primary = " & TotalPrimary & ", date_modified = '" & FullDate24HR() & "' WHERE inventory_id = " & .Rows(i).Cells(1).Value
-    '                    End If
-    '                    MsgBox(Query)
-    '                    Console.Write(Query)
-    '                    SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
-    '                    SqlCommand.ExecuteNonQuery()
-    '                Next
-    '                UpdateInventoryCon.Close()
-    '            End With
-    '        End If
-    '    Catch ex As Exception
-    '        MsgBox(ex.ToString)
-    '        SendErrorReport(ex.ToString)
-    '    End Try
-    'End Sub
-
-    'Private Sub UpdateInventory()
-    '    Dim SqlCommand As MySqlCommand
-    '    Dim SqlAdapter As MySqlDataAdapter
-    '    Dim SqlDt As DataTable
-    '    Dim UpdateInventoryCon As MySqlConnection = LocalhostConn()
-    '    Try
-    '        Dim Query As String = ""
-    '        With DataGridViewInv
-    '            For i As Integer = 0 To .Rows.Count - 1 Step +1
-
-    '                Dim GetStock_Primary As Double = 0
-    '                Dim GetStock_Secondary As Double = 0
-    '                Dim GetStock_NoOfServings As Double = 0
-
-    '                Dim GetFormPrimaryValue As Double = 0
-    '                Dim GetFormSecondaryValue As Double = 0
-    '                Dim GetFormServingValue As Double = 0
-
-    '                Dim TotalStockPrimary As Double = 0
-    '                Dim TotalStockSecondary As Double = 0
-    '                Dim TotaStockNoOfServings As Double = 0
-
-    '                Dim FormulaID = .Rows(i).Cells(1).Value
-
-    '                'Dim TotalServingValue As Double = Double.Parse(.Rows(i).Cells(0).Value.ToString)
-    '                'Dim ServingValue As Double = 0
-    '                'TotalQuantity = .Rows(i).Cells(2).Value
-
-    '                If .Rows(i).Cells(9).Value.ToString = "Server" Then
-    '                    Query = "SELECT `primary_value`,`secondary_value`,`serving_value` FROM `loc_product_formula` WHERE server_formula_id = " & .Rows(i).Cells(1).Value
-    '                Else
-    '                    Query = "SELECT `primary_value`,`secondary_value`,`serving_value` FROM `loc_product_formula` WHERE formula_id = " & .Rows(i).Cells(1).Value
-    '                End If
-
-    '                SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
-    '                SqlAdapter = New MySqlDataAdapter(SqlCommand)
-    '                SqlDt = New DataTable
-    '                SqlAdapter.Fill(SqlDt)
-
-    '                For Each row As DataRow In SqlDt.Rows
-    '                    GetFormPrimaryValue = row("primary_value")
-    '                    GetFormSecondaryValue = row("secondary_value")
-    '                    GetFormServingValue = row("serving_value")
-    '                Next
-    '                Console.WriteLine("FORMULA PRIMARY " & GetFormPrimaryValue)
-
-    '                If .Rows(i).Cells(9).Value.ToString = "Server" Then
-    '                    Query = "SELECT `stock_primary`,`stock_secondary`,`stock_no_of_servings` FROM `loc_pos_inventory` WHERE server_inventory_id = " & FormulaID
-    '                Else
-    '                    Query = "SELECT `stock_primary`,`stock_secondary`,`stock_no_of_servings` FROM `loc_pos_inventory` WHERE inventory_id = " & FormulaID
-    '                End If
-    '                SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
-    '                SqlAdapter = New MySqlDataAdapter(SqlCommand)
-    '                SqlDt = New DataTable
-    '                SqlAdapter.Fill(SqlDt)
-    '                For Each row As DataRow In SqlDt.Rows
-    '                    GetStock_Primary = row("stock_primary")
-    '                    GetStock_Secondary = row("stock_secondary")
-    '                    GetStock_NoOfServings = row("stock_no_of_servings")
-    '                Next
-    '                Console.WriteLine("GET STOCK SEC: " & GetStock_Secondary)
-    '                'TotalStockPrimary = GetStock_Primary -
-    '                TotalStockSecondary = GetStock_Secondary - Double.Parse(.Rows(i).Cells(0).Value)
-    '                'TotaStockNoOfServings =  
-    '                TotalStockPrimary = TotalStockSecondary / Double.Parse(.Rows(i).Cells(5).Value.ToString)
-    '                'TotaStockNoOfServings
-    '                ''
-    '                ''    secondary_value = secondary_value / 2
-    '                ''    secondary_value = secondary_value / 2
-    '                ''End If
-    '                'If .Rows(i).Cells(10).Value = 1 Then
-    '                '    secondary_value = secondary_value / 2
-    '                '    stock_secondary = stock_secondary / 2
-    '                'End If
-
-    '                'Secondary = stock_secondary - TotalServingValue
-    '                'ServingValue = Secondary / Double.Parse(.Rows(i).Cells(5).Value.ToString)
-    '                'TotalPrimary = Secondary / secondary_value
-
-
-
-    '                Console.WriteLine("TOTAL SECONDARY " & TotalStockSecondary)
-    '                Console.WriteLine("TOTAL SERVING " & TotaStockNoOfServings)
-    '                Console.WriteLine("TOTAL PRIMARY  " & TotalStockPrimary)
-    '                'If .Rows(i).Cells(9).Value.ToString = "Server" Then
-    '                '    Query = "UPDATE loc_pos_inventory SET stock_secondary = " & Secondary & " , stock_no_of_servings = " & ServingValue & " , stock_primary = " & TotalPrimary & ", date_modified = '" & FullDate24HR() & "' WHERE server_inventory_id = " & .Rows(i).Cells(1).Value
-    '                'Else
-    '                '    Query = "UPDATE loc_pos_inventory SET stock_secondary = " & Secondary & " , stock_no_of_servings = " & ServingValue & " , stock_primary = " & TotalPrimary & ", date_modified = '" & FullDate24HR() & "' WHERE inventory_id = " & .Rows(i).Cells(1).Value
-    '                'End If
-    '                '' Console.WriteLine(Query)
-    '                'SqlCommand = New MySqlCommand(Query, UpdateInventoryCon)
-    '                'SqlCommand.ExecuteNonQuery()
-    '            Next
-    '            UpdateInventoryCon.Close()
-    '        End With
-    '    Catch ex As Exception
-    '        MsgBox(ex.ToString)
-    '        SendErrorReport(ex.ToString)
-    '    End Try
-    'End Sub
     Dim ThreadlistMIX As List(Of Thread) = New List(Of Thread)
     Dim ThreadMix As Thread
     Private Sub BackgroundWorker3_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerInventory.DoWork
@@ -682,9 +446,7 @@ Public Class POS
                 t.Join()
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "POS: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/BackgroundWorkerInventory: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -746,9 +508,7 @@ Public Class POS
 
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "POS: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/ButtonCancel: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Label76_TextChanged(sender As Object, e As EventArgs) Handles Label76.TextChanged
@@ -761,9 +521,7 @@ Public Class POS
                 ButtonApplyDiscounts.Enabled = False
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "POS: " & ex.ToString, "Critical")
-
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/Label76: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub POS_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -790,12 +548,8 @@ Public Class POS
                     End If
                 End If
             End If
-
-
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "POS: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/Timer1: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -823,7 +577,7 @@ Public Class POS
             PromoType = "N/A"
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/PromoDefault(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -875,7 +629,7 @@ Public Class POS
             Compute(True, GetDicountValue, True)
 
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/DiscountDefault(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -1101,7 +855,7 @@ Public Class POS
                 e.Handled = True
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
 #End Region
@@ -1185,9 +939,7 @@ Public Class POS
             CouponCode.ButtonSubmit.Enabled = True
             Enabled = False
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "POS: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/ButtonApplyDiscounts: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonApplyCoupon.Click
@@ -1201,7 +953,7 @@ Public Class POS
             CouponCode.Show()
             CouponCode.ButtonSubmit.Enabled = True
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 #Region "Transaction Process"
@@ -1225,8 +977,8 @@ Public Class POS
             cmd.ExecuteNonQuery()
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/Customer Info : " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/Customer Info : " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InsertFMStock()
@@ -1248,8 +1000,8 @@ Public Class POS
                 cmd.ExecuteNonQuery()
             Next
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/Fm Stock : " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/Fm Stock : " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InsertDailyTransaction()
@@ -1294,8 +1046,8 @@ Public Class POS
                      ,'" & INSERTTHISDATE & "','" & TRANSACTIONMODE & "','" & Shift & "','" & S_Zreading & "','Unsynced','" & DiscountTypeTOSave & "'," & VAT12PERCENT & "," & GROSSSALE & "," & TOTALDISCOUNTEDAMOUNT & ")"
             GLOBAL_INSERT_FUNCTION(table, fields, value)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/Daily Transaction : " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/Daily Transaction : " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InsertDailyDetails()
@@ -1346,8 +1098,8 @@ Public Class POS
             End With
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/Daily Transaction Details: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/Daily Transaction Details: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InsertModeofTransaction()
@@ -1367,8 +1119,8 @@ Public Class POS
             GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
             ButtonClickCount = 0
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/Mode of Transaction: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/Mode of Transaction: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InsertDiscountData()
@@ -1448,8 +1200,8 @@ Public Class POS
 
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/Discount Data: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/Discount Data: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InsertCouponData()
@@ -1481,8 +1233,8 @@ Public Class POS
             cmd.ExecuteNonQuery()
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/Coupon Data: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/Coupon Data: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InsertSeniorDetails()
@@ -1503,8 +1255,8 @@ Public Class POS
                       , 'Unsynced')"
             GLOBAL_INSERT_FUNCTION(table, fields, value)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/Senior Data: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/Senior Data: " & ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -1648,8 +1400,7 @@ Public Class POS
             Next
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/BG Worker 1: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/BackgroundWorkerTransactions: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerTransactions.ProgressChanged
@@ -1677,9 +1428,8 @@ Public Class POS
         Enabled = True
         WaitFrm.Close()
         PaymentForm.Close()
-
-
-
+        Dim isSuccess As Boolean = True
+        Dim XMLName As String = ""
         If DataGridViewOrders.Rows.Count > 0 Then
             Try
                 Dim TotalLines As Integer = 0
@@ -1719,7 +1469,7 @@ Public Class POS
                 EJournal.UseWriter = True
                 EJournal.PosWriter = True
 
-                Dim XMLName As String = S_TRANSACTION_NUMBER & FullDateFormatForSaving().ToString & ".xml"
+                XMLName = S_TRANSACTION_NUMBER & FullDateFormatForSaving().ToString & ".xml"
                 XML_Writer = New XmlTextWriter(XML_Path & XMLName, Encoding.UTF8)
                 XML_Writer.WriteStartDocument(True)
                 XML_Writer.Formatting = Formatting.Indented
@@ -1749,18 +1499,15 @@ Public Class POS
                 XML_Writer.WriteEndDocument()
                 XML_Writer.Close()
 
-                SaveXMLInfo(XMLName)
-
             Catch ex As Exception
-                SendErrorReport(ex.ToString)
-                MessageBox.Show("An error occurred while trying to load the " &
-                    "document for Print Preview. Make sure you currently have " &
-                    "access to a printer. A printer must be localconnected and " &
-                    "accessible for Print Preview to work.", Text,
-                     MessageBoxButtons.OK, MessageBoxIcon.Error)
+                isSuccess = False
+                AuditTrail.LogToAuditTrail("System", "POS/BackgroundWorkerTransactions: " & ex.ToString, "Critical")
+            Finally
+                SaveXMLInfo(XMLName)
+                InsertIntoEJournal()
             End Try
 
-            InsertIntoEJournal()
+
 
             selectmax(1)
 
@@ -1832,8 +1579,7 @@ Public Class POS
                 Next
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/Fill Inventory: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/FillDatatable(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub PrintDocument1_PrintPage(sender As Object, e As PrintPageEventArgs) Handles printdoc.PrintPage
@@ -1862,13 +1608,10 @@ Public Class POS
 
             ReceiptFooterOne(sender, e, False, True)
 
-
-            AuditTrail.LogToAuditTral("Transaction", "POS/Transaction Details: " & SiNumberToString, "Normal")
-
+            AuditTrail.LogToAuditTrail("Transaction", "POS/Transaction Details: " & SiNumberToString, "Normal")
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/Print Receipt: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/printdoc: " & ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -1879,10 +1622,6 @@ Public Class POS
         Try
             UPDATE_WORKER_CANCEL = False
             HASUPDATE = False
-
-            'For i As Integer = 0 To PROMPT_MESSAGE_DATATABLE.Rows.Count - 1 Step +1
-            '    MsgBox(PROMPT_MESSAGE_DATATABLE(i)(0))
-            'Next
 
             If OnlineOffline Then
                 Enabled = False
@@ -1908,7 +1647,7 @@ Public Class POS
                 End If
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS/Button3: " & ex.ToString, "Critical")
         End Try
     End Sub
     Public POSISUPDATING As Boolean = False
@@ -2042,8 +1781,7 @@ Public Class POS
             If UPDATE_WORKER_CANCEL Then
                 MsgBox("Cannot fetch data. Please check your internet connection")
             End If
-            AuditTrail.LogToAuditTral("System", "POS: Update not successful, " & ex.ToString, "Critical")
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "POS: Update not successful, " & ex.ToString, "Critical")
             Exit Sub
         End Try
     End Sub
@@ -2057,7 +1795,7 @@ Public Class POS
                     If UPDATE_CATEGORY_DATATABLE.Rows.Count > 0 Or UPDATE_PRODUCTS_DATATABLE.Rows.Count > 0 Or UPDATE_FORMULA_DATATABLE.Rows.Count > 0 Or UPDATE_INVENTORY_DATATABLE.Rows.Count > 0 Or UPDATE_PRICE_CHANGE_DATATABLE.Rows.Count > 0 Or UPDATE_COUPON_APPROVAL_DATATABLE.Rows.Count > 0 Or UPDATE_CUSTOM_PROD_APP_DATATABLE.Rows.Count Or UPDATE_COUPONS_DATATABLE.Rows.Count > 0 Or UPDATE_PARTNERS_DATATABLE.Rows.Count > 0 Then
                         CheckingForUpdates.CheckingUpdatesUPDATED = True
                         CheckingForUpdates.Close()
-                        AuditTrail.LogToAuditTral("System", "POS: Update Detected, ", "Normal")
+                        AuditTrail.LogToAuditTrail("System", "POS: Update Detected, ", "Normal")
 
                         Dim updatemessage = MessageBox.Show("New Updates are available. Would you like to update now ?", "New Updates", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 
@@ -2113,8 +1851,7 @@ Public Class POS
                 End If
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/BG Worker Update Complete: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/BG Worker Update Complete: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorkerInstallUpdates_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerInstallUpdates.DoWork
@@ -2163,8 +1900,7 @@ Public Class POS
             If UPDATE_WORKER_CANCEL Then
                 MsgBox("Cannot fetch data. Please check your internet connection")
             End If
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/BG Worker Install Update: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/BG Worker Install Update: " & ex.ToString, "Critical")
             Exit Sub
         End Try
     End Sub
@@ -2173,7 +1909,7 @@ Public Class POS
         Try
             CheckingForUpdates.CheckingUpdatesUPDATED = True
             CheckingForUpdates.Close()
-            AuditTrail.LogToAuditTral("System", "POS: Update successful, ", "Normal")
+            AuditTrail.LogToAuditTrail("System", "POS: Update successful, ", "Normal")
 
             If UPDATE_PRICE_CHANGE_BOOL = True Then
                 MsgBox("Product price changes approved")
@@ -2194,23 +1930,20 @@ Public Class POS
             BackgroundWorkerContent.WorkerSupportsCancellation = True
             BackgroundWorkerContent.RunWorkerAsync()
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/BG Worker Install Update Complete: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/BG Worker Install Update Comp: " & ex.ToString, "Critical")
         End Try
     End Sub
 
 
 #End Region
 #Region "Message"
-
-
     Private Sub TextBoxGRANDTOTAL_TextChanged(sender As Object, e As EventArgs) Handles TextBoxGRANDTOTAL.TextChanged
         Try
             If My.Settings.LedDisplayTrue Then
                 LedDisplay(TextBoxGRANDTOTAL.Text, True)
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -2230,12 +1963,10 @@ Public Class POS
         Try
             LabelTransactionType.Text = LabelTransactionType.Text.ToUpper
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonRemoveDiscount.Click
-        ''MsgBox(TRANSACTIONMODE)
-        'MsgBox(PromoApplied)
         DiscountDefault()
     End Sub
     Private Sub ButtonCDISC_Click(sender As Object, e As EventArgs) Handles ButtonRemovePromo.Click
@@ -2254,8 +1985,7 @@ Public Class POS
                 t.Join()
             Next
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/BG Worker Check Internet: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/BG Worker Check Internet: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -2288,8 +2018,7 @@ Public Class POS
                 End If
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/BG Worker Check Internet Complete: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/BG Worker Check Internet Complete: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim ThreadAutoSyncData As Thread
@@ -2319,8 +2048,7 @@ Public Class POS
                 End If
             Next
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/BG Worker Sync Data: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/BG Worker Sync Data: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -2332,7 +2060,7 @@ Public Class POS
         Try
             listviewproductsshow(Partners, ComboBoxPartners.Text)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Dim ThreadListContent As List(Of Thread) = New List(Of Thread)
@@ -2352,8 +2080,7 @@ Public Class POS
                 t.Join()
             Next
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/BG Worker Content: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/BG Worker Content: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -2368,8 +2095,7 @@ Public Class POS
             LoadCategory()
             DisplayInbox()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "POS/BG Worker Content Complete: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "POS/BG Worker Content Complete: " & ex.ToString, "Critical")
         End Try
     End Sub
 

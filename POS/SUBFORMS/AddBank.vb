@@ -15,9 +15,7 @@
                 SettingsForm.LoadPartners()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Bank: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddBank/Button11: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub AddBank_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -29,7 +27,7 @@
                 e.Handled = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddBank/TextBoxBankName: " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

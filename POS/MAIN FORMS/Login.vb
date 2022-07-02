@@ -8,7 +8,7 @@ Public Class Login
             Timer1.Enabled = True
             ButttonLogin.Text = "LOGIN (" & ClientStorename & ")"
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Login/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackupDatabase()
@@ -17,7 +17,7 @@ Public Class Login
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqldump --databases -h " & connectionModule.LocServer & " -u " & connectionModule.LocUser & " -p " & connectionModule.LocPass & " " & connectionModule.LocDatabase & " > """ & S_ExportPath & DatabaseName & """")
             'CheckIfRunning()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Login/BackupDatabase(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub CheckDatabaseBackup()
@@ -78,9 +78,7 @@ Public Class Login
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Login: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Login/CheckDatabaseBackup(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButttonLogin_Click(sender As Object, e As EventArgs) Handles ButttonLogin.Click
@@ -123,7 +121,7 @@ Public Class Login
                 e.Handled = True
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
@@ -144,7 +142,7 @@ Public Class Login
                 txtpassword.UseSystemPasswordChar = True
             End If
         Catch ex As Exception
-            ex.ToString()
+            AuditTrail.LogToAuditTrail("System", "Login/PictureBox3: " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

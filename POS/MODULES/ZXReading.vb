@@ -210,22 +210,9 @@ Module ZXReading
             Command.ExecuteNonQuery()
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "ZX-READING Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModZXRead/InsertZReadXRead(): " & ex.ToString, "Critical")
         End Try
     End Sub
-
-    Public Function ReturnZreadXRead() As DataTable
-        Dim ZReadDatatable As DataTable = New DataTable
-        Try
-
-        Catch ex As Exception
-            SendErrorReport(ex.ToString)
-        End Try
-        Return ZReadDatatable
-    End Function
-
     Public Function ReturnCashBreakdown(DateFrom As String, DateTo As String) As DataTable
         Dim CashBreakDownDatatable As DataTable = New DataTable
         Try
@@ -235,9 +222,7 @@ Module ZXReading
             Dim Da As MySqlDataAdapter = New MySqlDataAdapter(Command)
             Da.Fill(CashBreakDownDatatable)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "ZX-READING Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModZXRead/ReturnCashBreakdown(): " & ex.ToString, "Critical")
         End Try
         Return CashBreakDownDatatable
     End Function
@@ -326,7 +311,5 @@ Module ZXReading
         ZXPointFiveTotal = 0
         ZXVatExemptSales = 0
         ZXPremium = 0
-
     End Sub
-
 End Module

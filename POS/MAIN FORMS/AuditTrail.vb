@@ -51,12 +51,14 @@ Public Class AuditTrail
             Next
 
         Catch ex As Exception
-            LogToAuditTral("System", "Audit: " & ex.ToString, "Critical")
+            LogToAuditTrail("System", "Audit: " & ex.ToString, "Critical")
         End Try
     End Sub
 
-    Public Sub LogToAuditTral(GroupName As String, Description As String, Severity As String)
+    Public Sub LogToAuditTrail(GroupName As String, Description As String, Severity As String)
         Try
+            MessageBox.Show("An error occured. Please contact the System Administrator", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
             If ValidLocalConnection Then
 
                 Dim ConnectionLocal As MySqlConnection = LocalhostConn()
@@ -71,10 +73,11 @@ Public Class AuditTrail
                 Command.Parameters.Add("@7", MySqlDbType.Text).Value = If(ClientStoreID <> "", ClientStoreID, 0)
                 Command.Parameters.Add("@8", MySqlDbType.Text).Value = "Unsynced"
                 Command.ExecuteNonQuery()
+
             End If
+
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            LogToAuditTral("System", "Audit: " & ex.ToString, "Critical")
+            MessageBox.Show("Please contact the System Administrator", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -194,7 +197,7 @@ Public Class AuditTrail
                     End If
                 Next
 
-                LogToAuditTral("Report", "Reports/Custom Report: Generated Report, " & ClientCrewID, "Normal")
+                LogToAuditTrail("Report", "Reports/Custom Report: Generated Report, " & ClientCrewID, "Normal")
                 Dim filename = My.Computer.FileSystem.SpecialDirectories.Desktop & "\Audit-Trail" & FullDateFormatForSaving() & ".pdf"
                 document.Save(filename)
 
@@ -202,7 +205,7 @@ Public Class AuditTrail
                 Process.Start(filename)
             End If
         Catch ex As Exception
-            LogToAuditTral("System", "Audit: " & ex.ToString, "Critical")
+            LogToAuditTrail("System", "Audit: " & ex.ToString, "Critical")
         End Try
 
     End Sub
@@ -243,15 +246,15 @@ Public Class AuditTrail
                     Dim Info As String = .Rows(i).Cells(6).Value
                     TxtFileLine(a) = ID & "   " & Time & "   " & Group & "   " & Severity & "   " & UserName & "   " & Description & ";   " & Info
                     a += 1
-            Next
+                Next
             End With
 
 
             Dim CompletePath As String = CompleteDirectoryPath & "\AuditTrail" & FullDateFormatForSaving() & ".txt"
-            LogToAuditTral("Report", "Audit Trail: Txt file generated, " & CompleteDirectoryPath, "Normal")
+            LogToAuditTrail("Report", "Audit Trail: Txt file generated, " & CompleteDirectoryPath, "Normal")
             File.WriteAllLines(CompletePath, TxtFileLine, Encoding.UTF8)
         Catch ex As Exception
-            LogToAuditTral("System", "Audit: " & ex.ToString, "Critical")
+            LogToAuditTrail("System", "Audit: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -269,7 +272,7 @@ Public Class AuditTrail
         Try
             LoadLogs(False)
         Catch ex As Exception
-            LogToAuditTral("System", "Audit: " & ex.ToString, "Critical")
+            LogToAuditTrail("System", "Audit: " & ex.ToString, "Critical")
         End Try
     End Sub
 

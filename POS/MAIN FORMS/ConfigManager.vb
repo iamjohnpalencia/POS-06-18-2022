@@ -86,7 +86,7 @@ Public Class ConfigManager
             End If
             CreateUserConfig(Path, "user.config", FolderName)
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Public Sub CreateUserConfig(path As String, FileName As String, FolderName As String, Optional ByVal Attributes As System.IO.FileAttributes = IO.FileAttributes.Normal)
@@ -111,7 +111,7 @@ Public Class ConfigManager
                 MsgBox("Saved")
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub ButtonTestLocConn_Click(sender As Object, e As EventArgs) Handles ButtonTestLocConn.Click
@@ -122,7 +122,7 @@ Public Class ConfigManager
             BackgroundWorker1.WorkerReportsProgress = True
             BackgroundWorker1.RunWorkerAsync()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub ButtonClearLocal_Click(sender As Object, e As EventArgs) Handles ButtonClearLocal.Click
@@ -136,7 +136,7 @@ Public Class ConfigManager
             ButtonClearLocal.Enabled = True
             ButtonTestLocConn.Enabled = True
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub ButtonClearCloud_Click(sender As Object, e As EventArgs) Handles ButtonClearCloud.Click
@@ -160,7 +160,7 @@ Public Class ConfigManager
                 t.Join()
             Next
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
@@ -189,7 +189,7 @@ Public Class ConfigManager
             BackgroundWorker2.WorkerReportsProgress = True
             BackgroundWorker2.RunWorkerAsync()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Dim threadListConCloud As List(Of Thread) = New List(Of Thread)
@@ -210,7 +210,7 @@ Public Class ConfigManager
                 t.Join()
             Next
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub BackgroundWorker2_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker2.ProgressChanged
@@ -233,7 +233,7 @@ Public Class ConfigManager
             ButtonClearCloud.Enabled = True
             ButtonTestCloudConn.Enabled = True
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Dim FillUp As Boolean = False
@@ -294,7 +294,7 @@ Public Class ConfigManager
             End If
 
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Dim FooterInfo As String = ""
@@ -372,8 +372,8 @@ Public Class ConfigManager
             End If
 
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadDefaultSettingsAdd()
@@ -415,7 +415,7 @@ Public Class ConfigManager
                 End If
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub LoadDefaultSettingsDev()
@@ -444,7 +444,7 @@ Public Class ConfigManager
                 ConnectionCloud.Close()
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub LoadConn()
@@ -480,7 +480,7 @@ Public Class ConfigManager
                 End If
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Public Sub LoadCloudConn()
@@ -507,7 +507,7 @@ Public Class ConfigManager
                 ConnectionLocal.Close()
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub LoadAutoBackup()
@@ -547,7 +547,7 @@ Public Class ConfigManager
                 Autobackup = False
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub LoadAdditionalSettings()
@@ -602,7 +602,7 @@ Public Class ConfigManager
             End If
             My.Settings.Save()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub LoadDevInfo()
@@ -677,7 +677,7 @@ Public Class ConfigManager
             End If
             My.Settings.Save()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Dim MunicipalityName As String
@@ -692,7 +692,7 @@ Public Class ConfigManager
             CloudDa.Fill(CloudDT)
             ConnectionCloud.Close()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
         Return CloudDT
     End Function
@@ -705,7 +705,7 @@ Public Class ConfigManager
             PictureBoxLogo.BackgroundImage = Base64ToImage(CloudCmd.ExecuteScalar())
             ConnectionCloud.Close()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
 
@@ -740,7 +740,7 @@ Public Class ConfigManager
             Loop
             objReader.Close()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonExit.Click
@@ -787,7 +787,7 @@ Public Class ConfigManager
                 t.Join()
             Next
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
 
@@ -825,7 +825,7 @@ Public Class ConfigManager
             Next
             ConnectionCloud.Close()
         Catch ex As MySqlException
-            MsgBox(ex.ToString)
+
         Finally
         End Try
     End Sub
@@ -864,7 +864,7 @@ Public Class ConfigManager
                 t.Join()
             Next
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub BackgroundWorker4_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker4.ProgressChanged
@@ -923,7 +923,7 @@ Public Class ConfigManager
                 FranchiseeStoreValidation = False
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Function ReturnMunicipalityName(id) As String
@@ -943,9 +943,9 @@ Public Class ConfigManager
             ServerConn.Close()
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Retrieve Module: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "Retrieve Module: " & ex.ToString, "Critical")
 
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
         Return ReturnMun
     End Function
@@ -964,9 +964,9 @@ Public Class ConfigManager
             End Using
             ServerConn.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Retrieve Module: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "Retrieve Module: " & ex.ToString, "Critical")
 
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
         Return ReturnProv
     End Function
@@ -975,7 +975,7 @@ Public Class ConfigManager
             RadioButtonNO.Enabled = tf
             RadioButtonYES.Enabled = tf
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub ButtonEdit_Click(sender As Object, e As EventArgs) Handles ButtonEditAddSettings.Click
@@ -1057,7 +1057,7 @@ Public Class ConfigManager
                 MsgBox("All fields are required.")
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub Button4_Click(sender As Object, e As EventArgs) Handles ButtonGetExportPath.Click
@@ -1101,7 +1101,7 @@ Public Class ConfigManager
                 t.Join()
             Next
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub BackgroundWorkerLOAD_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerLOAD.ProgressChanged
@@ -1125,7 +1125,7 @@ Public Class ConfigManager
             DateTimePicker4PTUDI.Enabled = tf
             DateTimePickerPTUVU.Enabled = tf
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub ButtonEditDevSet_Click(sender As Object, e As EventArgs) Handles ButtonEditDevSet.Click
@@ -1202,7 +1202,7 @@ Public Class ConfigManager
                 ConfirmDevInfoSettings = False
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles ButtonActivate.Click
@@ -1258,7 +1258,7 @@ Public Class ConfigManager
                                         MsgBox("Select print option first")
                                     End If
                                 Else
-                                        MsgBox("Please fill up all fields in Developer Information Settings")
+                                    MsgBox("Please fill up all fields in Developer Information Settings")
                                 End If
                             Else
                                 MsgBox("Please fill up all fields in Additional Settings")
@@ -1314,7 +1314,7 @@ Public Class ConfigManager
                 End If
             Next
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
 
@@ -1388,7 +1388,7 @@ Public Class ConfigManager
                 End If
             Next
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub BackgroundWorkerACTIVATION_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerACTIVATION.ProgressChanged
@@ -1416,7 +1416,7 @@ Public Class ConfigManager
             End If
             CloudConnection.Close()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub adminserialkey()
@@ -1435,7 +1435,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Product key table updated)." & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Updating of product key)." & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Public Sub adminoutlets()
@@ -1452,7 +1452,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Outlets table updated)." & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Updating of outlet)." & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Dim Datenow
@@ -1478,7 +1478,7 @@ Public Class ConfigManager
 
             TextBox1.Text += FullDate24HR() & " :    Complete(Masterlist data inserted)." & vbNewLine
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
             TextBox1.Text += FullDate24HR() & " :    Failed(Masterlist data insertion(Cloud))." & vbNewLine
         End Try
     End Sub
@@ -1535,7 +1535,7 @@ Public Class ConfigManager
             End With
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Outlet data insertion(Local))." & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub SaveLogo()
@@ -1586,7 +1586,7 @@ Public Class ConfigManager
             datagrid.ReadOnly = True
             ConnectionCloud.Close()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
         Return dt
     End Function
@@ -1595,7 +1595,7 @@ Public Class ConfigManager
         Try
             DataGridViewPRODUCTS.DataSource = DtCount
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Dim threadLISTINSERPROD As List(Of Thread) = New List(Of Thread)
@@ -1720,7 +1720,7 @@ Public Class ConfigManager
                 End If
             Next
         Catch ex As Exception
-            'MsgBox(ex.ToString)
+            '
         End Try
     End Sub
     Dim optimizeorrepair As Integer = 0
@@ -1764,7 +1764,7 @@ Public Class ConfigManager
                 t.Join()
             Next
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Public Sub StartCommandLine(ByVal batfile As String)
@@ -1778,7 +1778,7 @@ Public Class ConfigManager
             p.Start()
             p.WaitForExit()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub BackgroundWorker5_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker5.RunWorkerCompleted
@@ -1806,7 +1806,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of categories data)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Fetching of categories data)" & vbNewLine
-            'MsgBox(ex.ToString)
+            '
         End Try
     End Sub
     Dim DtCount As DataTable
@@ -1821,7 +1821,7 @@ Public Class ConfigManager
                 Dim DTCountProductID As DataTable = New DataTable
                 DaCount.Fill(DTCountProductID)
                 'Dim result As Integer = CmdCount.ExecuteScalar
-                DTCount = New DataTable
+                DtCount = New DataTable
                 DtCount.Columns.Add("product_id")
                 DtCount.Columns.Add("product_sku")
                 DtCount.Columns.Add("product_name")
@@ -1849,7 +1849,7 @@ Public Class ConfigManager
                     FillDt = New DataTable
                     DaCount.Fill(FillDt)
                     For i As Integer = 0 To FillDt.Rows.Count - 1 Step +1
-                        Dim Prod As DataRow = DTCount.NewRow
+                        Dim Prod As DataRow = DtCount.NewRow
                         Prod("product_id") = FillDt(i)(0)
                         Prod("product_sku") = FillDt(i)(1)
                         Prod("product_name") = FillDt(i)(2)
@@ -1873,10 +1873,10 @@ Public Class ConfigManager
                 TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of products data)" & vbNewLine
             Catch ex As Exception
                 TextBox1.Text += FullDate24HR() & " :    Failed(Fetching of products data)" & vbNewLine
-                MsgBox(ex.ToString)
+
             End Try
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub GetCoupons()
@@ -1891,7 +1891,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of coupons data)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Fetching of coupons data)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub GetPartners()
@@ -1906,7 +1906,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of partners data)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Fetching of partners data)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub GetStockCategory()
@@ -1921,7 +1921,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of stock adjustment categories data)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Fetching of stock adjustment categories data)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Public Sub GetInventory()
@@ -1936,7 +1936,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of inventories data)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Fetching of inventories data)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Public Sub GetFormula()
@@ -1951,7 +1951,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Fetching of formulas data)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Fetching of formulas data)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub InsertToProducts()
@@ -1989,7 +1989,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Products data insertion)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Products data insertion)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub InsertToInventory()
@@ -2026,7 +2026,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Inventories data insertion)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Inventories data insertion)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub InsertToCategories()
@@ -2050,7 +2050,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Categories data insertion)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Categories data insertion)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub InsertToStockCategory()
@@ -2075,7 +2075,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Stock Adjustment Categories data insertion)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Stock Adjustment  data insertion)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub InsertPartnersTransacton()
@@ -2102,7 +2102,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Partners data insertion)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Partners data insertion)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub InsertCoupons()
@@ -2139,7 +2139,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Coupons data insertion)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Coupons data insertion)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub InsertToFormula()
@@ -2174,7 +2174,7 @@ Public Class ConfigManager
             TextBox1.Text += FullDate24HR() & " :    Complete(Formulas data insertion)" & vbNewLine
         Catch ex As Exception
             TextBox1.Text += FullDate24HR() & " :    Failed(Formulas data insertion)" & vbNewLine
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles ButtonEditAccount.Click
@@ -2203,7 +2203,7 @@ Public Class ConfigManager
                 MsgBox("Connection must be valid")
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub BackgroundWorker5_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker5.ProgressChanged
@@ -2214,7 +2214,7 @@ Public Class ConfigManager
             BTNSaveLocalConn = False
             ValidLocalConnection = False
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
 
@@ -2224,7 +2224,7 @@ Public Class ConfigManager
             ValidCloudConnection = False
             My.Settings.Save()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub TextBoxDEVPTU_TextChanged(sender As Object, e As EventArgs) Handles TextBoxDevTIN.TextChanged, TextBoxDEVPTU.TextChanged, TextBoxDevname.TextChanged, TextBoxDevAdd.TextChanged, TextBoxDevAccr.TextChanged
@@ -2232,14 +2232,14 @@ Public Class ConfigManager
             ConfirmDevInfoSettings = False
             My.Settings.Save()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub DateTimePicker1ACCRDI_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePickerPTUVU.ValueChanged, DateTimePicker4PTUDI.ValueChanged, DateTimePicker2ACCRVU.ValueChanged, DateTimePicker1ACCRDI.ValueChanged
         Try
             ConfirmDevInfoSettings = False
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub TextBoxExportPath_TextChanged(sender As Object, e As EventArgs) Handles TextBoxTerminalNo.TextChanged, TextBoxTax.TextChanged, TextBoxSINumber.TextChanged, TextBoxExportPath.TextChanged
@@ -2247,7 +2247,7 @@ Public Class ConfigManager
             ConfirmAdditionalSettings = False
             My.Settings.Save()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub RadioButtonYES_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonYES.CheckedChanged, RadioButtonNO.CheckedChanged
@@ -2255,7 +2255,7 @@ Public Class ConfigManager
             ConfirmAdditionalSettings = False
             My.Settings.Save()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub RadioButtonDaily_Click(sender As Object, e As EventArgs) Handles RadioButtonYearly.Click, RadioButtonWeekly.Click, RadioButtonMonthly.Click, RadioButtonDaily.Click
@@ -2317,7 +2317,7 @@ Public Class ConfigManager
                 MsgBox("Local connection must be valid first.")
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
 
@@ -2327,7 +2327,7 @@ Public Class ConfigManager
                 e.Handled = True
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
 
@@ -2366,7 +2366,7 @@ Public Class ConfigManager
                 objReader.Close()
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Dim ImagePath As String
@@ -2385,8 +2385,8 @@ Public Class ConfigManager
                 PictureBoxLogo.SizeMode = PictureBoxSizeMode.StretchImage
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
@@ -2412,8 +2412,8 @@ Public Class ConfigManager
             decodingstring = encoding
             RichTextBoxLogo.Text = ImageToBase64(ImageToConvert, encodeType)
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Dim PrintOptionIsSet As Boolean = False
@@ -2463,7 +2463,7 @@ Public Class ConfigManager
                 PrintOption = ""
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
             PrintOptionIsSet = False
             PrintOption = ""
         End Try
@@ -2515,7 +2515,7 @@ Public Class ConfigManager
                 RePrintOptionIsSet = False
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
             RePrintOption = ""
             RePrintOptionIsSet = False
         End Try
@@ -2568,7 +2568,7 @@ Public Class ConfigManager
             End If
 
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
             PrintXZReadOption = ""
             PrintXZRead = False
         End Try
@@ -2621,7 +2621,7 @@ Public Class ConfigManager
             End If
 
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
             PrintReturns = ""
             PrintReturnsBool = False
         End Try
@@ -2682,7 +2682,7 @@ Public Class ConfigManager
             End If
 
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
             PrintSalesReport = ""
             PrintSalesReportBool = False
         End Try

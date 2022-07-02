@@ -41,9 +41,7 @@ Public Class HoldOrder
                         GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                     Next
                 Catch ex As Exception
-                    AuditTrail.LogToAuditTral("System", "Hold Order: " & ex.ToString, "Critical")
-
-                    SendErrorReport(ex.ToString)
+                    AuditTrail.LogToAuditTrail("System", "HoldOrd/ButtonHoldOrder: " & ex.ToString, "Critical")
                 End Try
                 Try
                     For a As Integer = 0 To POS.DataGridViewInv.Rows.Count - 1 Step +1
@@ -63,16 +61,14 @@ Public Class HoldOrder
                         GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                     Next
                 Catch ex As Exception
-                    AuditTrail.LogToAuditTral("System", "Hold Order: " & ex.ToString, "Critical")
-
-                    SendErrorReport(ex.ToString)
+                    AuditTrail.LogToAuditTrail("System", "HoldOrd/ButtonHoldOrder: " & ex.ToString, "Critical")
                 End Try
                 Try
                     SystemLogType = "HOLD ORDER"
                     SystemLogDesc = "Customer name: " & TextBoxCustomerName.Text & " Item(s): " & POS.DataGridViewOrders.Rows.Count
                     GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
                 Catch ex As Exception
-                    SendErrorReport(ex.ToString)
+                    AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
                 End Try
                 MsgBox("success")
                 Me.Close()

@@ -10,7 +10,7 @@
                 " & Val(TextBox50.Text) & "," & Val(TextBox20.Text) & "," & Val(TextBox10.Text) & "," & Val(TextBox5.Text) & "," & Val(TextBox1.Text) & ",
                 " & Val(TextBoxPoint25.Text) & "," & Val(TextBoxZeroPoint5.Text) & ",'" & FullDate24HR() & "', '" & ClientCrewID & "' , '1', '" & S_Zreading & "', 'Unsynced')"
                 GLOBAL_INSERT_FUNCTION(Table, Fields, Values)
-                AuditTrail.LogToAuditTral("User", "Cash Break Down: Total " & Label23.Text & " User: " & ClientCrewID, "Normal")
+                AuditTrail.LogToAuditTrail("User", "Cash Break Down: Total " & Label23.Text & " User: " & ClientCrewID, "Normal")
                 HASUPDATE = False
                 BegBalanceBool = False
                 FormIsOpen()
@@ -29,9 +29,7 @@
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Cash Breakdown: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CashBreakdown/Button1: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -51,15 +49,15 @@
             Dim ZeroPoint5Cents As Decimal = Val(TextBoxZeroPoint5.Text) * Val(Label11.Text)
             Label23.Text = OneThousand + FiveHundred + TwoHundred + OneHundred + Fifty + Twenty + Ten + Five + One + TwentyFiveCents + ZeroPoint5Cents
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
-            End Try
+            AuditTrail.LogToAuditTrail("System", "CashBreakdown/TextChanged: " & ex.ToString, "Critical")
+        End Try
     End Sub
 
     Private Sub TextBox1000_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxZeroPoint5.KeyPress, TextBoxPoint25.KeyPress, TextBox500.KeyPress, TextBox50.KeyPress, TextBox5.KeyPress, TextBox200.KeyPress, TextBox20.KeyPress, TextBox1000.KeyPress, TextBox100.KeyPress, TextBox10.KeyPress, TextBox1.KeyPress
         Try
             Numeric(sender, e)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CashBreakdown/KeyPress(Numeric): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -165,8 +163,6 @@
     Private Sub TextBoxZeroPoint5_Enter(sender As Object, e As EventArgs) Handles TextBoxZeroPoint5.Enter
         TextBoxZeroPoint5.SelectAll()
     End Sub
-
-
 #End Region
 
 

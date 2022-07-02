@@ -64,16 +64,14 @@ Public Class SeniorDetails
                 MessageBox.Show("Fill up all the blanks.", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Senior Details: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "SeniorDetails/ButtonSubmit: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub TextBoxNumberOfGuest_KeyPress(sender As Object, e As KeyPressEventArgs)
         Try
             Numeric(sender, e)
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
     Private Sub ApplyDiscount()
@@ -176,28 +174,17 @@ Public Class SeniorDetails
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Senior Details: " & ex.ToString, "Critical")
-
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "SeniorDetails/ApplyDiscount(): " & ex.ToString, "Critical")
         End Try
     End Sub
-
-    Private Sub SeniorDetails_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'MsgBox(COUPONNAME)
-        'MsgBox(COUPONVALUE)
-        'MsgBox(NOTDISCOUNTEDAMOUNT)
-        'MsgBox(GETNOTDISCOUNTEDAMOUNT)
-    End Sub
-
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
         ShowKeyboard()
     End Sub
-
     Private Sub TextBoxPhoneNumber_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxPhoneNumber.KeyPress
         Try
             Numeric(sender, e)
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
 End Class

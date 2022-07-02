@@ -44,9 +44,7 @@ Public Class PanelReasonCat
             End If
             Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reason Category: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ReasonCat/Button6: " & ex.ToString, "Critical")
         End Try
     End Sub
 

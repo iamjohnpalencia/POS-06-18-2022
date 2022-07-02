@@ -19,37 +19,12 @@ Public Class CheckingForUpdates
             BackgroundWorker1.RunWorkerAsync()
             ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CheckUpdates/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
 
     Private Sub CheckingForUpdates_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         Try
-            'MsgBox(POS.BackgroundWorker2.IsBusy)
-            'MsgBox("CheckingUpdatesUPDATED " & CheckingUpdatesUPDATED)
-            'MsgBox("BegBalanceBool " & BegBalanceBool)
-            'MsgBox("ValidCloudConnection " & ValidCloudConnection)
-            'If CheckingUpdatesUPDATED Then
-            '    If BegBalanceBool = False Then
-            '        With POS
-            '            If .DataGridView1.Rows.Count > 0 Or .DataGridView2.Rows.Count > 0 Or .DataGridView3.Rows.Count > 0 Or .DataGridView4.Rows.Count > 0 Or .PriceChangeDatatabe.Rows.Count > 0 Or .CouponDatatable.Rows.Count > 0 Or .CustomProductsApproval.Rows.Count Or .DataGridView5.Rows.Count > 0 Or .DataGridViewPartners.Rows.Count > 0 Then
-
-            '            Else
-            '                BegBalance.Show()
-            '                BegBalance.TopMost = True
-            '                BegBalanceBool = True
-            '            End If
-            '        End With
-            '    Else
-            '        POS.Enabled = True
-            '    End If
-            'Else
-            '    If BegBalanceBool = False Then
-            '        BegBalance.Show()
-            '        BegBalance.TopMost = True
-            '        BegBalanceBool = True
-            '    End If
-            'End If
             If POS.BackgroundWorkerUpdates.IsBusy Then
                 e.Cancel = True
             Else
@@ -58,38 +33,9 @@ Public Class CheckingForUpdates
                 Else
                     POS.Enabled = True
                 End If
-                'If HASUPDATE Then
-                '    If BegBalanceBool = False Then
-                '        BegBalance.Show()
-                '        BegBalance.TopMost = True
-                '    Else
-                '        POS.Enabled = True
-                '    End If
-                'End If
-                'With POS
-                '    If CheckForInternetConnection() Then
-                '        If .WorkerUpdateCancel = False Then
-                '            If .DataGridView1.Rows.Count = 0 Or .DataGridView2.Rows.Count = 0 Or .DataGridView3.Rows.Count = 0 Or .DataGridView4.Rows.Count = 0 Or .PriceChangeDatatabe.Rows.Count = 0 Or .CouponDatatable.Rows.Count = 0 Or .CustomProductsApproval.Rows.Count Or .DataGridView5.Rows.Count = 0 Or .DataGridViewPartners.Rows.Count = 0 Then
-                '                If BegBalanceBool = False Then
-                '                    BegBalance.Show()
-                '                    BegBalance.TopMost = True
-
-                '                End If
-                '            End If
-                '        Else
-                '            If BegBalanceBool = False Then
-                '                BegBalance.Show()
-                '                BegBalance.TopMost = True
-
-                '            Else
-                '                POS.Enabled = True
-                '            End If
-                '        End If
-                '    End If
-                'End With
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CheckUpdates/FormClosing: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -130,24 +76,11 @@ Public Class CheckingForUpdates
                 ClickCancel = False
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CheckUpdates/Timer1: " & ex.ToString, "Critical")
         End Try
-
     End Sub
     Dim ClickCancel As Boolean = False
     Dim Unresponsive As Integer = 0
-    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
-        Try
-            If Not CheckForInternetConnection() Then
-                Unresponsive += 1
-            Else
-                Unresponsive = 0
-            End If
-
-        Catch ex As Exception
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Try
             With POS
@@ -163,7 +96,7 @@ Public Class CheckingForUpdates
                 End If
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CheckUpdates/Button1: " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

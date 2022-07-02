@@ -42,9 +42,7 @@ Public Class Addexpense
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Expense: " & ex.ToString, "Critical")
-
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddExpenses/ButtonSubmitReport: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub inserttolocal()
@@ -72,9 +70,7 @@ Public Class Addexpense
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Expense: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddExpenses/inserttolocal(): " & ex.ToString, "Critical")
         End Try
         Try
             With DataGridViewExpenses
@@ -97,9 +93,7 @@ Public Class Addexpense
                 GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Expense: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddExpenses/inserttolocal(): " & ex.ToString, "Critical")
         End Try
         DataGridViewExpenses.Rows.Clear()
         selectmax(whatform:=2)
@@ -128,9 +122,7 @@ Public Class Addexpense
             SystemLogDesc = "Submitted by :" & returnfullname(ClientCrewID) & " : " & ClientRole
             GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Expense: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddExpenses/BackgroundWorker1: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
@@ -145,7 +137,7 @@ Public Class Addexpense
             ExpenseImage.PictureBox1.BackgroundImage = Base64ToImage(image)
             ExpenseImage.PictureBox1.BackgroundImageLayout = ImageLayout.Zoom
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddExpenses/DataGridViewExpenses: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -160,7 +152,7 @@ Public Class Addexpense
                 Next
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddExpenses/ButtonRemove: " & ex.ToString, "Critical")
         End Try
     End Sub
 

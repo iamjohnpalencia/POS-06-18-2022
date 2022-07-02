@@ -37,9 +37,7 @@ Public Class AddUser
                 End If
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add User: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddUser/Loaduser(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -51,9 +49,7 @@ Public Class AddUser
                 updateuser()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add User: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddUser/ButtonUser: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -102,10 +98,10 @@ Public Class AddUser
                             , 'Unsynced')"
                                     GLOBAL_INSERT_FUNCTION(table:=table, fields:=fields, values:=value)
                                 Catch ex As Exception
-                                    MsgBox(ex.ToString)
-                                    SendErrorReport(ex.ToString)
+
+                                    AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
                                 End Try
-                                AuditTrail.LogToAuditTral("User", "New User: User name " & TextBoxUSERNAME.Text & " Created By: " & ClientCrewID, "Normal")
+                                AuditTrail.LogToAuditTrail("User", "New User: User name " & TextBoxUSERNAME.Text & " Created By: " & ClientCrewID, "Normal")
 
                                 ClearTextBox(Me)
                                 selectmax(whatform:=3)
@@ -127,9 +123,7 @@ Public Class AddUser
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add User: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddUser/adduser(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub updateuser()
@@ -162,11 +156,11 @@ Public Class AddUser
                     End If
                     Dim where = " uniq_id = '" & userid & "'"
                     GLOBAL_FUNCTION_UPDATE(table, fields, where)
-                    AuditTrail.LogToAuditTral("User", "User Update: User name " & TextBoxUSERNAME.Text & " Updated By: " & ClientCrewID, "Normal")
+                    AuditTrail.LogToAuditTrail("User", "User Update: User name " & TextBoxUSERNAME.Text & " Updated By: " & ClientCrewID, "Normal")
 
                 Catch ex As Exception
-                    MsgBox(ex.ToString)
-                    SendErrorReport(ex.ToString)
+
+                    AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
                 End Try
                 ClearTextBox(Me)
                 selectmax(whatform:=3)
@@ -178,9 +172,7 @@ Public Class AddUser
                 Close()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add User: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddUser/updateuser(): " & ex.ToString, "Critical")
         End Try
 
     End Sub
@@ -208,9 +200,7 @@ Public Class AddUser
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add User: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddUser/edituser(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -224,7 +214,7 @@ Public Class AddUser
                 e.Handled = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddUser/keypress(DisallowedCharacters): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -232,7 +222,7 @@ Public Class AddUser
         Try
             Numeric(sender, e)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "AddUser/keypress(Numeric): " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

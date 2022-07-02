@@ -24,7 +24,7 @@ Module Addmodule
             Command.ExecuteNonQuery()
             ConnectionLocal.Close()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/GLOBAL_SYSTEM_LOGS(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim result As Integer
@@ -36,33 +36,28 @@ Module Addmodule
             cmd.ExecuteNonQuery()
             ConnectionLocal.Close()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/GLOBAL_INSERT_FUNCTION(): " & ex.ToString, "Critical")
         End Try
     End Sub
-    Public Sub SendErrorReport(MSG)
+    'Public Sub SendErrorReport(MSG)
+    '    Dim ConnectionLocal As MySqlConnection = LocalhostConn()
+    '    Try
+    '        Dim Query As String = "INSERT INTO `loc_send_bug_report`(`bug_desc`, `crew_id`, `guid`, `store_id`, `date_created`, `synced`) VALUES (@1,@2,@3,@4,@5,@6)"
+    '        Dim Command As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
+    '        Command.Parameters.Add("@1", MySqlDbType.Text).Value = MSG
+    '        Command.Parameters.Add("@2", MySqlDbType.Text).Value = ClientCrewID
+    '        Command.Parameters.Add("@3", MySqlDbType.Text).Value = ClientGuid
+    '        Command.Parameters.Add("@4", MySqlDbType.Text).Value = ClientStoreID
+    '        Command.Parameters.Add("@5", MySqlDbType.Text).Value = FullDate24HR()
+    '        Command.Parameters.Add("@6", MySqlDbType.Text).Value = "Unsynced"
+    '        Command.ExecuteNonQuery()
+    '        ConnectionLocal.Close()
 
-        Dim ConnectionLocal As MySqlConnection = LocalhostConn()
-        'If ConnectionLocal.State = ConnectionState.Open Then
-        Try
-            Dim Query As String = "INSERT INTO `loc_send_bug_report`(`bug_desc`, `crew_id`, `guid`, `store_id`, `date_created`, `synced`) VALUES (@1,@2,@3,@4,@5,@6)"
-            Dim Command As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
-            Command.Parameters.Add("@1", MySqlDbType.Text).Value = MSG
-            Command.Parameters.Add("@2", MySqlDbType.Text).Value = ClientCrewID
-            Command.Parameters.Add("@3", MySqlDbType.Text).Value = ClientGuid
-            Command.Parameters.Add("@4", MySqlDbType.Text).Value = ClientStoreID
-            Command.Parameters.Add("@5", MySqlDbType.Text).Value = FullDate24HR()
-            Command.Parameters.Add("@6", MySqlDbType.Text).Value = "Unsynced"
-            Command.ExecuteNonQuery()
-            ConnectionLocal.Close()
-
-            MessageBox.Show("An error occured. Please contact the System Administrator", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        Catch ex As Exception
-            Console.WriteLine("Error: " & ex.ToString)
-        End Try
-        'Else
-        '    MsgBox("Localhost connection is not valid.")
-        'End If
-    End Sub
+    '        MessageBox.Show("An error occured. Please contact the System Administrator", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    Catch ex As Exception
+    '        AuditTrail.LogToAuditTrail("System", "ModAdd/SendErrorReport(): " & ex.ToString, "Critical")
+    '    End Try
+    'End Sub
 
     Public Sub AutoSyncSales()
         Try
@@ -78,7 +73,7 @@ Module Addmodule
 
             Dim Query As String = "SELECT * FROM loc_daily_transaction WHERE synced = 'Unsynced' AND store_id = " & ClientStoreID & " AND guid = '" & ClientGuid & "'"
             Command = New MySqlCommand(Query, Connectionlocal)
-            Dim DaSales As MySqlDataAdapter = New MySqlDataAdapter(command)
+            Dim DaSales As MySqlDataAdapter = New MySqlDataAdapter(Command)
             Dim DtSales As DataTable = New DataTable
             DaSales.Fill(DtSales)
 
@@ -128,9 +123,7 @@ Module Addmodule
             Connectionlocal.Close()
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/AutoSyncSales(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -191,9 +184,7 @@ Module Addmodule
             Connectionlocal.Close()
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/AutoSyncSalesDetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -260,9 +251,7 @@ Module Addmodule
 
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/AutoSyncInventory(): " & ex.ToString, "Critical")
         End Try
     End Sub
 #Region "Save XML Info"
@@ -280,11 +269,8 @@ Module Addmodule
             ConnectionLocal.Close()
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/SaveXMLInfo(): " & ex.ToString, "Critical")
         End Try
-
     End Sub
 #End Region
 #Region "Install Updates"
@@ -323,9 +309,7 @@ Module Addmodule
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/InstallUpdatesCategory(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -367,9 +351,7 @@ Module Addmodule
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/InstallUpdatesPartners(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -428,9 +410,7 @@ Module Addmodule
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/InstallUpdatesCoupons(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub InstallUpdatesFormula(FromPosUpdate As Integer)
@@ -481,9 +461,7 @@ Module Addmodule
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/InstallUpdatesFormula(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub InstallUpdatesInventory(FromPosUpdate As Integer)
@@ -535,9 +513,7 @@ Module Addmodule
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/InstallUpdatesInventory(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub InstallUpdatesProducts(FromPosUpdate As Integer)
@@ -594,9 +570,7 @@ Module Addmodule
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/InstallUpdatesProducts(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub InstallUpdatesPriceChange()
@@ -619,9 +593,7 @@ Module Addmodule
             ConnectionLocal.Close()
             ConnectionServer.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/InstallUpdatesPriceChange(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub InstallCoupons()
@@ -641,9 +613,7 @@ Module Addmodule
             ConnectionLocal.Close()
             ConnectionServer.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/InstallCoupons(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub InstallProducts()
@@ -672,9 +642,7 @@ Module Addmodule
             ConnectionLocal.Close()
             ConnectionServer.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Add Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModAdd/InstallProducts(): " & ex.ToString, "Critical")
         End Try
     End Sub
 #End Region

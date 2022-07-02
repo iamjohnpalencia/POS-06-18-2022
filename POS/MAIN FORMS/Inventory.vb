@@ -51,7 +51,7 @@ Public Class Inventory
             End If
             LabelDate.Text = "Starting inventory of [ " & Format(DateTimePickerZXreading.Value, "MMMM dd, yyyy") & " ]"
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
     Sub loadinventory()
@@ -69,9 +69,7 @@ Public Class Inventory
                 .Columns(7).HeaderCell.Value = "Date Created"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/loadinventory(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Sub loadinventorycustom()
@@ -85,8 +83,7 @@ Public Class Inventory
                 .Columns(6).HeaderCell.Value = "Date Modified"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/loadinventorycustom(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Sub loadinventorycustomdisapp()
@@ -100,9 +97,7 @@ Public Class Inventory
                 .Columns(6).HeaderCell.Value = "Date Modified"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/loadinventorycustomdisapp(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub loadcriticalstocks()
@@ -117,7 +112,7 @@ Public Class Inventory
                 .Columns(4).HeaderCell.Value = "Date Modified"
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/loadcriticalstocks(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Sub loadfastmovingstock()
@@ -134,9 +129,7 @@ Public Class Inventory
                 .Columns(1).HeaderCell.Value = "Total Stock Quantity"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/loadfastmovingstock(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -168,9 +161,7 @@ Public Class Inventory
                 .Columns(3).Width = 200
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/loadstockentry(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim inventoryid
@@ -205,13 +196,11 @@ Public Class Inventory
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/loadstockadjustmentreport(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim totalqty As Integer
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonSearchStockAdj.Click
         Try
             If DateTimePicker1.Value.Date > DateTimePicker2.Value.Date Then
 
@@ -219,19 +208,10 @@ Public Class Inventory
                 loadstockadjustmentreport(True)
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/ButtonSearchStockAdj: " & ex.ToString, "Critical")
         End Try
     End Sub
-    Private Sub TextBoxIPQuantity_KeyPress(sender As Object, e As KeyPressEventArgs)
-        Try
-            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
-                e.Handled = True
-            End If
-        Catch ex As Exception
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub Button7_Click_1(sender As Object, e As EventArgs) Handles ButtonResetInventory.Click
+    Private Sub ButtonResetInventory_Click(sender As Object, e As EventArgs) Handles ButtonResetInventory.Click
         Try
             Dim msg = MessageBox.Show("Are you sure you want to reset the inventory ? Press Yes to continue or No to cancel", "NOTICE", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
             If msg = DialogResult.Yes Then
@@ -244,9 +224,7 @@ Public Class Inventory
                 GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/ButtonResetInventory: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private WithEvents printdoc As PrintDocument = New PrintDocument
@@ -267,18 +245,10 @@ Public Class Inventory
             printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 200 + b)
             PrintPreviewDialog1.Document = printdoc
             PrintPreviewDialog1.ShowDialog()
-            AuditTrail.LogToAuditTral("Report", "Inventory: Generated Report, " & ClientCrewID, "Normal")
+            AuditTrail.LogToAuditTrail("Report", "Inventory: Generated Report, " & ClientCrewID, "Normal")
 
-            ' printdoc.Print()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            MessageBox.Show("An error occurred while trying to load the " &
-                "document for Print Preview. Make sure you currently have " &
-                "access to a printer. A printer must be localconnected and " &
-                "accessible for Print Preview to work.", Me.Text,
-                 MessageBoxButtons.OK, MessageBoxIcon.Error)
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/ButtonPrintCurInv: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub pdoc_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles printdoc.PrintPage
@@ -319,9 +289,7 @@ Public Class Inventory
             RECEIPTLINECOUNT += 30
             CenterTextDisplay(sender, e, Format(Now(), "yyyy-MM-dd HH:mm:ss"), FontDefault, RECEIPTLINECOUNT)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/printdoc: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
@@ -350,10 +318,7 @@ Public Class Inventory
     End Sub
 
     Private Sub ButtonSearchDailyTransaction_Click(sender As Object, e As EventArgs) Handles ButtonSearchDailyTransaction.Click
-
-        If DateTimePicker4.Value.Date > DateTimePicker3.Value.Date Then
-
-        Else
+        If Not DateTimePicker4.Value.Date > DateTimePicker3.Value.Date Then
             loadstockentry(True)
         End If
     End Sub
@@ -366,7 +331,7 @@ Public Class Inventory
             End If
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/TabControl1: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub FillDatagridZreadInv(searchdate As Boolean)
@@ -389,12 +354,11 @@ Public Class Inventory
                 .Columns(5).HeaderText = "Zreading Date"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Inventory/FillDatagridZreadInv(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
-    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ButtonSearchStarting.Click
         LabelDate.Text = "Starting inventory of [ " & Format(DateTimePickerZXreading.Value, "MMMM dd, yyyy") & " ]"
         FillDatagridZreadInv(True)
     End Sub

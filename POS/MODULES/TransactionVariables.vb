@@ -100,7 +100,7 @@
             CUST_INFO_BUSINESS = ""
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 

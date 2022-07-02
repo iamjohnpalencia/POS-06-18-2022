@@ -27,19 +27,19 @@ Partial Class MDIFORM
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(MDIFORM))
         Me.ToolTip = New System.Windows.Forms.ToolTip(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.Button12 = New System.Windows.Forms.Button()
-        Me.Button8 = New System.Windows.Forms.Button()
-        Me.Button10 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Button9 = New System.Windows.Forms.Button()
-        Me.Button2 = New System.Windows.Forms.Button()
+        Me.ButtonAbout = New System.Windows.Forms.Button()
+        Me.ButtonPointofSales = New System.Windows.Forms.Button()
+        Me.ButtonDeposit = New System.Windows.Forms.Button()
+        Me.ButtonUserSettings = New System.Windows.Forms.Button()
+        Me.ButtonSync = New System.Windows.Forms.Button()
+        Me.ButtonReports = New System.Windows.Forms.Button()
+        Me.ButtonInventory = New System.Windows.Forms.Button()
+        Me.ButtonProducts = New System.Windows.Forms.Button()
+        Me.ButtonInbox = New System.Windows.Forms.Button()
+        Me.ButtonLeaderBoards = New System.Windows.Forms.Button()
         Me.Panel5 = New System.Windows.Forms.Panel()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.Button7 = New System.Windows.Forms.Button()
+        Me.ButtonLogout = New System.Windows.Forms.Button()
         Me.Panel21 = New System.Windows.Forms.Panel()
         Me.Panel12 = New System.Windows.Forms.Panel()
         Me.Panel7 = New System.Windows.Forms.Panel()
@@ -106,18 +106,18 @@ Partial Class MDIFORM
         'Panel1
         '
         Me.Panel1.BackColor = System.Drawing.Color.White
-        Me.Panel1.Controls.Add(Me.Button4)
-        Me.Panel1.Controls.Add(Me.Button1)
-        Me.Panel1.Controls.Add(Me.Button12)
-        Me.Panel1.Controls.Add(Me.Button8)
-        Me.Panel1.Controls.Add(Me.Button10)
-        Me.Panel1.Controls.Add(Me.Button3)
-        Me.Panel1.Controls.Add(Me.Button6)
-        Me.Panel1.Controls.Add(Me.Button5)
-        Me.Panel1.Controls.Add(Me.Button9)
-        Me.Panel1.Controls.Add(Me.Button2)
+        Me.Panel1.Controls.Add(Me.ButtonAbout)
+        Me.Panel1.Controls.Add(Me.ButtonPointofSales)
+        Me.Panel1.Controls.Add(Me.ButtonDeposit)
+        Me.Panel1.Controls.Add(Me.ButtonUserSettings)
+        Me.Panel1.Controls.Add(Me.ButtonSync)
+        Me.Panel1.Controls.Add(Me.ButtonReports)
+        Me.Panel1.Controls.Add(Me.ButtonInventory)
+        Me.Panel1.Controls.Add(Me.ButtonProducts)
+        Me.Panel1.Controls.Add(Me.ButtonInbox)
+        Me.Panel1.Controls.Add(Me.ButtonLeaderBoards)
         Me.Panel1.Controls.Add(Me.Panel5)
-        Me.Panel1.Controls.Add(Me.Button7)
+        Me.Panel1.Controls.Add(Me.ButtonLogout)
         Me.Panel1.Controls.Add(Me.Panel21)
         Me.Panel1.Controls.Add(Me.Panel12)
         Me.Panel1.Controls.Add(Me.Panel7)
@@ -128,205 +128,205 @@ Partial Class MDIFORM
         Me.Panel1.Size = New System.Drawing.Size(246, 727)
         Me.Panel1.TabIndex = 9
         '
-        'Button4
+        'ButtonAbout
         '
-        Me.Button4.BackColor = System.Drawing.Color.White
-        Me.Button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button4.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button4.FlatAppearance.BorderSize = 0
-        Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button4.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button4.ForeColor = System.Drawing.Color.Black
-        Me.Button4.Image = CType(resources.GetObject("Button4.Image"), System.Drawing.Image)
-        Me.Button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button4.Location = New System.Drawing.Point(20, 570)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(226, 40)
-        Me.Button4.TabIndex = 189
-        Me.Button4.Text = "     About Us"
-        Me.Button4.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button4.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button4.UseVisualStyleBackColor = False
+        Me.ButtonAbout.BackColor = System.Drawing.Color.White
+        Me.ButtonAbout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonAbout.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonAbout.FlatAppearance.BorderSize = 0
+        Me.ButtonAbout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonAbout.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonAbout.ForeColor = System.Drawing.Color.Black
+        Me.ButtonAbout.Image = CType(resources.GetObject("ButtonAbout.Image"), System.Drawing.Image)
+        Me.ButtonAbout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonAbout.Location = New System.Drawing.Point(20, 570)
+        Me.ButtonAbout.Name = "ButtonAbout"
+        Me.ButtonAbout.Size = New System.Drawing.Size(226, 40)
+        Me.ButtonAbout.TabIndex = 189
+        Me.ButtonAbout.Text = "     About Us"
+        Me.ButtonAbout.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonAbout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonAbout.UseVisualStyleBackColor = False
         '
-        'Button1
+        'ButtonPointofSales
         '
-        Me.Button1.BackColor = System.Drawing.Color.White
-        Me.Button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button1.FlatAppearance.BorderSize = 0
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button1.ForeColor = System.Drawing.Color.Black
-        Me.Button1.Image = CType(resources.GetObject("Button1.Image"), System.Drawing.Image)
-        Me.Button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button1.Location = New System.Drawing.Point(20, 530)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(226, 40)
-        Me.Button1.TabIndex = 173
-        Me.Button1.Text = "     Point Of Sales"
-        Me.Button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.ButtonPointofSales.BackColor = System.Drawing.Color.White
+        Me.ButtonPointofSales.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonPointofSales.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonPointofSales.FlatAppearance.BorderSize = 0
+        Me.ButtonPointofSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonPointofSales.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonPointofSales.ForeColor = System.Drawing.Color.Black
+        Me.ButtonPointofSales.Image = CType(resources.GetObject("ButtonPointofSales.Image"), System.Drawing.Image)
+        Me.ButtonPointofSales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonPointofSales.Location = New System.Drawing.Point(20, 530)
+        Me.ButtonPointofSales.Name = "ButtonPointofSales"
+        Me.ButtonPointofSales.Size = New System.Drawing.Size(226, 40)
+        Me.ButtonPointofSales.TabIndex = 173
+        Me.ButtonPointofSales.Text = "     Point Of Sales"
+        Me.ButtonPointofSales.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonPointofSales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonPointofSales.UseVisualStyleBackColor = False
         '
-        'Button12
+        'ButtonDeposit
         '
-        Me.Button12.BackColor = System.Drawing.Color.White
-        Me.Button12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button12.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button12.FlatAppearance.BorderSize = 0
-        Me.Button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button12.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button12.ForeColor = System.Drawing.Color.Black
-        Me.Button12.Image = CType(resources.GetObject("Button12.Image"), System.Drawing.Image)
-        Me.Button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button12.Location = New System.Drawing.Point(20, 490)
-        Me.Button12.Name = "Button12"
-        Me.Button12.Size = New System.Drawing.Size(226, 40)
-        Me.Button12.TabIndex = 191
-        Me.Button12.Text = "     Deposit Slip"
-        Me.Button12.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button12.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button12.UseVisualStyleBackColor = False
+        Me.ButtonDeposit.BackColor = System.Drawing.Color.White
+        Me.ButtonDeposit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonDeposit.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonDeposit.FlatAppearance.BorderSize = 0
+        Me.ButtonDeposit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonDeposit.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonDeposit.ForeColor = System.Drawing.Color.Black
+        Me.ButtonDeposit.Image = CType(resources.GetObject("ButtonDeposit.Image"), System.Drawing.Image)
+        Me.ButtonDeposit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonDeposit.Location = New System.Drawing.Point(20, 490)
+        Me.ButtonDeposit.Name = "ButtonDeposit"
+        Me.ButtonDeposit.Size = New System.Drawing.Size(226, 40)
+        Me.ButtonDeposit.TabIndex = 191
+        Me.ButtonDeposit.Text = "     Deposit Slip"
+        Me.ButtonDeposit.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonDeposit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonDeposit.UseVisualStyleBackColor = False
         '
-        'Button8
+        'ButtonUserSettings
         '
-        Me.Button8.BackColor = System.Drawing.Color.White
-        Me.Button8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button8.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button8.FlatAppearance.BorderSize = 0
-        Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button8.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button8.ForeColor = System.Drawing.Color.Black
-        Me.Button8.Image = CType(resources.GetObject("Button8.Image"), System.Drawing.Image)
-        Me.Button8.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button8.Location = New System.Drawing.Point(20, 450)
-        Me.Button8.Name = "Button8"
-        Me.Button8.Size = New System.Drawing.Size(226, 40)
-        Me.Button8.TabIndex = 181
-        Me.Button8.Text = "     User Settings"
-        Me.Button8.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button8.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button8.UseVisualStyleBackColor = False
+        Me.ButtonUserSettings.BackColor = System.Drawing.Color.White
+        Me.ButtonUserSettings.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonUserSettings.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonUserSettings.FlatAppearance.BorderSize = 0
+        Me.ButtonUserSettings.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonUserSettings.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonUserSettings.ForeColor = System.Drawing.Color.Black
+        Me.ButtonUserSettings.Image = CType(resources.GetObject("ButtonUserSettings.Image"), System.Drawing.Image)
+        Me.ButtonUserSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonUserSettings.Location = New System.Drawing.Point(20, 450)
+        Me.ButtonUserSettings.Name = "ButtonUserSettings"
+        Me.ButtonUserSettings.Size = New System.Drawing.Size(226, 40)
+        Me.ButtonUserSettings.TabIndex = 181
+        Me.ButtonUserSettings.Text = "     User Settings"
+        Me.ButtonUserSettings.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonUserSettings.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonUserSettings.UseVisualStyleBackColor = False
         '
-        'Button10
+        'ButtonSync
         '
-        Me.Button10.BackColor = System.Drawing.Color.White
-        Me.Button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button10.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button10.FlatAppearance.BorderSize = 0
-        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button10.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button10.ForeColor = System.Drawing.Color.Black
-        Me.Button10.Image = CType(resources.GetObject("Button10.Image"), System.Drawing.Image)
-        Me.Button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button10.Location = New System.Drawing.Point(20, 410)
-        Me.Button10.Name = "Button10"
-        Me.Button10.Size = New System.Drawing.Size(226, 40)
-        Me.Button10.TabIndex = 174
-        Me.Button10.Text = "     Sync to cloud"
-        Me.Button10.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button10.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button10.UseVisualStyleBackColor = False
+        Me.ButtonSync.BackColor = System.Drawing.Color.White
+        Me.ButtonSync.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonSync.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonSync.FlatAppearance.BorderSize = 0
+        Me.ButtonSync.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSync.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonSync.ForeColor = System.Drawing.Color.Black
+        Me.ButtonSync.Image = CType(resources.GetObject("ButtonSync.Image"), System.Drawing.Image)
+        Me.ButtonSync.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonSync.Location = New System.Drawing.Point(20, 410)
+        Me.ButtonSync.Name = "ButtonSync"
+        Me.ButtonSync.Size = New System.Drawing.Size(226, 40)
+        Me.ButtonSync.TabIndex = 174
+        Me.ButtonSync.Text = "     Sync to cloud"
+        Me.ButtonSync.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonSync.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonSync.UseVisualStyleBackColor = False
         '
-        'Button3
+        'ButtonReports
         '
-        Me.Button3.BackColor = System.Drawing.Color.White
-        Me.Button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button3.FlatAppearance.BorderSize = 0
-        Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button3.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button3.ForeColor = System.Drawing.Color.Black
-        Me.Button3.Image = CType(resources.GetObject("Button3.Image"), System.Drawing.Image)
-        Me.Button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button3.Location = New System.Drawing.Point(20, 370)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(226, 40)
-        Me.Button3.TabIndex = 179
-        Me.Button3.Text = "     Reports"
-        Me.Button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button3.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button3.UseVisualStyleBackColor = False
+        Me.ButtonReports.BackColor = System.Drawing.Color.White
+        Me.ButtonReports.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonReports.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonReports.FlatAppearance.BorderSize = 0
+        Me.ButtonReports.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonReports.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonReports.ForeColor = System.Drawing.Color.Black
+        Me.ButtonReports.Image = CType(resources.GetObject("ButtonReports.Image"), System.Drawing.Image)
+        Me.ButtonReports.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonReports.Location = New System.Drawing.Point(20, 370)
+        Me.ButtonReports.Name = "ButtonReports"
+        Me.ButtonReports.Size = New System.Drawing.Size(226, 40)
+        Me.ButtonReports.TabIndex = 179
+        Me.ButtonReports.Text = "     Reports"
+        Me.ButtonReports.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonReports.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonReports.UseVisualStyleBackColor = False
         '
-        'Button6
+        'ButtonInventory
         '
-        Me.Button6.BackColor = System.Drawing.Color.White
-        Me.Button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button6.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button6.FlatAppearance.BorderSize = 0
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button6.ForeColor = System.Drawing.Color.Black
-        Me.Button6.Image = CType(resources.GetObject("Button6.Image"), System.Drawing.Image)
-        Me.Button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button6.Location = New System.Drawing.Point(20, 330)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(226, 40)
-        Me.Button6.TabIndex = 178
-        Me.Button6.Text = "     Inventory"
-        Me.Button6.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button6.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button6.UseVisualStyleBackColor = False
+        Me.ButtonInventory.BackColor = System.Drawing.Color.White
+        Me.ButtonInventory.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonInventory.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonInventory.FlatAppearance.BorderSize = 0
+        Me.ButtonInventory.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonInventory.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonInventory.ForeColor = System.Drawing.Color.Black
+        Me.ButtonInventory.Image = CType(resources.GetObject("ButtonInventory.Image"), System.Drawing.Image)
+        Me.ButtonInventory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonInventory.Location = New System.Drawing.Point(20, 330)
+        Me.ButtonInventory.Name = "ButtonInventory"
+        Me.ButtonInventory.Size = New System.Drawing.Size(226, 40)
+        Me.ButtonInventory.TabIndex = 178
+        Me.ButtonInventory.Text = "     Inventory"
+        Me.ButtonInventory.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonInventory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonInventory.UseVisualStyleBackColor = False
         '
-        'Button5
+        'ButtonProducts
         '
-        Me.Button5.BackColor = System.Drawing.Color.White
-        Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button5.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button5.FlatAppearance.BorderSize = 0
-        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button5.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button5.ForeColor = System.Drawing.Color.Black
-        Me.Button5.Image = CType(resources.GetObject("Button5.Image"), System.Drawing.Image)
-        Me.Button5.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button5.Location = New System.Drawing.Point(20, 290)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(226, 40)
-        Me.Button5.TabIndex = 177
-        Me.Button5.Text = "     Manage Products"
-        Me.Button5.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button5.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button5.UseVisualStyleBackColor = False
+        Me.ButtonProducts.BackColor = System.Drawing.Color.White
+        Me.ButtonProducts.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonProducts.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonProducts.FlatAppearance.BorderSize = 0
+        Me.ButtonProducts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonProducts.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonProducts.ForeColor = System.Drawing.Color.Black
+        Me.ButtonProducts.Image = CType(resources.GetObject("ButtonProducts.Image"), System.Drawing.Image)
+        Me.ButtonProducts.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonProducts.Location = New System.Drawing.Point(20, 290)
+        Me.ButtonProducts.Name = "ButtonProducts"
+        Me.ButtonProducts.Size = New System.Drawing.Size(226, 40)
+        Me.ButtonProducts.TabIndex = 177
+        Me.ButtonProducts.Text = "     Manage Products"
+        Me.ButtonProducts.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonProducts.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonProducts.UseVisualStyleBackColor = False
         '
-        'Button9
+        'ButtonInbox
         '
-        Me.Button9.BackColor = System.Drawing.Color.White
-        Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button9.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button9.FlatAppearance.BorderSize = 0
-        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button9.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button9.ForeColor = System.Drawing.Color.Black
-        Me.Button9.Image = CType(resources.GetObject("Button9.Image"), System.Drawing.Image)
-        Me.Button9.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button9.Location = New System.Drawing.Point(20, 250)
-        Me.Button9.Name = "Button9"
-        Me.Button9.Size = New System.Drawing.Size(226, 40)
-        Me.Button9.TabIndex = 192
-        Me.Button9.Text = "     Inbox"
-        Me.Button9.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button9.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button9.UseVisualStyleBackColor = False
+        Me.ButtonInbox.BackColor = System.Drawing.Color.White
+        Me.ButtonInbox.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonInbox.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonInbox.FlatAppearance.BorderSize = 0
+        Me.ButtonInbox.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonInbox.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonInbox.ForeColor = System.Drawing.Color.Black
+        Me.ButtonInbox.Image = CType(resources.GetObject("ButtonInbox.Image"), System.Drawing.Image)
+        Me.ButtonInbox.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonInbox.Location = New System.Drawing.Point(20, 250)
+        Me.ButtonInbox.Name = "ButtonInbox"
+        Me.ButtonInbox.Size = New System.Drawing.Size(226, 40)
+        Me.ButtonInbox.TabIndex = 192
+        Me.ButtonInbox.Text = "     Inbox"
+        Me.ButtonInbox.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonInbox.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonInbox.UseVisualStyleBackColor = False
         '
-        'Button2
+        'ButtonLeaderBoards
         '
-        Me.Button2.BackColor = System.Drawing.Color.White
-        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Button2.FlatAppearance.BorderSize = 0
-        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button2.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button2.ForeColor = System.Drawing.Color.Black
-        Me.Button2.Image = CType(resources.GetObject("Button2.Image"), System.Drawing.Image)
-        Me.Button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button2.Location = New System.Drawing.Point(20, 210)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(226, 40)
-        Me.Button2.TabIndex = 174
-        Me.Button2.Text = "     Dashboard"
-        Me.Button2.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button2.UseVisualStyleBackColor = False
+        Me.ButtonLeaderBoards.BackColor = System.Drawing.Color.White
+        Me.ButtonLeaderBoards.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonLeaderBoards.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ButtonLeaderBoards.FlatAppearance.BorderSize = 0
+        Me.ButtonLeaderBoards.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonLeaderBoards.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonLeaderBoards.ForeColor = System.Drawing.Color.Black
+        Me.ButtonLeaderBoards.Image = CType(resources.GetObject("ButtonLeaderBoards.Image"), System.Drawing.Image)
+        Me.ButtonLeaderBoards.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonLeaderBoards.Location = New System.Drawing.Point(20, 210)
+        Me.ButtonLeaderBoards.Name = "ButtonLeaderBoards"
+        Me.ButtonLeaderBoards.Size = New System.Drawing.Size(226, 40)
+        Me.ButtonLeaderBoards.TabIndex = 174
+        Me.ButtonLeaderBoards.Text = "     Dashboard"
+        Me.ButtonLeaderBoards.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonLeaderBoards.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonLeaderBoards.UseVisualStyleBackColor = False
         '
         'Panel5
         '
@@ -346,25 +346,25 @@ Partial Class MDIFORM
         Me.PictureBox1.TabIndex = 70
         Me.PictureBox1.TabStop = False
         '
-        'Button7
+        'ButtonLogout
         '
-        Me.Button7.BackColor = System.Drawing.Color.White
-        Me.Button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.Button7.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Button7.FlatAppearance.BorderSize = 0
-        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button7.ForeColor = System.Drawing.Color.Black
-        Me.Button7.Image = CType(resources.GetObject("Button7.Image"), System.Drawing.Image)
-        Me.Button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button7.Location = New System.Drawing.Point(20, 683)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(226, 44)
-        Me.Button7.TabIndex = 181
-        Me.Button7.Text = "     Logout"
-        Me.Button7.TextAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.Button7.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
-        Me.Button7.UseVisualStyleBackColor = False
+        Me.ButtonLogout.BackColor = System.Drawing.Color.White
+        Me.ButtonLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.ButtonLogout.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.ButtonLogout.FlatAppearance.BorderSize = 0
+        Me.ButtonLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonLogout.Font = New System.Drawing.Font("Tahoma", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ButtonLogout.ForeColor = System.Drawing.Color.Black
+        Me.ButtonLogout.Image = CType(resources.GetObject("ButtonLogout.Image"), System.Drawing.Image)
+        Me.ButtonLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ButtonLogout.Location = New System.Drawing.Point(20, 683)
+        Me.ButtonLogout.Name = "ButtonLogout"
+        Me.ButtonLogout.Size = New System.Drawing.Size(226, 44)
+        Me.ButtonLogout.TabIndex = 181
+        Me.ButtonLogout.Text = "     Logout"
+        Me.ButtonLogout.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ButtonLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText
+        Me.ButtonLogout.UseVisualStyleBackColor = False
         '
         'Panel21
         '
@@ -908,14 +908,14 @@ Partial Class MDIFORM
     End Sub
     Friend WithEvents ToolTip As ToolTip
     Friend WithEvents Panel1 As Panel
-    Friend WithEvents Button6 As Button
-    Friend WithEvents Button5 As Button
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button1 As Button
+    Friend WithEvents ButtonInventory As Button
+    Friend WithEvents ButtonProducts As Button
+    Friend WithEvents ButtonLeaderBoards As Button
+    Friend WithEvents ButtonPointofSales As Button
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Button3 As Button
-    Friend WithEvents Button7 As Button
-    Friend WithEvents Button8 As Button
+    Friend WithEvents ButtonReports As Button
+    Friend WithEvents ButtonLogout As Button
+    Friend WithEvents ButtonUserSettings As Button
     Friend WithEvents Panel20 As Panel
     Friend WithEvents Panel13 As Panel
     Friend WithEvents Panel3 As Panel
@@ -930,14 +930,14 @@ Partial Class MDIFORM
     Friend WithEvents Panel22 As Panel
     Friend WithEvents Panel26 As Panel
     Friend WithEvents Panel25 As Panel
-    Friend WithEvents Button10 As Button
+    Friend WithEvents ButtonSync As Button
     Friend WithEvents Panel8 As Panel
     Friend WithEvents Panel23 As Panel
     Friend WithEvents Panel24 As Panel
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents MenuStrip As MenuStrip
-    Friend WithEvents Button4 As Button
+    Friend WithEvents ButtonAbout As Button
     Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
     Friend WithEvents Panel10 As Panel
     Friend WithEvents Panel11 As Panel
@@ -961,9 +961,9 @@ Partial Class MDIFORM
     Friend WithEvents Panel29 As Panel
     Friend WithEvents Panel30 As Panel
     Friend WithEvents Panel32 As Panel
-    Friend WithEvents Button12 As Button
+    Friend WithEvents ButtonDeposit As Button
     Friend WithEvents Panel9 As Panel
     Friend WithEvents LabelFOOTER As Label
-    Friend WithEvents Button9 As Button
+    Friend WithEvents ButtonInbox As Button
     Friend WithEvents Panel14 As Panel
 End Class

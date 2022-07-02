@@ -25,7 +25,7 @@ Partial Class ConfirmRefund
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ConfirmRefund))
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button1 = New System.Windows.Forms.Button()
+        Me.ButtonSubmit = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ButtonKeyboard = New System.Windows.Forms.Button()
@@ -72,17 +72,17 @@ Partial Class ConfirmRefund
         Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         Me.TextBox1.UseSystemPasswordChar = True
         '
-        'Button1
+        'ButtonSubmit
         '
-        Me.Button1.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
-        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(15, 65)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(157, 30)
-        Me.Button1.TabIndex = 2
-        Me.Button1.Text = "SUBMIT"
-        Me.Button1.UseVisualStyleBackColor = False
+        Me.ButtonSubmit.BackColor = System.Drawing.Color.FromArgb(CType(CType(248, Byte), Integer), CType(CType(160, Byte), Integer), CType(CType(34, Byte), Integer))
+        Me.ButtonSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonSubmit.ForeColor = System.Drawing.Color.White
+        Me.ButtonSubmit.Location = New System.Drawing.Point(15, 65)
+        Me.ButtonSubmit.Name = "ButtonSubmit"
+        Me.ButtonSubmit.Size = New System.Drawing.Size(157, 30)
+        Me.ButtonSubmit.TabIndex = 2
+        Me.ButtonSubmit.Text = "SUBMIT"
+        Me.ButtonSubmit.UseVisualStyleBackColor = False
         '
         'Button2
         '
@@ -258,7 +258,7 @@ Partial Class ConfirmRefund
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.ButtonSubmit)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.DataGridViewInv)
         Me.Controls.Add(Me.DataGridView1)
@@ -280,7 +280,7 @@ Partial Class ConfirmRefund
 
     Friend WithEvents Label1 As Label
     Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Button1 As Button
+    Friend WithEvents ButtonSubmit As Button
     Friend WithEvents Button2 As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents ButtonKeyboard As Button

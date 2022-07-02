@@ -64,7 +64,7 @@ Module NEWPOSMODULE
             End With
             GetFormulaid(ProductName, ProductPrice)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModNewPOS/new_product_button_click(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub GetFormulaid(ProductName As String, ProductOriginalPrice As Double)
@@ -119,9 +119,7 @@ Module NEWPOSMODULE
             End Using
             ConnectionLocal.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "New POS Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModNewPOS/GetFormulaid(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -164,9 +162,7 @@ Module NEWPOSMODULE
             Compute(AutoCompute:=AutoCompute)
             ConnectionLocal.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "New POS Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModNewPOS/CheckCriticalLimit(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -527,9 +523,7 @@ Module NEWPOSMODULE
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "New POS Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModNewPOS/AddProductToDatagridviewOrders(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub AddInventoryToDatagridviewInv(ByVal formulaID, ByVal Cat, ByVal Origin, ByVal addontype, ByVal ProductName, ByVal halfbatch)
@@ -995,9 +989,7 @@ Module NEWPOSMODULE
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "New POS Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModNewPOS/AddInventoryToDatagridviewInv(): " & ex.ToString, "Critical")
         End Try
     End Sub
 End Module

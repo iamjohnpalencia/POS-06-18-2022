@@ -4,9 +4,7 @@ Public Class SelectNewFormula
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_product_formula", "`product_ingredients`", DataGridView1)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Select Formula: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "SelectNewFormula/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim ChangeFormula As Boolean = False
@@ -27,7 +25,7 @@ Public Class SelectNewFormula
             End If
             Changeproductformula.Enabled = True
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "SelectNewFormula/FormClosing: " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

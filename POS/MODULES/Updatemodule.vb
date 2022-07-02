@@ -1,20 +1,15 @@
 ﻿Imports MySql.Data.MySqlClient
 Module Updatemodule
     Public Sub GLOBAL_FUNCTION_UPDATE(ByVal table, ByVal fields, ByVal where)
+        Dim ConnectionLocal As MySqlConnection = LocalhostConn()
         Try
-            If LocalhostConn.State <> ConnectionState.Open Then
-                LocalhostConn.Open()
-            End If
             Dim sql = "UPDATE " + table + " SET " + fields + " WHERE " & where
-            Console.WriteLine(sql)
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
             cmd.ExecuteNonQuery()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Update Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModUpdate/GLOBAL_FUNCTION_UPDATE(): " & ex.ToString, "Critical")
         Finally
-            LocalhostConn.Close()
+            ConnectionLocal.Close()
             cmd.Dispose()
         End Try
     End Sub
@@ -78,9 +73,7 @@ Module Updatemodule
             Next
             UpdateInventoryCon.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Update Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModUpdate/UpdateInventory(): " & ex.ToString, "Critical")
         End Try
     End Sub
 End Module

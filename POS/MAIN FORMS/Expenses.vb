@@ -35,7 +35,7 @@ Public Class Expenses
                 t.Join()
             Next
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Expenses/BackgroundWorker1(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
@@ -78,7 +78,7 @@ Public Class Expenses
             decodingstring = encoding
             TextBoxAttatchment.Text = ImageToBase64(ImageToConvert, encodeType)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Expenses/convertimage(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -102,7 +102,7 @@ Public Class Expenses
         Try
             Numeric(sender, e)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Expenses/keypress-Numeric(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub TextBoxITEMINF_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxITEMINF.KeyPress
@@ -111,7 +111,7 @@ Public Class Expenses
                 e.Handled = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Expenses/keypress-DisallowedCharacters(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
@@ -134,7 +134,7 @@ Public Class Expenses
                 ClearTextBox(root:=Me)
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Expenses/ToolStripButton1: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ToolStripButton2_Click(sender As Object, e As EventArgs) Handles ToolStripButton2.Click
@@ -158,7 +158,7 @@ Public Class Expenses
                 ToolStripButton1.Enabled = False
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Expenses/ToolStripButton2: " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

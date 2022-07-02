@@ -14,21 +14,16 @@ Imports EJOURNAL_PDF
 
 Public Class Reports
     Private WithEvents printdoc As PrintDocument = New PrintDocument
-    Private WithEvents printdocXread As PrintDocument = New PrintDocument
-
     Private WithEvents printdocZRead As PrintDocument = New PrintDocument
 
-
-
-    Private WithEvents printdocInventory As PrintDocument = New PrintDocument
     Private WithEvents printdocReturns As PrintDocument = New PrintDocument
     Private WithEvents printsales As PrintDocument = New PrintDocument
     Private WithEvents printtransactiontype As PrintDocument = New PrintDocument
 
     Private PrintPreviewDialog1 As New PrintPreviewDialog
-    Private PrintPreviewDialogXread As New PrintPreviewDialog
+
     Private PrintPreviewDialogZread As New PrintPreviewDialog
-    Private PrintPreviewDialogInventory As New PrintPreviewDialog
+
     Private PrintPreviewDialogReturns As New PrintPreviewDialog
     Private previewsales As New PrintPreviewDialog
     Private previewtransactiontype As New PrintPreviewDialog
@@ -154,9 +149,7 @@ Public Class Reports
 
             LabelDate.Text = "Z-READ DATE: " & StringToDate(S_Zreading)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -179,9 +172,7 @@ Public Class Reports
             LabelCrewSalesQty.Text = SumOfColumnsToDecimal(DataGridViewCrewSales, 2)
             LabelCrewSalesTotal.Text = SumOfColumnsToDecimal(DataGridViewCrewSales, 1)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/LoadCrewSales(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadUsers()
@@ -194,9 +185,7 @@ Public Class Reports
                 End While
             End Using
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/LoadUsers(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -215,9 +204,7 @@ Public Class Reports
             Next
             ToolStripComboBoxDiscType.SelectedIndex = 0
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/LoadCouponTypes(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub SelectDisctinctDaily()
@@ -246,9 +233,7 @@ Public Class Reports
             ComboBoxTransactionType.SelectedIndex = 0
             ToolStripComboBoxTransactionType.SelectedIndex = 0
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/SelectDisctinctDaily(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -286,9 +271,7 @@ Public Class Reports
                 DataGridViewSysLog.Rows.Add(row("log_type"), row("log_description"), row("log_date_time"))
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/reportssystemlogs(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub reportsreturnsandrefunds(ByVal searchdate As Boolean)
@@ -316,9 +299,7 @@ Public Class Reports
                 .Columns(4).Visible = False
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/reportsreturnsandrefunds(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub reportstransactionlogs(ByVal searchdate As Boolean)
@@ -338,9 +319,7 @@ Public Class Reports
                 .Columns(2).HeaderText = "Date and Time"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/reportstransactionlogs(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub reportsdailytransaction(ByVal searchdate As Boolean)
@@ -386,7 +365,7 @@ Public Class Reports
                 Next
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/reportsdailytransaction(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub reportssales(ByVal searchdate As Boolean)
@@ -412,9 +391,7 @@ Public Class Reports
                 Label9.Text = SumOfColumnsToInt(DataGridViewSales, 2)
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/reportssales(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -440,9 +417,7 @@ Public Class Reports
                 .Columns(6).HeaderCell.Value = "Date"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/expensereports(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub viewexpensesdetails(ByVal expense_number As String)
@@ -459,7 +434,7 @@ Public Class Reports
                 .Columns(5).HeaderCell.Value = "Date"
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/viewexpensesdetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub viewtransactiondetails(ByVal transaction_number As String)
@@ -479,9 +454,7 @@ Public Class Reports
             Next
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/viewtransactiondetails(): " & ex.ToString, "Critical")
         Finally
             da.Dispose()
         End Try
@@ -510,9 +483,7 @@ Public Class Reports
                 .Columns(9).Visible = False
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/viewdeposit(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -532,9 +503,7 @@ Public Class Reports
             End Using
             ToolStripComboBoxProducts.SelectedIndex = 0
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/LoadProducts(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim TotalDiscountCustomReports As Double = 0
@@ -546,9 +515,7 @@ Public Class Reports
             ToolStripStatusLabel2.Text = DataGridViewCustomReport.Rows.Count
             TotalDiscountCustomReports = sum("coupon_total", "loc_coupon_data WHERE zreading >= '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' AND  zreading <= '" & Format(DateTimePicker18.Value, "yyyy-MM-dd") & "' AND status = 1")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/ToolStripButton2: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim CustomReportLessVat As Double = 0
@@ -559,16 +526,6 @@ Public Class Reports
         Try
 
             Dim ConnectionLocal As MySqlConnection = LocalhostConn()
-            'Dim QueryDiscType = "SELECT TYPE from tbcoupon WHERE Couponname_ = '" & DiscountType & "'"
-            'Dim CmdDiscType As MySqlCommand = New MySqlCommand(QueryDiscType, ConnectionLocal)
-            'Using reader As MySqlDataReader = CmdDiscType.ExecuteReader
-            '    If reader.HasRows Then
-            '        While reader.Read
-            '            DiscountType = reader("TYPE")
-            '        End While
-            '    End If
-            'End Using
-
             Dim cmd As MySqlCommand
             Dim da As MySqlDataAdapter
             CustomReportdt = New DataTable
@@ -989,9 +946,7 @@ Public Class Reports
                 End Using
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/CustomReport(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ToolStripButton6_Click(sender As Object, e As EventArgs) Handles ToolStripButton6.Click
@@ -1024,7 +979,7 @@ Public Class Reports
                 viewexpensesdetails(datagridid)
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/DataGridViewEXPENSES: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub DataGridViewDaily_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewDaily.CellClick
@@ -1034,11 +989,13 @@ Public Class Reports
                 viewtransactiondetails(transaction_number:=DataGridViewDaily.SelectedRows(0).Cells(0).Value)
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/DataGridViewDaily: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ToolStripButton4_Click(sender As Object, e As EventArgs) Handles ToolStripButton4.Click
         'If ComboBoxTransactionType.Text = "All" Then
+        Dim XMLName As String = ""
+        Dim isSuccess As Boolean = True
         If DataGridViewTransactionDetails.Rows.Count > 0 Then
             total = SumOfColumnsToDecimal(DataGridViewTransactionDetails, 3)
             Try
@@ -1068,7 +1025,7 @@ Public Class Reports
                     printdoc.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), TotalLines)
                     Dim TrnID = DataGridViewDaily.SelectedRows(0).Cells(0).Value.ToString
 
-                    Dim XMLName As String = "R" & TrnID & FullDateFormatForSaving().ToString & ".xml"
+                    XMLName = "R" & TrnID & FullDateFormatForSaving().ToString & ".xml"
 
                     EJournal.UseWriter = True
                     EJournal.PosWriter = False
@@ -1089,33 +1046,20 @@ Public Class Reports
                     XML_Writer.WriteEndElement()
                     XML_Writer.WriteEndDocument()
                     XML_Writer.Close()
-                    SaveXMLInfo(XMLName)
 
-                    AuditTrail.LogToAuditTral("Report", "Reports/Daily Sales: Reprint Sales, " & ClientCrewID, "Normal")
-
-                    InsertIntoEJournal()
+                    AuditTrail.LogToAuditTrail("Report", "Reports/Daily Sales: Reprint Sales, " & ClientCrewID, "Normal")
                 End If
 
             Catch ex As Exception
-                MessageBox.Show("An error occurred while trying to load the " &
-                        "document for Print Preview. Make sure you currently have " &
-                        "access to a printer. A printer must be localconnected and " &
-                        "accessible for Print Preview to work.", Me.Text,
-                         MessageBoxButtons.OK, MessageBoxIcon.Error)
-                SendErrorReport(ex.ToString)
+                isSuccess = False
+                AuditTrail.LogToAuditTrail("System", "Reports/ToolStripButton4: " & ex.ToString, "Critical")
+            Finally
+                InsertIntoEJournal()
+                SaveXMLInfo(XMLName)
             End Try
         Else
             MsgBox("Select Transaction First!")
         End If
-        'Else
-        '    printtransactiontype.DefaultPageSettings.PaperSize = New PaperSize("Custom", 200, 200)
-        '    If S_Reprint = "YES" Then
-        '        printtransactiontype.Print()
-        '    Else
-        '        previewtransactiontype.Document = printtransactiontype
-        '        previewtransactiontype.ShowDialog()
-        '    End If
-        'End If
     End Sub
 
     Private Sub pdoctransactiontype_PrintPage(sender As Object, e As System.Drawing.Printing.PrintPageEventArgs) Handles printtransactiontype.PrintPage
@@ -1203,9 +1147,7 @@ Public Class Reports
 
             CenterTextDisplay(sender, e, "From: " & Format(DateTimePicker1.Value, "yyyy-MM-dd") & " - To: " & Format(DateTimePicker2.Value, "yyyy-MM-dd"), font, 180)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/printtransactiontype: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub pdoc_PrintPage(sender As Object, e As System.Drawing.Printing.PrintPageEventArgs) Handles printdoc.PrintPage
@@ -1245,163 +1187,8 @@ Public Class Reports
                 ReceiptFooterOne(sender, e, True, False)
             End If
 
-
-
-            'Dim totalDisplay = NUMBERFORMAT(DataGridViewDaily.SelectedRows(0).Cells(8).Value)
-            'a = 40
-            'Dim font1 As New Font("Tahoma", 6, FontStyle.Bold)
-            'Dim font2 As New Font("Tahoma", 7, FontStyle.Bold)
-            'Dim font As New Font("Tahoma", 6)
-            'Dim fontaddon As New Font("Tahoma", 5)
-
-            'If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 2 Then
-            '    ReceiptHeader(sender, e, True)
-            'Else
-            '    ReceiptHeader(sender, e, False)
-            'End If
-
-            'Dim format1st As StringFormat = New StringFormat(StringFormatFlags.DirectionRightToLeft)
-            'Dim abc As Integer = 0
-            'If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 2 Then
-            '    abc = 50
-            'Else
-            '    abc = 40
-            'End If
-            'Try
-            '    Dim ConnectionLocal As MySqlConnection = LocalhostConn()
-            '    Dim Query1 As String = "SELECT senior_name, senior_id FROM loc_senior_details WHERE transaction_number = '" & DataGridViewDaily.SelectedRows(0).Cells(0).Value & "'"
-            '    Dim CmdQ As MySqlCommand = New MySqlCommand(Query1, ConnectionLocal)
-            '    Using reader As MySqlDataReader = CmdQ.ExecuteReader
-            '        If reader.HasRows Then
-            '            While reader.Read
-            '                SimpleTextDisplay(sender, e, reader("senior_name") & " - " & reader("senior_id"), font, 30, 82)
-            '            End While
-            '        End If
-            '    End Using
-            '    CmdQ.Dispose()
-            '    ConnectionLocal.Close()
-
-            'Catch ex As Exception
-            '    MsgBox(ex.ToString)
-            'End Try
-            'For i As Integer = 0 To DataGridViewTransactionDetails.Rows.Count - 1 Step +1
-            '    Dim rect1st As RectangleF = New RectangleF(10.0F, 115 + abc, 173.0F, 100.0F)
-            '    Dim price = NUMBERFORMAT(DataGridViewTransactionDetails.Rows(i).Cells(3).Value)
-
-            '    If DataGridViewTransactionDetails.Rows(i).Cells(4).Value.ToString = "Add-Ons" Then
-            '        If DataGridViewTransactionDetails.Rows(i).Cells(6).Value.ToString = "Classic" Then
-            '            RightToLeftDisplay(sender, e, abc + 115, "     @" & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, fontaddon, 0, 0)
-            '        Else
-            '            RightToLeftDisplay(sender, e, abc + 115, DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, font, 0, 0)
-            '        End If
-            '    Else
-            '        RightToLeftDisplay(sender, e, abc + 115, DataGridViewTransactionDetails.Rows(i).Cells(1).Value & " " & DataGridViewTransactionDetails.Rows(i).Cells(0).Value, price, font, 0, 0)
-            '        If DataGridViewTransactionDetails.Rows(i).Cells(5).Value = "YES" Then
-            '            abc += 10
-            '            a += 10
-
-            '            RightToLeftDisplay(sender, e, abc + 115, "     + UPGRADE BRWN " & DataGridViewTransactionDetails.Rows(i).Cells(5).Value, "", fontaddon, 0, 0)
-            '        End If
-            '    End If
-            '    a += 10
-            '    abc += 10
-            'Next
-            'With DataGridViewDaily
-            '    Dim b As Integer = .SelectedRows(0).Cells(14).Value
-            '    Dim SINUMBERSTRING As String = b.ToString(S_SIFormat)
-            '    If .SelectedRows(0).Cells(2).Value < 1 Then
-            '        If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 2 Then
-            '            a += 130
-            '        Else
-            '            a += 120
-            '        End If
-
-            '        RightToLeftDisplay(sender, e, a, "AMOUNT DUE:", "P" & .SelectedRows(0).Cells(5).Value.ToString, font2, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 15, "CASH:", "P" & .SelectedRows(0).Cells(5).Value.ToString, font1, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 25, "CHANGE:", "P" & .SelectedRows(0).Cells(4).Value.ToString, font1, 0, 0)
-            '        PrintStars(sender, e, font, a + 23)
-            '        RightToLeftDisplay(sender, e, a + 52, "     VATable Sales", "    " & .SelectedRows(0).Cells(6).Value.ToString, font, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 62, "     Vat Exempt Sales", "    " & .SelectedRows(0).Cells(7).Value.ToString, font, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 72, "     Zero-Rated Sales", "    " & .SelectedRows(0).Cells(8).Value.ToString, font, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 82, "     VAT Amount" & "(" & Val(S_Tax) * 100 & "%)", "    " & .SelectedRows(0).Cells(9).Value.ToString, font, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 92, "     Less Vat", "    " & .SelectedRows(0).Cells(10).Value.ToString, font, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 102, "     Total", "    " & .SelectedRows(0).Cells(5).Value.ToString, font, 0, 0)
-            '        a += 4
-            '        PrintStars(sender, e, font, a + 92)
-            '        a += 1
-            '        SimpleTextDisplay(sender, e, "Transaction Type: " & .SelectedRows(0).Cells(11).Value.ToString, font, 0, a + 100)
-            '        SimpleTextDisplay(sender, e, "Total Item(s): " & SumOfColumnsToInt(DataGridViewTransactionDetails, 1), font, 0, a + 110)
-            '        SimpleTextDisplay(sender, e, "Cashier: " & .SelectedRows(0).Cells(15).Value.ToString & " " & returnfullname(where:= .SelectedRows(0).Cells(15).Value.ToString), font, 0, a + 120)
-            '        SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 110, a + 110)
-            '        SimpleTextDisplay(sender, e, "Date & Time: " & .SelectedRows(0).Cells(16).Value, font, 0, a + 130)
-            '        SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 110, a + 140)
-            '        SimpleTextDisplay(sender, e, "Ref. #: " & .SelectedRows(0).Cells(0).Value.ToString, font, 0, a + 140)
-            '        SimpleTextDisplay(sender, e, "SI No: " & SINUMBERSTRING, font, 0, a + 150)
-            '        SimpleTextDisplay(sender, e, "Reprint Copy", font, 0, a + 160)
-            '        SimpleTextDisplay(sender, e, "THIS SERVES AS AN OFFICIAL RECEIPT", font, 0, a + 170)
-            '        PrintStars(sender, e, font, a + 185)
-
-            '        If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 1 Then
-            '            ReceiptFooter(sender, e, a + 12, False)
-            '        Else
-            '            ReceiptFooter(sender, e, a + 12, True)
-            '        End If
-            '    Else
-            '        a += 100
-            '        Dim sql = "SELECT * FROM loc_coupon_data WHERE transaction_number = '" & .SelectedRows(0).Cells(0).Value.ToString & "'"
-            '        Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
-            '        Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
-            '        Dim dt As DataTable = New DataTable
-            '        da.Fill(dt)
-            '        Dim CouponNameReports = dt(0)(2)
-            '        Dim CouponDescReports = dt(0)(3)
-            '        Dim CouponTypeReports = dt(0)(4)
-            '        Dim CouponLineReports = dt(0)(5)
-            '        Dim CouponTotalReports = dt(0)(6)
-            '        SimpleTextDisplay(sender, e, CouponNameReports & "(" & CouponTypeReports & ")", font, 0, a)
-            '        SimpleTextDisplay(sender, e, CouponDescReports, font, 0, a + 10)
-            '        a += 40 + CouponLineReports
-            '        RightToLeftDisplay(sender, e, a - 18, "Total Discount:", "P" & CouponTotalReports, font, 0, 0)
-            '        Dim SubTotal = SumOfColumnsToDecimal(DataGridViewTransactionDetails, 3)
-
-            '        RightToLeftDisplay(sender, e, a, "SUB TOTAL:", "P" & SubTotal, font1, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 10, "DISCOUNT:", .SelectedRows(0).Cells(2).Value.ToString & "-", font1, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 20, "AMOUNT DUE:", "P" & .SelectedRows(0).Cells(5).Value.ToString, font2, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 30, "CASH:", "P" & .SelectedRows(0).Cells(3).Value.ToString, font1, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 40, "CHANGE:", "P" & .SelectedRows(0).Cells(4).Value.ToString, font1, 0, 0)
-            '        PrintStars(sender, e, font, a + 37)
-            '        a += 4
-            '        RightToLeftDisplay(sender, e, a + 65, "     VATable Sales", "    " & .SelectedRows(0).Cells(6).Value.ToString, font, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 75, "     Vat Exempt Sales", "    " & .SelectedRows(0).Cells(7).Value.ToString, font, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 85, "     Zero-Rated Sales", "    " & .SelectedRows(0).Cells(8).Value.ToString, font, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 95, "     VAT Amount" & "(" & Val(S_Tax) * 100 & "%)", "    " & .SelectedRows(0).Cells(9).Value.ToString, font, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 105, "     Less Vat", "    " & .SelectedRows(0).Cells(10).Value.ToString, font, 0, 0)
-            '        RightToLeftDisplay(sender, e, a + 115, "     Total", "    " & .SelectedRows(0).Cells(5).Value.ToString, font, 0, 0)
-            '        a += 5
-            '        PrintStars(sender, e, font, a + 101)
-            '        a += 4
-            '        SimpleTextDisplay(sender, e, "Transaction Type: " & .SelectedRows(0).Cells(11).Value.ToString, font, 0, a + 110)
-            '        SimpleTextDisplay(sender, e, "Total Item(s): " & SumOfColumnsToInt(DataGridViewTransactionDetails, 1), font, 0, a + 120)
-            '        SimpleTextDisplay(sender, e, "Cashier: " & .SelectedRows(0).Cells(15).Value.ToString & " " & returnfullname(where:= .SelectedRows(0).Cells(15).Value.ToString), font, 0, a + 130)
-            '        SimpleTextDisplay(sender, e, "Str No: " & ClientStoreID, font, 120, a + 120)
-            '        SimpleTextDisplay(sender, e, "Date & Time: " & .SelectedRows(0).Cells(16).Value, font, 0, a + 140)
-            '        SimpleTextDisplay(sender, e, "Terminal No: " & S_Terminal_No, font, 120, a + 150)
-            '        SimpleTextDisplay(sender, e, "Ref. #: " & .SelectedRows(0).Cells(0).Value.ToString, font, 0, a + 150)
-            '        SimpleTextDisplay(sender, e, "SI No: " & SINUMBERSTRING, font, 0, a + 160)
-            '        SimpleTextDisplay(sender, e, "Reprint Copy", font, 0, a + 170)
-            '        SimpleTextDisplay(sender, e, "THIS SERVES AS AN OFFICIAL RECEIPT", font, 0, a + 180)
-            '        a += 6
-            '        PrintStars(sender, e, font, a + 190)
-            '        a += 16
-            '        If DataGridViewDaily.SelectedRows(0).Cells(17).Value = 1 Then
-            '            ReceiptFooter(sender, e, a, False)
-            '        Else
-            '            ReceiptFooter(sender, e, a, True)
-            '        End If
-            '    End If
-            'End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/printdoc: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -1412,8 +1199,7 @@ Public Class Reports
 
     Private Sub XZreadingInventory(zreaddate)
         Try
-            Dim Con As MySqlConnection = New MySqlConnection
-            Con = LocalhostConn()
+            Dim Con As MySqlConnection = LocalhostConn()
             Dim Fields As String = "`inventory_id`, `store_id`, `formula_id`, `product_ingredients`, `sku`, `stock_primary`, `stock_secondary`, `stock_no_of_servings`, `stock_status`, `critical_limit`, `guid`, `created_at`, `crew_id`, `synced`, `server_date_modified`, `server_inventory_id`, `zreading`"
             Dim cmd As MySqlCommand
             With DataGridViewZreadInventory
@@ -1441,9 +1227,7 @@ Public Class Reports
                 Con.Close()
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/XZreadingInventory(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -1516,9 +1300,7 @@ Public Class Reports
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/MainInventorySub(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -1556,12 +1338,10 @@ Public Class Reports
                 previewsales.Document = printsales
                 previewsales.ShowDialog()
             End If
-            AuditTrail.LogToAuditTral("Report", "Reports/Sales Report: Generated Report, " & ClientCrewID, "Normal")
+            AuditTrail.LogToAuditTrail("Report", "Reports/Sales Report: Generated Report, " & ClientCrewID, "Normal")
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/ToolStripButtonPrintSales: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub printsales_printdoc(sender As Object, e As System.Drawing.Printing.PrintPageEventArgs) Handles printsales.PrintPage
@@ -2008,9 +1788,7 @@ Public Class Reports
 
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/printsales: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim ColumnSpacing As Integer = 0
@@ -2082,9 +1860,7 @@ Public Class Reports
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/printdocReturns: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ToolStripButton9_Click(sender As Object, e As EventArgs) Handles ToolStripButton9.Click
@@ -2125,7 +1901,7 @@ Public Class Reports
                         PrintPreviewDialogReturns.ShowDialog()
                     End If
                 End If
-                AuditTrail.LogToAuditTral("Report", "Item Return: Generated Report, " & ClientCrewID, "Normal")
+                AuditTrail.LogToAuditTrail("Report", "Item Return: Generated Report, " & ClientCrewID, "Normal")
 
                 ProductLine = 0
                 ColumnSpacing = 0
@@ -2133,9 +1909,7 @@ Public Class Reports
                 MsgBox("Select returned product first.")
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/ToolStripButton9: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonSearchCrewSales_Click(sender As Object, e As EventArgs) Handles ButtonSearchCrewSales.Click
@@ -2147,7 +1921,7 @@ Public Class Reports
                 LoadCrewSales(True)
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/ButtonSearchCrewSales: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -2290,7 +2064,7 @@ Public Class Reports
                         gfx.DrawString("Date Generated: " & FullDate24HR(), font, XBrushes.Black, 50, 183 + RowCount)
                     End If
                 Next
-                AuditTrail.LogToAuditTral("Report", "Reports/Custom Report: Generated Report, " & ClientCrewID, "Normal")
+                AuditTrail.LogToAuditTrail("Report", "Reports/Custom Report: Generated Report, " & ClientCrewID, "Normal")
 
                 Dim filename = My.Computer.FileSystem.SpecialDirectories.Desktop & "\Custom Report-" & FullDateFormatForSaving() & ".pdf"
                 document.Save(filename)
@@ -2299,21 +2073,9 @@ Public Class Reports
                 Process.Start(filename)
 
 
-
-
-
-                '    page = document.AddPage
-                '    gfx = XGraphics.FromPdfPage(page)
-
-                '    gfx.DrawString("Date From - To: " & DateTimePicker17.Value.ToString & " | " & DateTimePicker18.Value.ToString, font, XBrushes.Black, 50, 50)
-
-                '    ' Save the document...
-
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/ToolStripButton3: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -2323,12 +2085,10 @@ Public Class Reports
             ReceiptHeaderOne(sender, e, False, "", False, False)
             ZXBody(sender, e)
             ZFooter(sender, e, ReprintZRead, Format(DateTimePickerZXreading.Value, "yyyy-MM-dd"), Format(DateTimePickerZXreadingTo.Value, "yyyy-MM-dd"))
-            AuditTrail.LogToAuditTral("System", "Reports: Generated " & XREADORZREAD & ", " & ClientCrewID, "Normal")
+            AuditTrail.LogToAuditTrail("System", "Reports: Generated " & XREADORZREAD & ", " & ClientCrewID, "Normal")
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/printdocZRead: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim ReprintZRead As Boolean = False
@@ -2475,10 +2235,6 @@ Public Class Reports
                     t.Join()
                 Next
             End If
-
-            Console.WriteLine(ZXDailySales)
-
-
 
             ThreadZXRead = New Thread(Sub() ZXTotalExpenses = sum("total_amount", "loc_expense_list WHERE " & ZReadDateFilter & " AND active = 1"))
             ThreadZXRead.Start()
@@ -2792,9 +2548,7 @@ Public Class Reports
             ZXPointFiveTotal = ZXPointFiveQty * 0.05
             ZXdate = S_Zreading
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/FillZreadData(): " & ex.ToString, "Critical")
         Finally
             If XREADORZREAD = "Z-READ" Then
                 InsertZReadXRead()
@@ -2813,12 +2567,6 @@ Public Class Reports
             ZXBegTransNo = returnselect("ZXBegTransNo", "`loc_zread_table` WHERE ZXdate = '" & DateFrom & "' AND status = 1 Order by id ASC limit 1")
             ZXEndTransNo = returnselect("ZXEndTransNo", "`loc_zread_table` WHERE ZXdate = '" & DateTo & "' AND status = 1 Order by id ASC limit 1")
 
-            'Dim BegSi As Integer = Val(ZXBegSINo)
-            'ZXBegSINo = BegSi.ToString(S_SIFormat)
-
-            'Dim EndSi As Integer = Val(ZXEndSINo)
-            'ZXEndSINo = EndSi.ToString(S_SIFormat)
-
             Dim ResetCounter = 0
             Query = " SELECT counter_value FROM tbcountertable WHERE counter_id = 1"
             Dim Cmd As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
@@ -2835,7 +2583,7 @@ Public Class Reports
 
 
             Query = "SELECT " & ZReadTableFieldsSum & " FROM loc_zread_table WHERE ZXdate >= '" & DateFrom & "' AND ZXdate <= '" & DateTo & "' AND status = 1"
-            Console.WriteLine(Query)
+
             Command = New MySqlCommand(Query, ConnectionLocal)
             Using Reader As MySqlDataReader = Command.ExecuteReader
                 If Reader.HasRows Then
@@ -3015,38 +2763,33 @@ Public Class Reports
                 End If
             End Using
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/FIllZReadReprint(): " & ex.ToString, "Critical")
         End Try
     End Sub
-
-
-
     Private Sub ButtonAdvancedCustomReports_Click(sender As Object, e As EventArgs) Handles ButtonAdvancedCustomReports.Click
         AdvancedCustomReport.Show()
         Enabled = False
     End Sub
-
     Private Sub Reports_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
         If Application.OpenForms().OfType(Of AdvancedCustomReport).Any Then
             AdvancedCustomReport.Close()
         End If
     End Sub
-
     Private Sub ToolStripComboBoxStatus_TextChanged(sender As Object, e As EventArgs) Handles ToolStripComboBoxStatus.SelectedIndexChanged
         ToolStripButton6.PerformClick()
     End Sub
     Dim sfd As SaveFileDialog = New SaveFileDialog()
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ButtonXREAD.Click
+        Dim isSuccess As Boolean = True
+        Dim XMLName As String = ""
         Try
-            AuditTrail.LogToAuditTral("System", "Reports/Others: Accessed X-READ, " & ClientCrewID, "Normal")
+            AuditTrail.LogToAuditTrail("System", "Reports/Others: Accessed X-READ, " & ClientCrewID, "Normal")
 
             XREADORZREAD = "X-READ"
             FillZreadData(" zreading = '" & S_Zreading & "'", S_Zreading, S_Zreading)
             printdocZRead.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 1020)
 
-            Dim XMLName As String = "XREAD" & FullDateFormatForSaving().ToString & ".xml"
+            XMLName = "XREAD" & FullDateFormatForSaving().ToString & ".xml"
 
             EJournal.UseWriter = True
             EJournal.PosWriter = False
@@ -3067,24 +2810,27 @@ Public Class Reports
             XML_Writer.WriteEndElement()
             XML_Writer.WriteEndDocument()
             XML_Writer.Close()
-            InsertIntoEJournal()
-            SaveXMLInfo(XMLName)
+
+
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+            isSuccess = False
+            AuditTrail.LogToAuditTrail("System", "Reports/ButtonXREAD: " & ex.ToString, "Critical")
         Finally
-            SystemLogDesc = "X-Reading : " & FullDate24HR() & " Crew : " & returnfullname(ClientCrewID)
-            SystemLogType = "X-READ"
-            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+            If isSuccess Then
+                InsertIntoEJournal()
+                SaveXMLInfo(XMLName)
+            End If
         End Try
     End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonZReading.Click
+        Dim isSuccess As Boolean = True
+        Dim XMLName As String = ""
         Try
             ReprintZRead = False
             Dim msg = MessageBox.Show("Are you sure you want to generate Z-READ ? Press Yes to continue or No to cancel", "Z-reading", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
 
             If msg = DialogResult.Yes Then
-                AuditTrail.LogToAuditTral("System", "Reports/Others: Accessed Z-READ, " & ClientCrewID, "Normal")
+                AuditTrail.LogToAuditTrail("System", "Reports/Others: Accessed Z-READ, " & ClientCrewID, "Normal")
 
                 My.Settings.zcounter += 1
                 Dim ConnectionLocal As MySqlConnection = LocalhostConn()
@@ -3099,7 +2845,7 @@ Public Class Reports
                 FillZreadData(" zreading = '" & S_Zreading & "'", S_Zreading, S_Zreading)
                 printdocZRead.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 1020)
 
-                Dim XMLName As String = "ZREAD" & FullDateFormatForSaving().ToString & ".xml"
+                XMLName = "ZREAD" & FullDateFormatForSaving().ToString & ".xml"
 
                 EJournal.UseWriter = True
                 EJournal.PosWriter = False
@@ -3121,9 +2867,10 @@ Public Class Reports
                 XML_Writer.WriteEndDocument()
                 XML_Writer.Close()
 
-                InsertIntoEJournal()
+
                 GetOldGrandtotal()
-                SaveXMLInfo(XMLName)
+
+
                 'Update Zread
                 S_Zreading = Format(DateAdd("d", 1, S_Zreading), "yyyy-MM-dd")
                 sql = "UPDATE loc_settings SET S_Zreading = '" & S_Zreading & "'"
@@ -3152,19 +2899,19 @@ Public Class Reports
 
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            isSuccess = False
+            AuditTrail.LogToAuditTrail("System", "Reports/ButtonZReading: " & ex.ToString, "Critical")
         Finally
-            SystemLogDesc = "Z-Reading : " & FullDate24HR() & " Crew : " & returnfullname(ClientCrewID)
-            SystemLogType = "Z-READ"
-            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+            If isSuccess Then
+                InsertIntoEJournal()
+                SaveXMLInfo(XMLName)
+            End If
         End Try
     End Sub
 
     Private Sub Button12_Click(sender As Object, e As EventArgs) Handles ButtonZREADREPRINT.Click
-
+        Dim isSuccess As Boolean = True
+        Dim XMLName As String = ""
         Try
             ReprintZRead = True
             Dim FromDate, ToDate As String
@@ -3172,7 +2919,7 @@ Public Class Reports
             ToDate = Format(DateTimePickerZXreadingTo.Value, "yyyy-MM-dd")
 
             XREADORZREAD = "Z-READ"
-            AuditTrail.LogToAuditTral("System", "Reports/Others: Accessed Z-READ REPRINT, " & ClientCrewID, "Normal")
+            AuditTrail.LogToAuditTrail("System", "Reports/Others: Accessed Z-READ REPRINT, " & ClientCrewID, "Normal")
 
             If FromDate = ToDate Then
                 Dim ConnectionLocal As MySqlConnection = LocalhostConn()
@@ -3187,7 +2934,7 @@ Public Class Reports
 
             printdocZRead.DefaultPageSettings.PaperSize = New PaperSize("Custom", ReturnPrintSize(), 1050)
 
-            Dim XMLName As String = "ZREADREP" & FullDateFormatForSaving().ToString & ".xml"
+            XMLName = "ZREADREP" & FullDateFormatForSaving().ToString & ".xml"
 
             EJournal.UseWriter = True
             EJournal.PosWriter = False
@@ -3209,23 +2956,22 @@ Public Class Reports
             XML_Writer.WriteEndElement()
             XML_Writer.WriteEndDocument()
             XML_Writer.Close()
-            SaveXMLInfo(XMLName)
-            InsertIntoEJournal()
-        Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
 
-            SendErrorReport(ex.ToString)
+        Catch ex As Exception
+            isSuccess = False
+            AuditTrail.LogToAuditTrail("System", "Reports/ButtonZREADREPRINT: " & ex.ToString, "Critical")
         Finally
-            SystemLogDesc = "Z-Reading Reprint : " & FullDate24HR() & " Crew : " & returnfullname(ClientCrewID)
-            SystemLogType = "Z-READ REPRINT"
-            GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
+            If isSuccess Then
+                SaveXMLInfo(XMLName)
+                InsertIntoEJournal()
+            End If
         End Try
     End Sub
 
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles ButtonEJournal.Click
         Try
 
-            AuditTrail.LogToAuditTral("System", "Reports/Others: Accessed E-JOURNAL, " & ClientCrewID, "Normal")
+            AuditTrail.LogToAuditTrail("System", "Reports/Others: Accessed E-JOURNAL, " & ClientCrewID, "Normal")
 
             EJournalLoadingScreen.Show()
 
@@ -3234,13 +2980,11 @@ Public Class Reports
             BackgroundWorkerEJournal.RunWorkerAsync()
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/ButtonEJournal: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim ThreadEJournal As Thread
     Dim ThreadListEJournal As List(Of Thread) = New List(Of Thread)
-
-
 
     Private Sub BackgroundWorkerEJournal_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorkerEJournal.DoWork
         Dim ReturnString() As String = {}
@@ -3253,7 +2997,7 @@ Public Class Reports
                 t.Join()
             Next
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/BackgroundWorkerEJournal: " & ex.ToString, "Critical")
         End Try
         e.Result = ReturnString
     End Sub
@@ -3273,13 +3017,13 @@ Public Class Reports
 
             Dim CompletePath As String = CompleteDirectoryPath & "\ejournal" & FullDateFormatForSaving() & ".txt"
 
-            AuditTrail.LogToAuditTral("Report", "Reports/Others: E-Journal Generated, " & CompleteDirectoryPath, "Normal")
+            AuditTrail.LogToAuditTrail("Report", "Reports/Others: E-Journal Generated, " & CompleteDirectoryPath, "Normal")
 
             File.WriteAllLines(CompletePath, e.Result, Encoding.UTF8)
 
             MsgBox("Complete")
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/BackgroundWorkerEJournal Comp: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Function GenerateEJournalV2()
@@ -3329,15 +3073,13 @@ Public Class Reports
             ReturnString = TxtFileLine
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/GenerateEJournalV2() " & ex.ToString, "Critical")
         End Try
         Return ReturnString
     End Function
     Private Sub ButtonEJournalPDF_Click(sender As Object, e As EventArgs) Handles ButtonEJournalPDF.Click
         Try
-            'zreading >= @Fromdate AND zreading <= @ToDate
+
             Dim ConnectionLocal As MySqlConnection = LocalhostConn()
             Dim Query As String = "SELECT xml_name FROM loc_xml_ref WHERE DATE(zreading) BETWEEN DATE(@FromDate) AND DATE(@ToDate) ORDER BY created_at DESC"
             Dim Command As MySqlCommand = New MySqlCommand(Query, ConnectionLocal)
@@ -3356,15 +3098,15 @@ Public Class Reports
             Dim f As New EJOURNAL_PDF.EJOURNAL_PDF(ListOfXml)
             f.Show()
 
-            AuditTrail.LogToAuditTral("Report", "Reports/Others: E-Journal PDF Generated, " & ClientCrewID, "Normal")
+            AuditTrail.LogToAuditTrail("Report", "Reports/Others: E-Journal PDF Generated, " & ClientCrewID, "Normal")
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Reports/ButtonEJournalPDF " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles ButtonAuditTrail.Click
         MDIFORM.newMDIchildReports.Enabled = False
         MDIFORM.Enabled = False
-        AuditTrail.LogToAuditTral("System", "Reports: Accessed AUDIT TRAIL, " & ClientCrewID, "Normal")
+        AuditTrail.LogToAuditTrail("System", "Reports: Accessed AUDIT TRAIL, " & ClientCrewID, "Normal")
         AuditTrail.Show()
     End Sub
 End Class

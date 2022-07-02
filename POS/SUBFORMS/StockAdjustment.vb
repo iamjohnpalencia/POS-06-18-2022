@@ -13,9 +13,7 @@ Public Class StockAdjustment
             TabControl4.TabPages(0).Text = "Active"
             TabControl4.TabPages(1).Text = "Deactivated"
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/Load(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Sub loadcomboboxingredients()
@@ -29,9 +27,7 @@ Public Class StockAdjustment
                 ComboBoxDESC.Items.Add(dt(i)(0))
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/loadcomboboxingredients(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -40,18 +36,14 @@ Public Class StockAdjustment
         Try
             GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX("admin_outlets WHERE user_guid = '" & ClientGuid & "' AND store_id NOT IN(" & ClientStoreID & ")", "store_name", ComboBoxtransfer, False)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/LoadOutlets(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub FillComboboxReason()
         Try
             GLOBAL_SELECT_ALL_FUNCTION_COMBOBOX("loc_transfer_data WHERE active = 1", "transfer_cat", ComboBoxDeduction, True)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/FillComboboxReason(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub LoadReasonCategories()
@@ -66,9 +58,7 @@ Public Class StockAdjustment
                 .Columns(5).HeaderText = "Updated At"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/LoadReasonCategories(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -127,7 +117,7 @@ Public Class StockAdjustment
                         Else
                             where = "server_inventory_id = " & ID
                         End If
-                        AuditTrail.LogToAuditTral("Transaction", "Menu/Inventory/Stock Adjustment: New Stock " & SystemLogDesc, "Normal")
+                        AuditTrail.LogToAuditTrail("Transaction", "Menu/Inventory/Stock Adjustment: New Stock " & SystemLogDesc, "Normal")
 
                         GLOBAL_FUNCTION_UPDATE(table, fields, where)
                     ElseIf ComboBoxAction.Text = "TRANSFER" Then
@@ -147,7 +137,7 @@ Public Class StockAdjustment
                         Else
                             where = "server_inventory_id = " & ID
                         End If
-                        AuditTrail.LogToAuditTral("Transaction", "Menu/Inventory/Stock Adjustment: Stock Transfer " & SystemLogDesc, "Normal")
+                        AuditTrail.LogToAuditTrail("Transaction", "Menu/Inventory/Stock Adjustment: Stock Transfer " & SystemLogDesc, "Normal")
 
                         GLOBAL_FUNCTION_UPDATE(table, fields, where)
                     ElseIf ComboBoxAction.Text = "DEDUCT" Then
@@ -167,7 +157,7 @@ Public Class StockAdjustment
                         Else
                             where = "server_inventory_id = " & ID
                         End If
-                        AuditTrail.LogToAuditTral("Transaction", "Menu/Inventory/Stock Adjustment: Stock Remove " & SystemLogDesc, "Normal")
+                        AuditTrail.LogToAuditTrail("Transaction", "Menu/Inventory/Stock Adjustment: Stock Remove " & SystemLogDesc, "Normal")
 
                         GLOBAL_FUNCTION_UPDATE(table, fields, where)
                     End If
@@ -187,9 +177,7 @@ Public Class StockAdjustment
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/ButtonSave: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -213,9 +201,7 @@ Public Class StockAdjustment
                 ComboBoxtransfer.Enabled = False
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/ComboBoxAction: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -245,9 +231,7 @@ Public Class StockAdjustment
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/ButtonDeleteProducts: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
@@ -266,9 +250,7 @@ Public Class StockAdjustment
                 MsgBox("Server category cannot be edited")
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/Button9: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -293,9 +275,7 @@ Public Class StockAdjustment
                 MsgBox("Select category Category first")
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/Button11: " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub LoadReasonCategoriesDeactivated()
@@ -310,9 +290,7 @@ Public Class StockAdjustment
                 .Columns(5).HeaderText = "Updated At"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/LoadReasonCategoriesDeactivated(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -331,20 +309,9 @@ Public Class StockAdjustment
         Try
             Numeric(sender, e)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
-
-    Private Sub TextBoxIReason_KeyPress(sender As Object, e As KeyPressEventArgs)
-        Try
-            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
-                e.Handled = True
-            End If
-        Catch ex As Exception
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-
     Private Sub ComboBoxDESC_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxDESC.SelectedIndexChanged
         Try
             Dim sql = "SELECT inventory_id, stock_primary, stock_secondary, origin, server_inventory_id FROM loc_pos_inventory WHERE product_ingredients = '" & ComboBoxDESC.Text & "'"
@@ -359,9 +326,7 @@ Public Class StockAdjustment
             TextBoxServerInventoryID.Text = dt(0)(4)
             SelectFormulaEntry(dt(0)(0), dt(0)(3))
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/ComboBoxDESC: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub SelectFormulaEntry(FormulaID, Origin)
@@ -389,9 +354,7 @@ Public Class StockAdjustment
             Next
             LocalhostConn.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Stock Adjustment: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "StockAdjustment/SelectFormulaEntry(): " & ex.ToString, "Critical")
         End Try
     End Sub
 

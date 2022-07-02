@@ -27,9 +27,7 @@ Public Class Message
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Message: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Message/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs)
@@ -56,7 +54,7 @@ Public Class Message
                 .Columns(10).Visible = False
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Message/ReadMessage(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Message_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -88,7 +86,7 @@ Public Class Message
                 ReadMessage()
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Message/DataGridView1(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub SeenMessage(messageid)
@@ -97,9 +95,7 @@ Public Class Message
             Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
             cmd.ExecuteNonQuery()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Message: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Message/SeenMessage(): " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

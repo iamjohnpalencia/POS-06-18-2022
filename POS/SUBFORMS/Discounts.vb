@@ -43,9 +43,7 @@
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Discounts: " & ex.ToString, "Critical")
-
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Discounts/Button2: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -78,9 +76,7 @@
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Discounts: " & ex.ToString, "Critical")
-
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Discounts/Button1: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -102,9 +98,9 @@
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Discounts: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "Discounts: " & ex.ToString, "Critical")
 
-            MsgBox(ex.ToString)
+
         End Try
         If DataGridView2.Rows.Count > 0 Then
             'MsgBox(GETNOTDISCOUNTEDAMOUNT)

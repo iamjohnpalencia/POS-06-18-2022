@@ -17,9 +17,7 @@ Public Class Changeproductformula
             DataGridViewProducts.Columns(0).Visible = False
             DataGridViewProducts.Columns(2).Visible = False
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Change Formula: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ChangeFormula/LoadProducts(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public IamTheChoosenButton As String = ""
@@ -29,7 +27,7 @@ Public Class Changeproductformula
             Dim Origin = DataGridViewProducts.SelectedRows(0).Cells(3).Value.ToString
             LoadFormulas(formulaid, Origin)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ChangeFormula/DataGridViewProducts: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadFormulas(formulaid, Origin)
@@ -65,9 +63,7 @@ Public Class Changeproductformula
                 LocalhostConn.Close()
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Change Formula: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ChangeFormula/LoadFormulas(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub new_Button_click(ByVal sender As Object, ByVal e As EventArgs)
@@ -107,9 +103,7 @@ Public Class Changeproductformula
                 LoadProducts()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Change Formula: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ChangeFormula/ButtonArrangeFormulaIDs: " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

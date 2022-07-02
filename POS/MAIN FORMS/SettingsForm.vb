@@ -143,9 +143,7 @@ Public Class SettingsForm
             End If
             TextBoxS_ZeroRated.Text = S_ZeroRated_Tax
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub FillDgvReset()
@@ -207,9 +205,7 @@ Public Class SettingsForm
             chk.Width = 100
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/FillDgvReset(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadLedDisplaySettings()
@@ -219,7 +215,7 @@ Public Class SettingsForm
                 TextBoxBaudRate.Text = My.Settings.SpBaudrate
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadLedDisplaySettings(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub SettingsForm_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -236,7 +232,7 @@ Public Class SettingsForm
                 CancelTestCloudCon = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/FormClosing(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
@@ -322,9 +318,7 @@ Public Class SettingsForm
                 MsgBox("Internet connection is not available")
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/Button4: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -353,9 +347,7 @@ Public Class SettingsForm
                 DataGridViewPartners.Rows.Add(row("id"), row("arrid"), row("bankname"), row("date_modified"), row("crew_id"), row("store_id"), row("guid"), ActiveRow, row("synced"))
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadPartners(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub LoadPartnersDeact()
@@ -371,9 +363,7 @@ Public Class SettingsForm
                 DataGridViewPartnersDeact.Rows.Add(row("id"), row("arrid"), row("bankname"), row("date_modified"), row("crew_id"), row("store_id"), row("guid"), ActiveRow, row("synced"))
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadPartnersDeact(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonDeleteProducts_Click(sender As Object, e As EventArgs) Handles ButtonDeactivateBank.Click
@@ -389,9 +379,7 @@ Public Class SettingsForm
                 LoadPartnersDeact()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ButtonDeactivateBank: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button18_Click(sender As Object, e As EventArgs) Handles ButtonPTActivate.Click
@@ -407,9 +395,7 @@ Public Class SettingsForm
                 LoadPartnersDeact()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ButtonPTActivate: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles ButtonPartnersPrio.Click
@@ -431,9 +417,7 @@ Public Class SettingsForm
                 LoadPartners()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ButtonPartnersPrio: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonAddBank.Click
@@ -472,9 +456,7 @@ Public Class SettingsForm
                 .Columns(2).Width = 70
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/loadformula(): " & ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -496,7 +478,7 @@ Public Class SettingsForm
                 RadioButtonTrainingOFF.Checked = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadTrainingMode(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub loaditemreturn(justload As Boolean)
@@ -523,9 +505,7 @@ Public Class SettingsForm
 
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/loaditemreturn(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub DataGridViewITEMRETURN1_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewITEMRETURN1.CellClick
@@ -647,9 +627,7 @@ Public Class SettingsForm
                 End With
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/loadtransactions(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub TextBoxSearchTranNumber_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSearchTranNumber.TextChanged
@@ -698,9 +676,7 @@ Public Class SettingsForm
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ButtonRefund: " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub INSERTRETURNS(transaction_num As String)
@@ -728,9 +704,7 @@ Public Class SettingsForm
             TextBoxSearchTranNumber.Clear()
             TextBoxIRREASON.Clear()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/INSERTRETURNS(): " & ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -756,9 +730,7 @@ Public Class SettingsForm
                 ToolStripComboBoxCategorySearch.Items.Add(row("Category"))
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/FillComboboxSearch(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ShowAllProducts(Category)
@@ -776,9 +748,7 @@ Public Class SettingsForm
                 Next
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ShowAllProducts(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ShowAllCoupons()
@@ -792,9 +762,7 @@ Public Class SettingsForm
                 .Columns(0).HeaderText = "Expiry Date"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ShowAllCoupons(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ShowAllCouponsPending()
@@ -808,9 +776,7 @@ Public Class SettingsForm
                 .Columns(0).HeaderText = "Expiry Date"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ShowAllCouponsPending(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub SaveCoupon()
@@ -819,9 +785,7 @@ Public Class SettingsForm
             GLOBAL_INSERT_FUNCTION("tbcoupon", "(`Couponname_`, `Desc_`, `Discountvalue_`, `Referencevalue_`, `Type`, `Bundlebase_`, `BBValue_`, `Bundlepromo_`, `BPValue_`, `Effectivedate`, `Expirydate`, `active`, `store_id`, `crew_id`, `guid`, `synced`, `origin`)", value)
             GLOBAL_SYSTEM_LOGS("NEW COUPON", "Name : " & TextBoxCName.Text & " Type : " & ComboBoxCType.Text)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/SaveCoupon(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim Checkall As Boolean = False
@@ -841,7 +805,7 @@ Public Class SettingsForm
                 Checkall = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/CheckBox1: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -850,22 +814,9 @@ Public Class SettingsForm
             ShowAllProducts(ToolStripComboBoxCategorySearch.Text)
             CheckBox1.Checked = False
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ToolStripComboBoxCategorySearch: " & ex.ToString, "Critical")
         End Try
     End Sub
-    'Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
-    '    For i As Integer = 0 To DataGridViewProducts.Rows.Count - 1 Step +1
-    '        If TypeOf DataGridViewProducts.Rows(i).Cells(3) Is DataGridViewCheckBoxCell Then
-    '            Dim checked As Boolean = DataGridViewProducts.Rows(i).Cells(3).Value
-    '            If checked = True Then
-    '                TextBoxCBBP.Text += DataGridViewProducts.Rows(i).Cells(0).Value.ToString & ","
-    '                TextBoxCBP.Text += DataGridViewProducts.Rows(i).Cells(0).Value.ToString & ","
-    '            End If
-    '        End If
-    '    Next
-    '    TextBoxCBBP.Text = TextBoxCBBP.Text.TrimEnd(CChar(","))
-    '    TextBoxCBP.Text = TextBoxCBP.Text.TrimEnd(CChar(","))
-    'End Sub
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButtonSelectP.Click
         For i As Integer = 0 To DataGridViewProducts.Rows.Count - 1 Step +1
             If TypeOf DataGridViewProducts.Rows(i).Cells(3) Is DataGridViewCheckBoxCell Then
@@ -1056,7 +1007,7 @@ Public Class SettingsForm
                 MessageBox.Show("All fields are required", "", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ButtonSaveCoupon: " & ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -1135,9 +1086,7 @@ Public Class SettingsForm
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadConn(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadCloudConn()
@@ -1160,9 +1109,7 @@ Public Class SettingsForm
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadCloudConn(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadPrintOptions()
@@ -1267,9 +1214,7 @@ Public Class SettingsForm
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadPrintOptions(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadAdditionalSettings()
@@ -1310,9 +1255,7 @@ Public Class SettingsForm
                 My.Settings.Save()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadAdditionalSettings(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadDevInfo()
@@ -1354,9 +1297,7 @@ Public Class SettingsForm
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadDevInfo(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -1375,9 +1316,7 @@ Public Class SettingsForm
             End Using
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadSystemResetStatus(): " & ex.ToString, "Critical")
         End Try
         Return countervalue
     End Function
@@ -1408,7 +1347,7 @@ Public Class SettingsForm
                             RadioButtonYearly.Enabled = False
                         End If
                     ElseIf dt(0)(0).ToString = "3" Then
-                            RadioButtonMonthly.Checked = True
+                        RadioButtonMonthly.Checked = True
                         '=================================
                         If ClientRole <> "Admin" Then
                             RadioButtonDaily.Enabled = False
@@ -1416,7 +1355,7 @@ Public Class SettingsForm
                             RadioButtonYearly.Enabled = False
                         End If
                     ElseIf dt(0)(0).ToString = "4" Then
-                            RadioButtonYearly.Checked = True
+                        RadioButtonYearly.Checked = True
                         '=================================
                         If ClientRole <> "Admin" Then
                             RadioButtonDaily.Enabled = False
@@ -1427,7 +1366,7 @@ Public Class SettingsForm
                 End If
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadAutoBackup(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonExport_Click(sender As Object, e As EventArgs) Handles ButtonExport.Click
@@ -1443,8 +1382,7 @@ Public Class SettingsForm
 
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqldump --databases -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " " & TextBoxLocalDatabase.Text & " > """ & TextBoxExportPath.Text & DatabaseName & """")
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/BackupDatabase(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonImport_Click(sender As Object, e As EventArgs) Handles ButtonImport.Click
@@ -1462,9 +1400,7 @@ Public Class SettingsForm
             con.ConnectionString = "server=" & TextBoxLocalServer.Text & ";user name=" & TextBoxLocalUsername.Text & ";password=" & TextBoxLocalPassword.Text
             con.Open()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/Connect(): " & ex.ToString, "Critical")
         End Try
         Return con
     End Function
@@ -1475,9 +1411,7 @@ Public Class SettingsForm
             cmd.ExecuteNonQuery()
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysql -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " " & TextBoxLocalDatabase.Text & " < """ & TextBoxLocalRestorePath.Text & """")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/RestoreDatabase(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub OpenFileDialog1_FileOk(sender As Object, e As System.ComponentModel.CancelEventArgs) Handles OpenFileDialog1.FileOk
@@ -1496,9 +1430,7 @@ Public Class SettingsForm
         Try
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqlcheck -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " --auto-repair -c --databases " & TextBoxLocalDatabase.Text)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/RepairDatabase(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles ButtonOptimizeDB.Click
@@ -1512,17 +1444,10 @@ Public Class SettingsForm
         Try
             Process.Start("cmd.exe", "/k cd C:\xampp\mysql\bin & mysqlcheck -h " & TextBoxLocalServer.Text & " -u " & TextBoxLocalUsername.Text & " -p " & TextBoxLocalPassword.Text & " -o --databases " & TextBoxLocalDatabase.Text)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/OptimizeDatabase(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
-    Private Sub ButtonDatabaseReset_Click(sender As Object, e As EventArgs)
-        If ClientRole = "Crew" Then
-            MsgBox("You dont have administrator rights.")
-        Else
-
-        End If
-    End Sub
     Private Function TestDBConnectionLocal(server, username, password, database, port) As MySqlConnection
         Dim testcon As MySqlConnection = New MySqlConnection
         Try
@@ -1534,10 +1459,8 @@ Public Class SettingsForm
                 TestLocalCon = False
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
             TestLocalCon = False
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/TestDBConnectionLocal(): " & ex.ToString, "Critical")
         End Try
         Return testcon
     End Function
@@ -1549,8 +1472,7 @@ Public Class SettingsForm
                 BackgroundWorkerLocalConnection.RunWorkerAsync()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ButtonTestLocCon: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim threadListConLocal As List(Of Thread) = New List(Of Thread)
@@ -1579,9 +1501,7 @@ Public Class SettingsForm
                 End If
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/BackgroundWorkerLocalConnection: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorkerLocalConnection_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorkerLocalConnection.ProgressChanged
@@ -1592,9 +1512,7 @@ Public Class SettingsForm
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/BackgroundWorkerLocalConnection: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorkerLocalConnection_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerLocalConnection.RunWorkerCompleted
@@ -1607,7 +1525,7 @@ Public Class SettingsForm
                 ToolStripStatusLabel2.Text = "Cannot connect to server"
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/BackgroundWorkerLocalConnection Comp: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Function TestDBConnectionCloud(server, username, password, database, port) As MySqlConnection
@@ -1636,7 +1554,7 @@ Public Class SettingsForm
             End If
         Catch ex As Exception
             ValidCloudConnection = False
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ButtonTestCloudCon: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim threadListConCloud As List(Of Thread) = New List(Of Thread)
@@ -1666,12 +1584,9 @@ Public Class SettingsForm
                 Next
                 If i = 10 Then
                     If ValidInternetCon Then
-                        Console.Write("Has internet")
                         threadConCloud = New Thread(Sub() TestDBConnectionCloud(TextBoxCloudServer.Text, TextBoxCloudUsername.Text, TextBoxCloudPassword.Text, TextBoxCloudDatabase.Text, TextBoxCloudPort.Text))
                         threadConCloud.Start()
                         threadListConCloud.Add(threadConCloud)
-                    Else
-                        Console.Write("No internet")
                     End If
                 End If
                 For Each t In threadListConCloud
@@ -1685,9 +1600,7 @@ Public Class SettingsForm
                 Next
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/BackgroundWorkerCloudConnection: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -1698,9 +1611,7 @@ Public Class SettingsForm
                 ToolStripStatusLabel3.Text = "Checking Connection " & e.ProgressPercentage & " %"
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/BackgroundWorkerCloudConnection Comp: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorkerCloudConnection_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerCloudConnection.RunWorkerCompleted
@@ -1726,8 +1637,7 @@ Public Class SettingsForm
                 e.Handled = True
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/KeyPress: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim thread As Thread
@@ -1802,9 +1712,7 @@ Public Class SettingsForm
                 Next
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/BackgroundWorker1: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -1856,9 +1764,7 @@ Public Class SettingsForm
             End If
             PictureBox1.Visible = False
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/BackgroundWorker1 Comp: " & ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -1883,9 +1789,7 @@ Public Class SettingsForm
             cmd = New MySqlCommand(sql, ConnectionCloud)
             CloudVersion = cmd.ExecuteScalar
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/SoftwareUpdate(): " & ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -1906,9 +1810,7 @@ Public Class SettingsForm
                 PRICECHANGE = False
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/CheckPriceChanges(): " & ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -1929,9 +1831,7 @@ Public Class SettingsForm
                 CouponApp = False
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/CouponApproval(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim CustomProductsApproval As DataTable
@@ -1950,9 +1850,9 @@ Public Class SettingsForm
                 CustomProdctsAppBool = False
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "Settings Form: " & ex.ToString, "Critical")
 
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -1976,9 +1876,7 @@ Public Class SettingsForm
                 dtlocal.Rows.Add(Cat)
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadCategoryLocal(): " & ex.ToString, "Critical")
         End Try
         Return dtlocal
     End Function
@@ -2047,10 +1945,10 @@ Public Class SettingsForm
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "Settings Form: " & ex.ToString, "Critical")
 
             BackgroundWorker1.CancelAsync()
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
             'If table doesnt have data
         End Try
     End Sub
@@ -2179,10 +2077,8 @@ Public Class SettingsForm
                 ConnectionServer.Close()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Settings/GetProducts(): " & ex.ToString, "Critical")
             BackgroundWorker1.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub GetAllProducts()
@@ -2246,9 +2142,7 @@ Public Class SettingsForm
                 Next
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/GetAllProducts(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -2273,9 +2167,7 @@ Public Class SettingsForm
                 dtlocal.Rows.Add(Cat)
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadFormulaLocal(): " & ex.ToString, "Critical")
         End Try
         Return dtlocal
     End Function
@@ -2349,10 +2241,10 @@ Public Class SettingsForm
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "Settings Form: " & ex.ToString, "Critical")
 
             BackgroundWorker1.CancelAsync()
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -2366,7 +2258,8 @@ Public Class SettingsForm
         Dim dtlocal1 As DataTable = New DataTable
         Try
             Dim sql = "SELECT server_date_modified , server_inventory_id FROM loc_pos_inventory"
-            cmdlocal = New MySqlCommand(sql, LocalhostConn)
+            Dim ConnectioLocal As MySqlConnection = LocalhostConn()
+            cmdlocal = New MySqlCommand(sql, ConnectioLocal)
             dalocal = New MySqlDataAdapter(cmdlocal)
             dalocal.Fill(dtlocal)
             For i As Integer = 0 To dtlocal1.Rows.Count - 1 Step +1
@@ -2375,11 +2268,9 @@ Public Class SettingsForm
                 Cat("server_inventory_id") = dtlocal1(i)(1)
                 dtlocal.Rows.Add(Cat)
             Next
-            LocalhostConn.Close()
+            ConnectioLocal.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadInventoryLocal(): " & ex.ToString, "Critical")
         End Try
         Return dtlocal
     End Function
@@ -2453,10 +2344,10 @@ Public Class SettingsForm
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "Settings Form: " & ex.ToString, "Critical")
 
             BackgroundWorker1.CancelAsync()
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -2481,9 +2372,7 @@ Public Class SettingsForm
                 dtlocal.Rows.Add(Coup)
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadCouponsLocal(): " & ex.ToString, "Critical")
         End Try
         Return dtlocal
     End Function
@@ -2552,10 +2441,10 @@ Public Class SettingsForm
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "Settings Form: " & ex.ToString, "Critical")
 
             BackgroundWorker1.CancelAsync()
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
             'If table doesnt have data
         End Try
     End Sub
@@ -2578,9 +2467,9 @@ Public Class SettingsForm
                 dtlocal.Rows.Add(Cat)
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "Settings Form: " & ex.ToString, "Critical")
 
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
         Return dtlocal
     End Function
@@ -2649,10 +2538,10 @@ Public Class SettingsForm
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "Settings Form: " & ex.ToString, "Critical")
 
             BackgroundWorker1.CancelAsync()
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
             'If table doesnt have data
         End Try
     End Sub
@@ -2716,9 +2605,7 @@ Public Class SettingsForm
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/InstallUpdatesCoupons(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InstallUpdatesPartners()
@@ -2758,9 +2645,7 @@ Public Class SettingsForm
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/InstallUpdatesPartners(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InstallUpdatesCategory()
@@ -2793,9 +2678,7 @@ Public Class SettingsForm
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/InstallUpdatesCategory(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InstallUpdatesFormula()
@@ -2853,9 +2736,7 @@ Public Class SettingsForm
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/InstallUpdatesFormula(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InstallUpdatesInventory()
@@ -2911,9 +2792,7 @@ Public Class SettingsForm
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/InstallUpdatesInventory(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InstallUpdatesProducts()
@@ -2974,9 +2853,7 @@ Public Class SettingsForm
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/InstallUpdatesProducts(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InstallUpdatesPriceChange()
@@ -2998,9 +2875,7 @@ Public Class SettingsForm
             ConnectionLocal.Close()
             ConnectionServer.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/InstallUpdatesPriceChange(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InstallCoupons()
@@ -3019,9 +2894,7 @@ Public Class SettingsForm
             ConnectionLocal.Close()
             ConnectionServer.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/InstallCoupons(): " & ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -3032,21 +2905,10 @@ Public Class SettingsForm
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click, Button3.Click
         ShowKeyboard()
     End Sub
-
     Private Sub TextBoxCRefVal_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxCRefVal.KeyPress, TextBoxCDVal.KeyPress, TextBoxCBundVal.KeyPress, TextBoxCBP.KeyPress
         Numeric(sender, e)
     End Sub
 #Region "Reset"
-    '
-    'Private Sub TruncateTable(ToTruncate)
-    '    Try
-    '        Query += "TRUNCATE TABLE " & ToTruncate & " ;"
-    '    Catch ex As Exception
-    '        SendErrorReport(ex.ToString)
-    '    End Try
-    'End Sub
-
-
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
         Try
             Dim Query As String = ""
@@ -3207,17 +3069,16 @@ Public Class SettingsForm
                 SystemLogDesc = "User Logout: " & returnfullname(where:=ClientCrewID)
                 SystemLogType = "LOG OUT"
                 GLOBAL_SYSTEM_LOGS(SystemLogType, SystemLogDesc)
-                AuditTrail.LogToAuditTral("System", "System Recalibrated, Reset initialized. Success!", "Critical")
+                AuditTrail.LogToAuditTrail("System", "System Recalibrated, Reset initialized. Success!", "Critical")
                 POS.Close()
                 EndBalance()
                 Login.Show()
                 Dispose()
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/Button1: " & ex.ToString, "Critical")
         End Try
     End Sub
-
     Dim Autobackup As Boolean
     Private Sub RadioButtonYearly_Click(sender As Object, e As EventArgs) Handles RadioButtonYearly.Click, RadioButtonWeekly.Click, RadioButtonMonthly.Click, RadioButtonDaily.Click
         Try
@@ -3259,16 +3120,13 @@ Public Class SettingsForm
                 End If
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/RadioButtonYearly: " & ex.ToString, "Critical")
         End Try
     End Sub
-
     Private Sub RadioButtonPrintReceiptYes_Click(sender As Object, e As EventArgs) Handles RadioButtonPrintReceiptYes.Click, RadioButtonPrintReceiptNo.Click
         Dim PrintOptionIsSet As Boolean = False
         Dim PrintOption As String = ""
-
         Try
-
             Dim table = "`loc_settings`"
             Dim Conn = LocalhostConn()
             If PrintOptionsBoolean Then
@@ -3319,7 +3177,7 @@ Public Class SettingsForm
 
             PrintOptionIsSet = False
             PrintOption = ""
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ RadioButtonPrintReceiptYes: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3375,10 +3233,9 @@ Public Class SettingsForm
             End If
 
         Catch ex As Exception
-
             RePrintOption = ""
             RePrintOptionIsSet = False
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/RadioButtonRePrintReceiptYes: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3437,7 +3294,7 @@ Public Class SettingsForm
         Catch ex As Exception
             PrintXZReadOption = ""
             PrintXZRead = False
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/RadioButtonPrintXZReadNo: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3493,7 +3350,7 @@ Public Class SettingsForm
         Catch ex As Exception
             PrintReturns = ""
             PrintReturnsBool = False
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/RadioButtonPrintReturnsNo: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub RadioButtonPrintSRYes_Click(sender As Object, e As EventArgs) Handles RadioButtonPrintSRYes.Click, RadioButtonPrintSRNo.Click
@@ -3548,7 +3405,7 @@ Public Class SettingsForm
         Catch ex As Exception
             PrintSalesReport = ""
             PrintSalesReportBool = False
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/RadioButtonPrintSRYes: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub RadioButtonTrainingOFF_Click(sender As Object, e As EventArgs) Handles RadioButtonTraningON.Click, RadioButtonTrainingOFF.Click
@@ -3561,7 +3418,7 @@ Public Class SettingsForm
                 MessageBox.Show("Training mode is OFF", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/RadioButtonTrainingOFF: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub RadioButtonInvResetOff_Click(sender As Object, e As EventArgs) Handles RadioButtonInvResetOn.Click, RadioButtonInvResetOff.Click
@@ -3570,7 +3427,7 @@ Public Class SettingsForm
                 AutoInventoryReset = True
                 Dim ConnectionLocal = LocalhostConn()
                 Dim Sql = "UPDATE loc_settings SET autoresetinv = 1 WHERE settings_id = 1"
-                Dim cmd As MySqlCommand = New MySqlCommand(sql, ConnectionLocal)
+                Dim cmd As MySqlCommand = New MySqlCommand(Sql, ConnectionLocal)
                 Dim res = cmd.ExecuteNonQuery
                 MessageBox.Show("Monthly inventory reset is on", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
             ElseIf RadioButtonInvResetOff.Checked Then
@@ -3582,7 +3439,7 @@ Public Class SettingsForm
                 MessageBox.Show("Monthly inventory reset is off", "NOTICE", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/RadioButtonInvResetOff: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3596,7 +3453,7 @@ Public Class SettingsForm
                 MsgBox("Fill up all the fields first!")
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ButtonApplyLedSettings: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3604,7 +3461,7 @@ Public Class SettingsForm
         Try
             GetPorts(ComboBoxComPort)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ButtonRefreshPort: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3624,7 +3481,7 @@ Public Class SettingsForm
                 MsgBox("Select available Serial Port first.")
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ButtonTestDisplay: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3645,7 +3502,7 @@ Public Class SettingsForm
             cmd.ExecuteNonQuery()
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/RadioButtonYES: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub NumericUpDownPrintCount_ValueChanged(sender As Object, e As EventArgs) Handles NumericUpDownPrintCount.ValueChanged
@@ -3666,7 +3523,7 @@ Public Class SettingsForm
                 cmd.ExecuteNonQuery()
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/NumericUpDownPrintCount: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3680,7 +3537,7 @@ Public Class SettingsForm
                 My.Settings.Save()
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ComboBoxPrintSize: " & ex.ToString, "Critical")
         End Try
     End Sub
 #End Region
@@ -3699,9 +3556,7 @@ Public Class SettingsForm
             Next
             'DataGridViewHeader
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadHeader(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3728,9 +3583,7 @@ Public Class SettingsForm
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/AddHeaderDetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub UpdateHeaderDetails(Desc)
@@ -3758,9 +3611,7 @@ Public Class SettingsForm
                 ToolStripLabelHeaderStatus.ForeColor = Color.DarkRed
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/UpdateHeaderDetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3781,9 +3632,7 @@ Public Class SettingsForm
             Next
             LoadHeader()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/DeleteHeader(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3813,7 +3662,7 @@ Public Class SettingsForm
             Next
             'DataGridViewHeader
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadFooter(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub AddFooterDetails(Desc)
@@ -3839,9 +3688,7 @@ Public Class SettingsForm
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/AddFooterDetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub UpdateFooterDetails(Desc)
@@ -3869,9 +3716,7 @@ Public Class SettingsForm
                 ToolStripLabelFooterStatus.ForeColor = Color.DarkRed
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/UpdateFooterDetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3892,9 +3737,7 @@ Public Class SettingsForm
             Next
             LoadFooter()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/DeleteFooter(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -3931,9 +3774,7 @@ Public Class SettingsForm
             Next
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadOthers(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadValidity()
@@ -3950,9 +3791,7 @@ Public Class SettingsForm
             Next
             'DataGridViewHeader
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadValidity(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub AddValidityDetails(Desc)
@@ -3978,9 +3817,7 @@ Public Class SettingsForm
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/AddValidityDetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub UpdateVALIDITYDetails(Desc)
@@ -4008,9 +3845,7 @@ Public Class SettingsForm
                 ToolStripLabelValidityStatus.ForeColor = Color.DarkRed
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/UpdateVALIDITYDetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -4031,9 +3866,7 @@ Public Class SettingsForm
             Next
             LoadValidity()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/DeleteValidity(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ToolStripButtonValidity_Click(sender As Object, e As EventArgs) Handles ToolStripButtonValidity.Click
@@ -4061,9 +3894,7 @@ Public Class SettingsForm
             Next
             'DataGridViewHeader
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/LoadRefundFooter(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub AddRefundFooterDetails(Desc)
@@ -4089,9 +3920,7 @@ Public Class SettingsForm
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/AddRefundFooterDetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub UpdateRefundFooterDetails(Desc)
@@ -4119,9 +3948,7 @@ Public Class SettingsForm
                 ToolStripLabelRFooterStatus.ForeColor = Color.DarkRed
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/UpdateRefundFooterDetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -4142,9 +3969,7 @@ Public Class SettingsForm
             Next
             LoadRefundFooter()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/DeleteRefundFooter(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ToolStripButton1_Click_2(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
@@ -4215,32 +4040,6 @@ Public Class SettingsForm
                 End Using
             End If
 
-            'If Not String.IsNullOrEmpty(RFooter) Then
-            '    Sql = "SELECT * FROM loc_receipt WHERE status = 1 AND type = 'REFUND-FOOTER'"
-            '    Cmd = New MySqlCommand(Sql, ConnectionLocal)
-            '    Using reader As MySqlDataReader = Cmd.ExecuteReader
-            '        If reader.HasRows Then
-            '            reader.Dispose()
-            '            Sql = "UPDATE loc_receipt SET description = @1 WHERE type = 'REFUND-FOOTER'"
-            '            Cmd = New MySqlCommand(Sql, ConnectionLocal)
-            '            Cmd.Parameters.Add("@1", MySqlDbType.Text).Value = RFooter
-            '            Cmd.ExecuteNonQuery()
-            '            ToolStripLabelOthersStatus.Text = "Updated successfully!"
-            '        Else
-            '            reader.Dispose()
-            '            Sql = "INSERT INTO loc_receipt (`type`,`description`, `created_by`, `created_at`, `status`) VALUES (@1, @2, @3, @4, @5)"
-            '            Cmd = New MySqlCommand(Sql, ConnectionLocal)
-            '            Cmd.Parameters.Add("@1", MySqlDbType.Text).Value = "REFUND-FOOTER"
-            '            Cmd.Parameters.Add("@2", MySqlDbType.Text).Value = RFooter
-            '            Cmd.Parameters.Add("@3", MySqlDbType.Text).Value = ClientCrewID
-            '            Cmd.Parameters.Add("@4", MySqlDbType.Text).Value = FullDate24HR()
-            '            Cmd.Parameters.Add("@5", MySqlDbType.Text).Value = 1
-            '            Cmd.ExecuteNonQuery()
-            '            ToolStripLabelOthersStatus.Text = "Added successfully!"
-            '        End If
-            '    End Using
-            'End If
-
             If Not String.IsNullOrEmpty(OfficialInvoiceBody) Then
                 Sql = "SELECT * FROM loc_receipt WHERE status = 1 AND type = 'OFFICIAL-INVOICE'"
                 Cmd = New MySqlCommand(Sql, ConnectionLocal)
@@ -4292,19 +4091,13 @@ Public Class SettingsForm
                     End If
                 End Using
             End If
-
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Settings Form: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/SaveOthers(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ToolStripButtonUpdateOthers_Click(sender As Object, e As EventArgs) Handles ToolStripButtonUpdateOthers.Click
         SaveOthers(Trim(TextBoxSIOthers.Text), Trim(TextBoxRefundHeader.Text), Trim(TextBoxOfficialInvoice.Text), Trim(TextBoxOfficialRefund.Text))
     End Sub
-
-
-
     Private Sub RadioButtonAutoSyncOn_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButtonAutoSyncOn.CheckedChanged, RadioButtonAutoSyncOff.CheckedChanged
         If RadioButtonAutoSyncOn.Checked Then
             My.Settings.S_Auto_Sync = True
@@ -4314,31 +4107,28 @@ Public Class SettingsForm
             My.Settings.Save()
         End If
     End Sub
-
     Private Sub TextBoxSyncInterval_TextChanged(sender As Object, e As EventArgs) Handles TextBoxSyncInterval.TextChanged
         Try
             My.Settings.S_Sync_Interval = TextBoxSyncInterval.Text
             My.Settings.Save()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
-
     Private Sub TextBoxSyncInterval_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxSyncInterval.KeyPress, TextBoxS_ZeroRated.KeyPress
         Try
             Numeric(sender, e)
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
-
     Private Sub TextBoxHeaderDesc_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBoxValidity.KeyPress, TextBoxSIOthers.KeyPress, TextBoxRefundHeader.KeyPress, TextBoxRefundFooter.KeyPress, TextBoxOfficialRefund.KeyPress, TextBoxOfficialInvoice.KeyPress, TextBoxHeaderDesc.KeyPress, TextBoxFooterDesc.KeyPress
         Try
             If InStr(DisallowedCharactersCustom, e.KeyChar) > 0 Then
                 e.Handled = True
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
         End Try
     End Sub
 
@@ -4366,11 +4156,8 @@ Public Class SettingsForm
                 MsgBox("Zero rated tax must be greater than zero")
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Settings/ButtonSaveZeroRated(): " & ex.ToString, "Critical")
         End Try
     End Sub
-
-
-
 #End Region
 End Class

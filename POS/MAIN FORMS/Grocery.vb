@@ -13,8 +13,8 @@
             LabelTime.Text = Date.Now.ToString("hh:mm:ss tt")
             LabelDate.Text = Date.Now.ToString("MM/dd/yyyy")
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 

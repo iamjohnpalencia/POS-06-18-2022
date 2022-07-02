@@ -38,9 +38,7 @@ Public Class AdvancedCustomReport
 
             ToolStripComboBoxTransactionType.SelectedIndex = 0
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "ADV Custom Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ADVCustRep/SelectDisctinctDaily(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadCouponTypes()
@@ -58,9 +56,7 @@ Public Class AdvancedCustomReport
             Next
             ToolStripComboBoxDiscType.SelectedIndex = 0
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "ADV Custom Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ADVCustRep/LoadCouponTypes(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim CustomReportLessVat As Double = 0
@@ -450,9 +446,7 @@ Public Class AdvancedCustomReport
                 End Using
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "ADV Custom Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ADVCustRep/Customreport(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim TotalDiscountCustomReports As Double = 0
@@ -464,9 +458,7 @@ Public Class AdvancedCustomReport
             ToolStripStatusLabel2.Text = DataGridViewCustomReport.Rows.Count
             TotalDiscountCustomReports = sum("totaldiscount", "loc_daily_transaction WHERE zreading >= '" & Format(DateTimePicker17.Value, "yyyy-MM-dd") & "' AND  zreading <= '" & Format(DateTimePicker18.Value, "yyyy-MM-dd") & "'")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "ADV Custom Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ADVCustRep/Button1: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -628,7 +620,7 @@ Public Class AdvancedCustomReport
                         gfx.DrawString("Date Generated: " & FullDate24HR(), font, XBrushes.Black, 50, 203 + RowCount)
                     End If
                 Next
-                AuditTrail.LogToAuditTral("Report", "Reports/Advanced Custom Report: Generated Report, " & ClientCrewID, "Normal")
+                AuditTrail.LogToAuditTrail("Report", "Reports/Advanced Custom Report: Generated Report, " & ClientCrewID, "Normal")
 
                 Dim filename = My.Computer.FileSystem.SpecialDirectories.Desktop & "\Advanced-Custom-Report-" & FullDateFormatForSaving() & ".pdf"
                 document.Save(filename)
@@ -636,21 +628,9 @@ Public Class AdvancedCustomReport
                 ' ...and start a viewer.
                 Process.Start(filename)
 
-
-
-
-
-                '    page = document.AddPage
-                '    gfx = XGraphics.FromPdfPage(page)
-
-                '    gfx.DrawString("Date From - To: " & DateTimePicker17.Value.ToString & " | " & DateTimePicker18.Value.ToString, font, XBrushes.Black, 50, 50)
-
-                '    ' Save the document...
-
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "ADV Custom Reports: " & ex.ToString, "Critical")
-            'SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ADVCustRep/Button2: " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

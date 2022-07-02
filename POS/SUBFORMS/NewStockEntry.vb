@@ -47,7 +47,7 @@ Public Class NewStockEntry
                     where = "formula_id = " & TextBox1.Text
                 End If
 
-                AuditTrail.LogToAuditTral("Transaction", "Menu/Inventory/Stock Entry: " & TextBoxEQuantity.Text & " " & ComboBoxDESC.Text, "Normal")
+                AuditTrail.LogToAuditTrail("Transaction", "Menu/Inventory/Stock Entry: " & TextBoxEQuantity.Text & " " & ComboBoxDESC.Text, "Normal")
 
                 TextBoxEQuantity.Clear()
                 GLOBAL_FUNCTION_UPDATE(table, fields, where)
@@ -63,9 +63,7 @@ Public Class NewStockEntry
             MDIFORM.LabelTotalCrititems.Text = count(table:="loc_pos_inventory WHERE stock_status = 1 AND critical_limit >= stock_primary AND store_id ='" & ClientStoreID & "' AND guid = '" & ClientGuid & "'", tocount:="inventory_id")
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "New Stock Entry: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "NewStockEntry/ButtonENTRYADDSTOCK: " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -81,9 +79,7 @@ Public Class NewStockEntry
             TextBox1.Text = dt(0)(0)
             SelectFormulaEntry(dt(0)(0), dt(0)(3))
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "New Stock Entry: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "NewStockEntry/ComboBoxDESC: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub SelectFormulaEntry(FormulaID, Origin)
@@ -111,9 +107,7 @@ Public Class NewStockEntry
             Next
             LocalhostConn.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "New Stock Entry: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "NewStockEntry/SelectFormulaEntry(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Sub loadcomboboxingredients()
@@ -127,9 +121,7 @@ Public Class NewStockEntry
                 ComboBoxDESC.Items.Add(dt(i)(0))
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "New Stock Entry: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "NewStockEntry/loadcomboboxingredients(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
@@ -144,7 +136,7 @@ Public Class NewStockEntry
         Try
             Numeric(sender, e)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 End Class

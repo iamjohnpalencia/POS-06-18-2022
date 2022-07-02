@@ -18,7 +18,7 @@ Public Class SynctoCloud
         Try
             CheckForIllegalCrossThreadCalls = False
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
@@ -34,23 +34,7 @@ Public Class SynctoCloud
     End Sub
     Private Sub SynctoCloud_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
 
-        'Try
-        '    If BackgroundWorkerFILLDATAGRIDS.IsBusy Or BackgroundWorkerSYNCTOCLOUD.IsBusy Then
-        '        Dim msg = MessageBox.Show("Are you sure do you want to cancel sync ?", "Cancel Sync", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
-        '        If msg = DialogResult.Yes Then
-        '            If BackgroundWorkerFILLDATAGRIDS.IsBusy Or BackgroundWorkerSYNCTOCLOUD.IsBusy Then
-        '                BackgroundWorkerFILLDATAGRIDS.CancelAsync()
-        '                BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-        '            End If
-        '            WorkerCanceled = True
-        '        End If
-        '    End If
-        'Catch ex As Exception
-        '    MsgBox(ex.ToString)
-        'End Try
-
         Try
-
             If SyncIsOnProcess = True Then
                 e.Cancel = True
             Else
@@ -58,7 +42,7 @@ Public Class SynctoCloud
                 e.Cancel = False
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/FormClosing: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
@@ -76,9 +60,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_refund_return_details")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridrefretdetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
     '=====================================================SYSTEMLOGS
@@ -93,9 +75,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridsystemlog1(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -110,9 +90,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridsystemlog2(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridsystemlog3()
@@ -127,9 +105,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridsystemlog3(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridsystemlog4()
@@ -143,9 +119,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_system_logs")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridsystemlog4(): " & ex.ToString, "Critical")
         End Try
     End Sub
     '=====================================================SYSTEMLOGS
@@ -157,9 +131,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_daily_transaction")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridtransaction(): " & ex.ToString, "Critical")
         End Try
     End Sub
     '======================================================TRANSACTION DETAILS
@@ -174,9 +146,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_daily_transaction_details")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridtransactiondetails1(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridinventory()
@@ -190,9 +160,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_pos_inventory")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridinventory(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridzreadinventory()
@@ -206,9 +174,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_zread_inventory")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridzreadinventory(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridexpenses()
@@ -222,9 +188,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_expense_list")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridexpenses(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridexpensesdetails()
@@ -238,9 +202,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_expense_details")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridexpensesdetails(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridlocusers()
@@ -254,9 +216,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_users")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridlocusers(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridproducts()
@@ -270,9 +230,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_daily_transaction")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridproducts(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagriddepositslip()
@@ -286,9 +244,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_deposit")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagriddepositslip(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridmodeoftransaction()
@@ -302,9 +258,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_transaction_mode_details")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridmodeoftransaction(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub fillpricerequestchange()
@@ -315,9 +269,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_price_request_change")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/fillpricerequestchange(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridviewcoupon()
@@ -328,9 +280,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="tbcoupon")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridviewcoupon(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -342,9 +292,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_send_bug_report")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridviewerrors(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridviewsenior()
@@ -355,9 +303,7 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_senior_details")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridviewsenior(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub filldatagridviewCustomerInfo()
@@ -368,15 +314,15 @@ Public Class SynctoCloud
             gettablesize(tablename:="loc_customer_info")
             countrows(tablename:=table)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/filldatagridviewCustomerInfo(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub countrows(ByVal tablename As String)
+        Dim ConLocal As MySqlConnection = LocalhostConn()
         Try
             Dim sql = "SELECT COUNT(*) FROM " & tablename & " "
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn())
+
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConLocal)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
@@ -387,19 +333,18 @@ Public Class SynctoCloud
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/countrows(): " & ex.ToString, "Critical")
         Finally
-            LocalhostConn.close
+            ConLocal.Close()
             cmd.Dispose()
             da.Dispose()
         End Try
     End Sub
     Private Sub gettablesize(ByVal tablename As String)
+        Dim ConLocal As MySqlConnection = LocalhostConn()
         Try
             Dim sql = "SELECT table_name AS `Table`, round(((data_length + index_length) / 1024 / 1024), 2) `Size in MB` FROM information_schema.TABLES WHERE table_schema = 'pos' AND table_name = '" & tablename & "'"
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, ConLocal)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
@@ -407,11 +352,9 @@ Public Class SynctoCloud
                 DataGridView1.Rows.Add(row("Table"), row("Size in MB"))
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/gettablesize(): " & ex.ToString, "Critical")
         Finally
-            LocalhostConn.close
+            ConLocal.Close()
             cmd.Dispose()
             da.Dispose()
         End Try
@@ -428,7 +371,7 @@ Public Class SynctoCloud
             LabelTTLRowtoSync.Text = ""
             Label5.Text = ""
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/LoadData1(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadData2()
@@ -441,7 +384,7 @@ Public Class SynctoCloud
             ProgressBar1.Maximum = Val(LabelTTLRowtoSync.Text)
             Label2.Text = "Item(s)"
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/LoadData2(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim ThreadLoaddata As Thread
@@ -720,8 +663,7 @@ Public Class SynctoCloud
 
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/BackgroundWorkerFILLDATAGRIDS: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker2_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorkerFILLDATAGRIDS.RunWorkerCompleted
@@ -738,7 +680,7 @@ Public Class SynctoCloud
             BackgroundWorkerSYNCTOCLOUD.WorkerReportsProgress = True
             BackgroundWorkerSYNCTOCLOUD.RunWorkerAsync()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/BackgroundWorkerFILLDATAGRIDS Comp: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles ButtonSYNCDATA.Click
@@ -776,9 +718,7 @@ Public Class SynctoCloud
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/SyncData(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonSYNCINVENTORY_Click(sender As Object, e As EventArgs) Handles ButtonSYNCINVENTORY.Click
@@ -817,9 +757,7 @@ Public Class SynctoCloud
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/SyncInventory(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim threadListLOCTRAN As List(Of Thread) = New List(Of Thread)
@@ -1218,9 +1156,7 @@ Public Class SynctoCloud
                 Unsuccessful = True
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("Data", "Menu/Sync: Sync not Successful, " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/BackgroundWorkerSYNCTOCLOUD: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As RunWorkerCompletedEventArgs) Handles BackgroundWorkerSYNCTOCLOUD.RunWorkerCompleted
@@ -1255,7 +1191,7 @@ Public Class SynctoCloud
                                             POS.ProgressBar1.Value = totalrow
                                         End Sub)
                     Dim sync = MessageBox.Show("Synchronization Complete", "Sync", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    AuditTrail.LogToAuditTral("Data", "Menu/Sync: Sync Successful, " & ProgressBar1.Value.ToString, "Normal")
+                    AuditTrail.LogToAuditTrail("Data", "Menu/Sync: Sync Successful, " & ProgressBar1.Value.ToString, "Normal")
 
                     If sync = DialogResult.OK Then
                         Me.Close()
@@ -1270,9 +1206,7 @@ Public Class SynctoCloud
             ButtonSYNCDATA.Enabled = True
             ButtonSYNCINVENTORY.Enabled = True
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Sync/BackgroundWorkerSYNCTOCLOUD Comp: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub insertlocaldailytransaction()
@@ -1346,11 +1280,10 @@ Public Class SynctoCloud
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertlocaldailytransaction(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
+
         End Try
     End Sub
     Private Sub inserttransactiondetails1()
@@ -1422,11 +1355,9 @@ Public Class SynctoCloud
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/inserttransactiondetails1(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertexpenses()
@@ -1494,13 +1425,10 @@ Public Class SynctoCloud
                     t.Start()
                 End If
             End With
-            'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertexpenses(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertexpensedetails()
@@ -1583,11 +1511,9 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_details")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertexpensedetails(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertlocalusers()
@@ -1657,11 +1583,9 @@ Public Class SynctoCloud
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertlocalusers(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertsystemlogs1()
@@ -1727,11 +1651,9 @@ Public Class SynctoCloud
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertsystemlogs1(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertrefretdetails()
@@ -1795,11 +1717,9 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertrefretdetails(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertlocproducts()
@@ -1870,11 +1790,9 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertlocproducts(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertlocmodeoftransaction()
@@ -1939,11 +1857,9 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertlocmodeoftransaction(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertlocdeposit()
@@ -2008,11 +1924,9 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertlocdeposit(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertpricerequest()
@@ -2075,11 +1989,9 @@ Public Class SynctoCloud
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertpricerequest(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertcoupon()
@@ -2151,11 +2063,9 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertcoupon(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub inserterrors()
@@ -2217,11 +2127,9 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/inserterrors(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertseniordetails()
@@ -2285,11 +2193,9 @@ Public Class SynctoCloud
             End With
             'truncatetable(tablename:="loc_expense_list")
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertseniordetails(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertinventory()
@@ -2362,11 +2268,9 @@ Public Class SynctoCloud
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertinventory(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertzreadinventory()
@@ -2429,11 +2333,9 @@ Public Class SynctoCloud
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
-
+            AuditTrail.LogToAuditTrail("System", "Sync/insertzreadinventory(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
     Private Sub insertcustomerinfo()
@@ -2493,11 +2395,9 @@ Public Class SynctoCloud
                 End If
             End With
         Catch ex As Exception
-
-            AuditTrail.LogToAuditTral("System", "Sync to cloud: " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "Sync/insertcustomerinfo(): " & ex.ToString, "Critical")
             Unsuccessful = True
             BackgroundWorkerSYNCTOCLOUD.CancelAsync()
-            SendErrorReport(ex.ToString)
         End Try
     End Sub
 
@@ -2518,8 +2418,8 @@ Public Class SynctoCloud
                 End If
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 End Class

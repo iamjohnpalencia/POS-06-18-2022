@@ -304,7 +304,6 @@
     <Compile Include="SUBFORMS\Message.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SUBFORMS\Module1.vb" />
     <Compile Include="SUBFORMS\NewStockEntry.Designer.vb">
       <DependentUpon>NewStockEntry.vb</DependentUpon>
     </Compile>

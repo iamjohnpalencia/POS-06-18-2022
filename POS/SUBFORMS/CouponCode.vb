@@ -12,7 +12,7 @@ Public Class CouponCode
             BackgroundWorker1.WorkerSupportsCancellation = True
             BackgroundWorker1.RunWorkerAsync()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
@@ -29,7 +29,7 @@ Public Class CouponCode
                 End If
             Next
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/BackgroundWorker1: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadCoupons(sender As Object)
@@ -47,7 +47,7 @@ Public Class CouponCode
                 DataGridViewCoupons.Rows.Add(row("ID"), row("Couponname_"), row("Desc_"), row("Discountvalue_"), row("Referencevalue_"), row("Type"), row("Bundlebase_"), row("BBValue_"), row("Bundlepromo_"), row("BPValue_"), row("Effectivedate"), row("Expirydate"))
             Next
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/LoadCoupons(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub CouponCode_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -87,7 +87,7 @@ Public Class CouponCode
                 Next
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/PromoCodeDefault(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonSubmit_Click(sender As Object, e As EventArgs) Handles ButtonSubmit.Click
@@ -138,7 +138,7 @@ Public Class CouponCode
 
             'Compute()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/ButtonSubmit: " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub coupondiscountpercentagewvat()
@@ -216,7 +216,7 @@ Public Class CouponCode
 
             Close()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/coupondiscountpercentagewvat(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub couponfix1()
@@ -351,7 +351,7 @@ Public Class CouponCode
             PromoGCValue = DataGridViewCoupons.SelectedRows(0).Cells(3).Value
             Close()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/couponfix1(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -418,7 +418,7 @@ Public Class CouponCode
             PromoType = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
             Close()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/couponfix2(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub couponbundle1()
@@ -451,7 +451,7 @@ Public Class CouponCode
                     Next
 
                 Catch ex As Exception
-                    MsgBox(ex.ToString)
+
                 End Try
                 Dim PRTOTALAMOUNTDUE As Double = 0
 
@@ -535,7 +535,7 @@ Public Class CouponCode
 
             Close()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/couponbundle1(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub couponbundle2()
@@ -566,7 +566,7 @@ Public Class CouponCode
                         Next
                     Next
                 Catch ex As Exception
-                    MsgBox(ex.ToString)
+
                 End Try
                 Dim PRTOTALAMOUNTDUE As Double = 0
                 For i As Integer = 0 To .DataGridViewOrders.Rows.Count - 1 Step +1
@@ -627,7 +627,7 @@ Public Class CouponCode
                             Next
                         Next
                     Catch ex As Exception
-                        MsgBox(ex.ToString)
+
                     End Try
                     If BundleIDExist = False Then
                         MsgBox("Please select bundle promo")
@@ -639,7 +639,7 @@ Public Class CouponCode
             PromoType = Me.DataGridViewCoupons.Item(5, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
             Close()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/couponbundle2(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub couponbundle3()
@@ -660,7 +660,7 @@ Public Class CouponCode
                         Next
                     Next
                 Catch ex As Exception
-                    SendErrorReport(ex.ToString)
+                    AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
                 End Try
 
                 Dim BundlepromoID As String = Me.DataGridViewCoupons.Item(8, Me.DataGridViewCoupons.CurrentRow.Index).Value.ToString
@@ -682,7 +682,7 @@ Public Class CouponCode
                             Next
                         Next
                     Catch ex As Exception
-                        SendErrorReport(ex.ToString)
+                        AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
                     End Try
                     Dim PRGROSSSALES As Double = 0
                     Dim PRDISCOUNTAMOUNT As Double = 0
@@ -752,7 +752,7 @@ Public Class CouponCode
 
             Close()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/couponbundle3(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub couponbundle4()
@@ -830,14 +830,14 @@ Public Class CouponCode
 
             Close()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "CouponCode/couponbundle4(): " & ex.ToString, "Critical")
         End Try
     End Sub
     'Private Sub DataGridViewCoupons_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewCoupons.CellClick
     '    Try
     '        LabelDesc.Text = DataGridViewCoupons.SelectedRows(0).Cells(2).Value.ToString
     '    Catch ex As Exception
-    '        SendErrorReport(ex.ToString)
+    '        AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
     '    End Try
     'End Sub
 End Class

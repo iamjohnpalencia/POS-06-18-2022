@@ -63,7 +63,7 @@ Public Class TakeOut
 
                         GLOBAL_SYSTEM_LOGS("EXTRA", "SUGAR PACKETS")
                     Catch ex As Exception
-                        SendErrorReport(ex.ToString)
+                        AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
                     End Try
                 End If
             ElseIf ComboBoxTakeout.Text = "Extra Packaging" Then
@@ -105,7 +105,7 @@ Public Class TakeOut
                         GLOBAL_FUNCTION_UPDATE("loc_pos_inventory", "stock_primary=" & SPrimary & ",stock_secondary=" & SSecondary & ",stock_no_of_servings=" & SNServing & "", "server_inventory_id = " & WaffleBagID)
                         GLOBAL_SYSTEM_LOGS("EXTRA", "PACKAGING")
                     Catch ex As Exception
-                        SendErrorReport(ex.ToString)
+
                     End Try
                 End If
             Else
@@ -113,9 +113,7 @@ Public Class TakeOut
             End If
             Log()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Take Out: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "TakeOut/DInventory(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Log()
@@ -130,7 +128,7 @@ Public Class TakeOut
                 GLOBAL_SYSTEM_LOGS(LogType, LogDesc)
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "TakeOut/Log(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonTakeOut_Click(sender As Object, e As EventArgs) Handles ButtonTakeOut.Click
@@ -162,7 +160,7 @@ Public Class TakeOut
                 TextBoxQuantity.Text = btntext
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "TakeOut/buttonpressedenter(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonNo9_Click(sender As Object, e As EventArgs) Handles ButtonNo9.Click
@@ -237,7 +235,7 @@ Public Class TakeOut
             LoadSettings()
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "TakeOut/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim WaffleBagID
@@ -256,7 +254,7 @@ Public Class TakeOut
             Next
             ComboBoxTakeout.SelectedIndex = 0
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "TakeOut/LoadSettings(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -264,12 +262,5 @@ Public Class TakeOut
         If TextBoxQuantity.Text.Count > 0 Then
             TextBoxQuantity.Text = TextBoxQuantity.Text.Remove(TextBoxQuantity.Text.Count - 1)
         End If
-    End Sub
-    Private Sub TextBoxWaffleBag_KeyPress(sender As Object, e As KeyPressEventArgs)
-        Try
-            Numeric(sender, e)
-        Catch ex As Exception
-            SendErrorReport(ex.ToString)
-        End Try
     End Sub
 End Class

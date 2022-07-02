@@ -19,9 +19,7 @@ Public Class PendingOrders
             Me.ComboBoxCustomerName.DisplayMember = "customer_name"
             Me.ComboBoxCustomerName.ValueMember = "customer_name"
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Pending Orders: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "PendingOrders/AMPpopulatecategory(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub pendingloadorders()
@@ -34,9 +32,7 @@ Public Class PendingOrders
                 Next
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Pending Orders: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "PendingOrders/pendingloadorders(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub populatedatagridvieworders()
@@ -49,9 +45,7 @@ Public Class PendingOrders
                 POS.DataGridViewOrders.Rows.Add(row("product_name"), row("product_quantity"), row("product_price"), row("product_total"), row("increment"), row("product_id"), row("product_sku"), row("product_category"), row("product_addon_id"), row("ColumnSumID"), row("ColumnInvID"), row("Upgrade"), row("Origin"), row("addontype"), 0, 0, 0, 0, 0, 0, 0, 0)
             Next row
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Pending Orders: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "PendingOrders/populatedatagridvieworders(): " & ex.ToString, "Critical")
         End Try
         Try
             Dim command As New MySqlCommand("SELECT `hold_id`, `sr_total`, `f_id`, `qty`, `id`, `nm`, `org_serve`, `cog`, `ocog`, `prd.addid`, `origin` FROM loc_hold_inventory WHERE name = '" & ComboBoxCustomerName.Text & "'", LocalhostConn())
@@ -62,9 +56,7 @@ Public Class PendingOrders
                 POS.DataGridViewInv.Rows.Add(row("sr_total"), row("f_id"), row("qty"), row("id"), row("nm"), row("org_serve"), row("cog"), row("ocog"), row("prd.addid"), row("origin"))
             Next row
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Pending Orders: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "PendingOrders/populatedatagridvieworders(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonSelectCustomer_Click(sender As Object, e As EventArgs) Handles ButtonSelectCustomer.Click
@@ -90,7 +82,6 @@ Public Class PendingOrders
             End If
         Else
             MessageBox.Show("Hold Order(s) or end the transaction first!", "Pending Orders", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
         End If
     End Sub
     Private Sub ComboBoxCustomerName_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxCustomerName.SelectedIndexChanged

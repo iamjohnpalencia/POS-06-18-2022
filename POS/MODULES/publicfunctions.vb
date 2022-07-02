@@ -27,7 +27,7 @@ Module publicfunctions
             Wow64DisableWow64FsRedirection(0)
             Process.Start(osk)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ShowKeyboard(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub ButtonEnableability(ByVal root As Control, ENB As Boolean)
@@ -68,19 +68,11 @@ Module publicfunctions
                 End If
             Next ctrl
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
-
     Public Sub ReturnZero(ByVal root As Control)
-
-        '        If String.IsNullOrEmpty(textBox2.Text)) Then
-
-
-        '    textBox2.Text = "0";                
-        '}
-
         Try
             For Each ctrl As Control In root.Controls
                 ReturnZero(ctrl)
@@ -93,24 +85,9 @@ Module publicfunctions
             Next ctrl
 
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ReturnZero(): " & ex.ToString, "Critical")
         End Try
-
     End Sub
-    'Public Sub TextboxReadOnly(ByVal root As Control, ENB As Boolean)
-    '    Try
-    '        For Each ctrl As Control In root.Controls
-    '            TextboxReadOnly(ctrl, ENB)
-    '            If TypeOf ctrl Is TextBox Then
-    '                CType(ctrl, TextBox).ReadOnly = ENB
-    '            End If
-    '        Next ctrl
-    '    Catch ex As Exception
-    '        MsgBox(ex.ToString)
-    '        SendErrorReport(ex.ToString)
-    '    End Try
-    'End Sub
     Public Sub ClearTextBox(ByVal root As Control)
         Try
             For Each ctrl As Control In root.Controls
@@ -120,8 +97,7 @@ Module publicfunctions
                 End If
             Next ctrl
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ClearTextBox(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub ClearDataGridViewRows(ByVal root As Control)
@@ -134,7 +110,7 @@ Module publicfunctions
                 End If
             Next ctrl
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ClearDataGridViewRows(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub SpecialCharRestriction(ByVal root As Control, ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
@@ -149,7 +125,7 @@ Module publicfunctions
                 End If
             Next ctrl
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/SpecialCharRestriction(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub buttonpressedenter(ByVal btntext As String)
@@ -192,31 +168,6 @@ Module publicfunctions
         Dim byt2 = System.Text.Encoding.UTF8.GetString(b)
         Return byt2
     End Function
-    'Dim MyPublicIpAddress As String
-    'Public Function PublicIpAddress(myform As Form)
-    '    Dim client As New WebClient
-    '    '// Add a user agent header in case the requested URI contains a query.
-    '    client.Headers.Add("user-agent", "Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.2; .NET CLR1.0.3705;)")
-    '    Dim baseurl As String = "http://localhost/ipadd/"
-    '    ' with proxy server only:
-    '    Dim proxy As IWebProxy = WebRequest.GetSystemWebProxy()
-    '    proxy.Credentials = CredentialCache.DefaultNetworkCredentials
-    '    client.Proxy = proxy
-    '    Dim data As Stream
-    '    Try
-    '        data = client.OpenRead(baseurl)
-    '    Catch ex As Exception
-    '        MsgBox("open url " & ex.Message)
-    '        Exit Function
-    '    End Try
-    '    Dim reader As StreamReader = New StreamReader(data)
-    '    MyPublicIpAddress = reader.ReadToEnd()
-    '    data.Close()
-    '    reader.Close()
-    '    MyPublicIpAddress = MyPublicIpAddress.Replace("<html><head><title>Current IP Check</title></head><body>", "").Replace("</body></html>", "").ToString()
-    '    myform.Text = MyPublicIpAddress
-    '    Return MyPublicIpAddress
-    'End Function
 
     Public Function RemoveCharacter(ByVal stringToCleanUp, ByVal characterToRemove)
         ' replace the target with nothing
@@ -236,7 +187,7 @@ Module publicfunctions
                 base64String = Convert.ToBase64String(imageBytes)
             End Using
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ImageToBase64(): " & ex.ToString, "Critical")
         End Try
         Return base64String
     End Function
@@ -284,7 +235,7 @@ Module publicfunctions
                 End Using
             End Using
         Catch ex As Exception
-            'MsgBox(ex.ToString)
+            '
             Return False
         End Try
     End Function
@@ -300,7 +251,7 @@ Module publicfunctions
             Dim FormatDay As String = "yyyy-MM-dd"
             displaythis = FirstDay.ToString(FormatDay)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/FirstDayOfMonth(): " & ex.ToString, "Critical")
         End Try
         Return displaythis
     End Function
@@ -317,12 +268,11 @@ Module publicfunctions
                 dtRESET = New DataTable
                 da.Fill(dtRESET)
             Catch ex As Exception
-                MsgBox(ex.ToString)
+                AuditTrail.LogToAuditTrail("System", "ModPubFunc/CheckIfNeedToReset(): " & ex.ToString, "Critical")
             End Try
 
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/CheckIfNeedToReset(): " & ex.ToString, "Critical")
         End Try
         If dtRESET.Rows.Count = 0 Then
             Return True
@@ -335,7 +285,7 @@ Module publicfunctions
         Try
             DateNow = Format(Now(), "yyyy-MM-dd HH:mm:ss")
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/FullDate24HR(): " & ex.ToString, "Critical")
         End Try
         Return DateNow
     End Function
@@ -344,7 +294,7 @@ Module publicfunctions
         Try
             DateSave = Format(Now(), "yyyy-MM-dd HH-mm-ss")
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/FullDateFormatForSaving(): " & ex.ToString, "Critical")
         End Try
         Return DateSave
     End Function
@@ -374,9 +324,7 @@ Module publicfunctions
             EndingBalance = 0
             BegBalanceBool = False
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Public Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/EndBalance(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim total
@@ -389,7 +337,7 @@ Module publicfunctions
                 Next
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/SumOfColumnsToDecimal(): " & ex.ToString, "Critical")
         End Try
         Return NUMBERFORMAT(SumTotal)
     End Function
@@ -402,7 +350,7 @@ Module publicfunctions
                 Next
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/SumOfColumnsToInt(): " & ex.ToString, "Critical")
         End Try
         Return SumTotal
     End Function
@@ -659,9 +607,7 @@ Module publicfunctions
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Public Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ReceiptHeaderOne(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -984,9 +930,7 @@ Module publicfunctions
             RECEIPTLINECOUNT += 30
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Public Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ZBody(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -1032,9 +976,7 @@ Module publicfunctions
                 FillEJournalContent(S_Zreading & " " & Format(Now(), "HH:mm:ss"), {}, "C", False, False)
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Public Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ZFooter(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub ReceiptBody(sender As Object, e As PrintPageEventArgs, VoidReturn As Boolean, TransactionNumber As String, ReprintSales As Boolean)
@@ -1536,11 +1478,8 @@ Module publicfunctions
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Public Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ReceipBody(): " & ex.ToString, "Critical")
         End Try
-        ', DISCAPPLIED As Boolean
     End Sub
     Public Sub ReceiptBodyFooter(sender As Object, e As PrintPageEventArgs, VoidReturn As Boolean, TRANSACTIONNUMBER As String, ReprintSales As Boolean, DiscApplied As Boolean)
         Try
@@ -1714,9 +1653,7 @@ Module publicfunctions
             RECEIPTLINECOUNT += 30
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Public Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ReceipBodyF(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub ReceiptFooterOne(sender As Object, e As PrintPageEventArgs, VoidReturn As Boolean, ReceiptSummary As Boolean)
@@ -1801,9 +1738,7 @@ Module publicfunctions
             FillEJournalContent("   ---***---***---***---***---  ", {}, "C", True, True)
             FillEJournalContent("", {}, "C", True, True)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Public Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ReceipFooter1(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub ReceiptHeader(sender As Object, e As PrintPageEventArgs, VoidReturn As Boolean)
@@ -1854,7 +1789,7 @@ Module publicfunctions
             SimpleTextDisplay(sender, e, "Business Style:", font, 0, 115 + AddLine)
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ReceiptHeader(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub ReceiptFooter(sender As Object, e As PrintPageEventArgs, a As Integer, ItemReturn As Boolean)
@@ -1888,9 +1823,7 @@ Module publicfunctions
                 CenterTextDisplay(sender, e, "VALID FOR CLAIM OF INPUT TAX", font1, a + 370)
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Public Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/ReceiptFooter(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -1898,16 +1831,13 @@ Module publicfunctions
         Try
             ToRound = Math.Round(ToRound, 2, MidpointRounding.AwayFromZero)
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/TwoDecimalPlaces(): " & ex.ToString, "Critical")
         End Try
         Return ToRound
     End Function
     Public Sub Compute(Optional NotResetDiscount As Boolean = False, Optional TotalDiscount As Double = 0, Optional NotTriggerResetDisc As Boolean = False, Optional AutoCompute As Boolean = True)
         Try
-            'MsgBox(TRANSACTIONMODE)
             With POS
-
                 Select Case TotalDiscount
                     Case > 0
                         If Not NotTriggerResetDisc Then
@@ -1936,7 +1866,7 @@ Module publicfunctions
 
             End With
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/Compute(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -1962,7 +1892,7 @@ Module publicfunctions
                 sp = Nothing
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/LedDisplay(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -1987,7 +1917,7 @@ Module publicfunctions
         Catch ex As Exception
             My.Settings.LedDisplayTrue = False
             My.Settings.Save()
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/LedConfig(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub GetPorts(ToFill)
@@ -1997,7 +1927,7 @@ Module publicfunctions
                 ToFill.Items.Add(sp)
             Next
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/GetPorts(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -2038,9 +1968,7 @@ Module publicfunctions
             SELECT_DISCTINCT_PARTNERS_DT = New DataTable
             Da.Fill(SELECT_DISCTINCT_PARTNERS_DT)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Public Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/LoadContent(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -2060,7 +1988,7 @@ Module publicfunctions
             End If
 
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModPubFunc/CreateXmlPath(): " & ex.ToString, "Critical")
         End Try
     End Sub
 End Module

@@ -14,7 +14,7 @@ Public Class BegBalance
             Dim TwentyFiveCents As Decimal = Val(TextBox10.Text) * Val(Label10.Text)
             Label12.Text = OneThousand + FiveHundred + TwoHundred + OneHundred + Fifty + Twenty + Ten + Five + One + TwentyFiveCents
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "BegBal/TextChanged: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub TextBox1_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox1.KeyPress, TextBox2.KeyPress, TextBox3.KeyPress, TextBox4.KeyPress, TextBox5.KeyPress, TextBox6.KeyPress, TextBox7.KeyPress, TextBox8.KeyPress, TextBox9.KeyPress, TextBox10.KeyPress
@@ -39,7 +39,7 @@ Public Class BegBalance
             End If
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "BegBal/Button1: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub InsertBeginningBalance()
@@ -68,7 +68,7 @@ Public Class BegBalance
             AllowFormClose = True
             Me.Close()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "BegBal/InsertBeginningBalance: " & ex.ToString, "Critical")
         End Try
     End Sub
     Dim AllowFormClose As Boolean = False
@@ -110,9 +110,7 @@ Public Class BegBalance
                 Close()
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "ADV Custom Reports: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "BegBal/Button2: " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

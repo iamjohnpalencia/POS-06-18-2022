@@ -24,9 +24,7 @@ Public Class ForgotPassword
                 ResetPassword.CrewUserId = row("user_id")
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Forget Password: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ForgotPassword/CheckCredentials: " & ex.ToString, "Critical")
         End Try
         If dt.Rows.Count > 0 Then
             Return True
@@ -51,7 +49,7 @@ Public Class ForgotPassword
                 e.Handled = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ForgotPassword/DisallowedCharacters: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click

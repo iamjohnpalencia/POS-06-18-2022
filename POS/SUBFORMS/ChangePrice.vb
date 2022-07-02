@@ -9,7 +9,7 @@ Public Class ChangePrice
             TextBoxPriceFrom.Text = PriceFrom
             Me.Text = Product
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ChangePrice/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ChangePrice_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -17,7 +17,7 @@ Public Class ChangePrice
             MDIFORM.newMDIchildManageproduct.Enabled = True
             MDIFORM.newMDIchildManageproduct.LoadPriceChange()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ChangePrice/FormClosing: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
@@ -34,9 +34,7 @@ Public Class ChangePrice
                 MsgBox("Fill all the fields")
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Price Change: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ChangePrice/Button1: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Function SavePriceChange() As Boolean
@@ -55,13 +53,11 @@ Public Class ChangePrice
             cmd.Parameters.Add("@8", MySqlDbType.Text).Value = ClientGuid
             cmd.Parameters.Add("@9", MySqlDbType.Text).Value = "Unsynced"
             result = cmd.ExecuteNonQuery()
-            AuditTrail.LogToAuditTral("User", "Price Change : " & returnselect("product_name", "loc_admin_products") & ", Changed By: " & ClientCrewID, "Normal")
+            AuditTrail.LogToAuditTrail("User", "Price Change : " & returnselect("product_name", "loc_admin_products") & ", Changed By: " & ClientCrewID, "Normal")
 
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Price Change: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ChangePrice/SavePriceChange(): " & ex.ToString, "Critical")
         End Try
         If result = 1 Then
             Return True
@@ -73,7 +69,7 @@ Public Class ChangePrice
         Try
             Numeric(sender, e)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ChangePrice/KeyPress(Numeric): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) 

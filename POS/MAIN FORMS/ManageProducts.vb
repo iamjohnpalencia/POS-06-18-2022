@@ -25,7 +25,7 @@ Public Class ManageProducts
             LoadPriceChange()
             LoadPriceChangeApprove()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/Load: " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub LoadProductList()
@@ -45,9 +45,7 @@ Public Class ManageProducts
                 .Columns(10).HeaderText = "Date Modified"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Manage Products: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/LoadProductList(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonPriceChange_Click(sender As Object, e As EventArgs) Handles ButtonPriceChange.Click
@@ -60,7 +58,7 @@ Public Class ManageProducts
                         .PriceFrom = DataGridViewProductList.SelectedRows(0).Cells(6).Value
                         .Product = DataGridViewProductList.SelectedRows(0).Cells(3).Value
                         .Show()
-                        MDIFORM.Button5.Focus()
+                        MDIFORM.ButtonProducts.Focus()
                         .Focus()
                         .TextBoxPriceTo.Focus()
                     End With
@@ -71,9 +69,7 @@ Public Class ManageProducts
                 MsgBox("Select product first")
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Manage Products: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/ButtonPriceChange: " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub LoadOthersApprove()
@@ -93,9 +89,7 @@ Public Class ManageProducts
                 .Columns(10).HeaderText = "Date Modified"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Manage Products: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/LoadOthersApprove(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub LoadOthersPending()
@@ -115,9 +109,7 @@ Public Class ManageProducts
                 .Columns(10).HeaderText = "Date Modified"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Manage Products: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/LoadOthersPending(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub LoadPriceChange()
@@ -132,9 +124,7 @@ Public Class ManageProducts
             Next
             ConnLocal.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Manage Products: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/LoadPriceChange(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub LoadPriceChangeApprove()
@@ -149,9 +139,7 @@ Public Class ManageProducts
             Next
             ConnLocal.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Manage Products: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/LoadPriceChangeApprove(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ManageProducts_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
@@ -165,7 +153,7 @@ Public Class ManageProducts
                 AddEditProducts.Close()
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/FormClosing: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub TabControl1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles TabControl1.SelectedIndexChanged
@@ -190,8 +178,7 @@ Public Class ManageProducts
                 End If
             End If
         Catch ex As Exception
-            MsgBox(ex.ToString)
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/TabControl1: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button6_Click(sender As Object, e As EventArgs) Handles ButtonAddCustomProduct.Click
@@ -201,7 +188,7 @@ Public Class ManageProducts
             AddEditProducts.Show()
             Enabled = False
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/ButtonAddCustomProduct: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles ButtonEditApprovedProducts.Click
@@ -227,8 +214,7 @@ Public Class ManageProducts
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Manage Products: " & ex.ToString, "Critical")
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/ButtonEditApprovedProducts: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button8_Click(sender As Object, e As EventArgs) Handles ButtonEditCustomProduct.Click
@@ -254,9 +240,7 @@ Public Class ManageProducts
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Manage Products: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/ButtonEditCustomProduct: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles ButtonDeactivateApprovedProduct.Click
@@ -267,7 +251,7 @@ Public Class ManageProducts
                 MsgBox("Select product first")
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/ButtonDeactivateApprovedProduct: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonDeletePending_Click(sender As Object, e As EventArgs) Handles ButtonDeletePending.Click
@@ -278,7 +262,7 @@ Public Class ManageProducts
                 MsgBox("Select product first")
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/ButtonDeletePending: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub DeactivateProduct(Datagrid As DataGridView)
@@ -314,16 +298,14 @@ Public Class ManageProducts
                 End If
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Manage Products: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/DeactivateProduct(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ButtonKeyboard_Click(sender As Object, e As EventArgs) Handles ButtonKeyboard.Click
         Try
             ShowKeyboard()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/ButtonKeyboard: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Button5_Click_1(sender As Object, e As EventArgs) Handles Button5.Click
@@ -349,18 +331,7 @@ Public Class ManageProducts
                 End If
             End If
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Manage Products: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
-        End Try
-    End Sub
-    Private Sub TextBoxSearchProductList_KeyPress(sender As Object, e As KeyPressEventArgs)
-        Try
-            If InStr(DisallowedCharacters, e.KeyChar) > 0 Then
-                e.Handled = True
-            End If
-        Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Products/Button5: " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

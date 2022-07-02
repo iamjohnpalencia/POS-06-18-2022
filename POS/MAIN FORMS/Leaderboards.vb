@@ -24,9 +24,7 @@ Public Class Leaderboards
             LoadTransfers()
             LoadLogs()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/Load(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -55,9 +53,7 @@ Public Class Leaderboards
                 .Columns(4).Width = 100
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/loadbestseller(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadTransactions()
@@ -86,9 +82,7 @@ Public Class Leaderboards
                 .Columns(4).HeaderCell.Value = "Status"
             End With
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/LoadTransactions(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadExpenses()
@@ -107,9 +101,7 @@ Public Class Leaderboards
                 DataGridViewRecentExpenses.Rows.Add(row("expense_number"), row("datetime"), row("crew_id"), row("total_amount"), rowActive)
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/LoadExpenses(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadTransfers()
@@ -120,9 +112,7 @@ Public Class Leaderboards
                 DatagridviewTransfers.Rows.Add(row("loc_systemlog_id"), row("log_description"), row("crew_id"), row("log_date_time"))
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/LoadTransfers(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadLogs()
@@ -147,9 +137,7 @@ Public Class Leaderboards
                 DatagridviewLogs.Rows.Add(row("log_type"), row("log_description"), row("crew_id"), row("log_date_time"))
             Next
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/LoadLogs(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub LoadProducts()
@@ -163,9 +151,7 @@ Public Class Leaderboards
                 Chart2.Series("Series1").Points.AddXY(dr.GetString("product_name"), dr.GetInt64("totalprice"))
             End While
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/LoadProducts(): " & ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -181,7 +167,8 @@ Public Class Leaderboards
             Chart1.Invalidate()
             Chart1.Series("Series1").IsVisibleInLegend = False
             DataGridView1.Rows.Clear()
-            Dim cmd As MySqlCommand = New MySqlCommand(sql, LocalhostConn)
+            Dim Connectionlocal As MySqlConnection = LocalhostConn()
+            Dim cmd As MySqlCommand = New MySqlCommand(sql, Connectionlocal)
             Dim da As MySqlDataAdapter = New MySqlDataAdapter(cmd)
             Dim dt As DataTable = New DataTable
             da.Fill(dt)
@@ -199,47 +186,37 @@ Public Class Leaderboards
                     Me.Chart1.Series("Series1").Points.AddXY(.Rows(i).Cells(0).Value.ToString, .Rows(i).Cells(1).Value.ToString)
                 Next
             End With
-            LocalhostConn.close()
+            Connectionlocal.Close()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/LoadChart(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub RadioButton3_Click(sender As Object, e As EventArgs) Handles RadioButtonWeek.Click
         Try
             LoadChart("SELECT DATE_FORMAT(zreading, '%Y-%m-%d') as zreading, SUM(total) FROM loc_daily_transaction_details WHERE DATE(CURRENT_DATE) - INTERVAL 7 DAY GROUP BY zreading DESC LIMIT 7", 0)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/RadioButtonWeek: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub RadioButton2_Click(sender As Object, e As EventArgs) Handles RadioButtonMonth.Click
         Try
-            LoadChart("SELECT MONTHNAME(zreading) , SUM(total) FROM `loc_daily_transaction_details` WHERE DATE(zreading) - INTERVAL 1 MONTH GROUP BY MONTHNAME(zreading)", 2)
+            LoadChart("SELECT MONTHNAME(zreading) , SUM(total) FROM `loc_daily_transaction_details` WHERE DATE(zreading) - INTERVAL 1 MONTH GROUP BY MONTHNAME(zreading) ORDER BY YEAR(zreading), Month(zreading)", 2)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/RadioButtonMonth: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub RadioButton4_Click(sender As Object, e As EventArgs) Handles RadioButtonYear.Click
         Try
             LoadChart("SELECT YEAR(zreading), SUM(total) FROM `loc_daily_transaction_details` WHERE YEAR(zreading) GROUP BY YEAR(zreading)", 1)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/RadioButtonYear: " & ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub RadioButton5_Click(sender As Object, e As EventArgs) Handles RadioButtonLastYear.Click
         Try
             LoadChart("SELECT YEAR(zreading), SUM(total) FROM `loc_daily_transaction_details` WHERE YEAR(zreading) - INTERVAL 1 YEAR GROUP BY YEAR(zreading)", 1)
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Inventory: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "Leaderboards/RadioButtonLastYear: " & ex.ToString, "Critical")
         End Try
     End Sub
 End Class

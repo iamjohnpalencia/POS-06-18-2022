@@ -13,9 +13,7 @@ Module DeleteModule
             End With
             cmd.ExecuteNonQuery()
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Delete Module: " & ex.ToString, "Critical")
-
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModDelete/GLOBAL_DELETE_ALL_FUNCTION(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub TruncateTableAll(ToTruncate)
@@ -27,7 +25,7 @@ Module DeleteModule
             ConnectionLocal.Close()
             cmd.Dispose()
         Catch ex As Exception
-            MsgBox(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "ModDelete/TruncateTableAll(): " & ex.ToString, "Critical")
         End Try
     End Sub
     Public Sub AutoMaticResetPOS()
@@ -94,7 +92,7 @@ Module DeleteModule
                 ConnectionLocal.Close()
                 cmd.Dispose()
 
-                AuditTrail.LogToAuditTral("System", "Automatic Reset POS", "Normal")
+                AuditTrail.LogToAuditTrail("System", "Automatic Reset POS", "Normal")
 
                 FormIsOpen()
 
@@ -110,11 +108,11 @@ Module DeleteModule
                     End If
                 End If
 
-                AuditTrail.LogToAuditTral("System", "System Recalibrated, Reset initialized. Success!", "Critical")
+                AuditTrail.LogToAuditTrail("System", "System Recalibrated, Reset initialized. Success!", "Critical")
             End If
 
         Catch ex As Exception
-            AuditTrail.LogToAuditTral("System", "Automatic Reset POS: : " & ex.ToString, "Critical")
+            AuditTrail.LogToAuditTrail("System", "ModDelete/AutoMaticResetPOS(): " & ex.ToString, "Critical")
         End Try
     End Sub
 End Module

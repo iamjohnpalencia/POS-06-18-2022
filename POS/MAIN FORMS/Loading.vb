@@ -20,9 +20,9 @@ Public Class Loading
             BackgroundWorker1.WorkerSupportsCancellation = True
             BackgroundWorker1.WorkerReportsProgress = True
             BackgroundWorker1.RunWorkerAsync()
-            Console.Write(BackgroundWorker1.IsBusy.ToString)
+
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Shared _instance As Loading
@@ -39,7 +39,7 @@ Public Class Loading
             ChangeProgBarColor(ProgressBar1, ProgressBarColor.Yellow)
             Loadme()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Dim threadList As List(Of Thread) = New List(Of Thread)
@@ -227,7 +227,7 @@ Public Class Loading
                 If i = 90 Then
                     If ValidLocalConnection Then
                         Label1.Text = "Loading..."
-                        thread = New Thread(Sub() AuditTrail.LogToAuditTral("Start/Close", "Opening/Closing of Application details", "Normal"))
+                        thread = New Thread(Sub() AuditTrail.LogToAuditTrail("Start/Close", "Opening/Closing of Application details", "Normal"))
                         thread.Start()
                         threadList.Add(thread)
                         For Each t In threadList
@@ -244,10 +244,10 @@ Public Class Loading
             Next
 
         Catch ex As Exception
-            MsgBox(ex.ToString)
+
             If ValidLocalConnection Then
-                AuditTrail.LogToAuditTral("System", "Loading: Update not successful, " & ex.ToString, "Critical")
-                SendErrorReport(ex.ToString)
+                AuditTrail.LogToAuditTrail("System", "Loading: Update not successful, " & ex.ToString, "Critical")
+                AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
             End If
         End Try
     End Sub
@@ -360,7 +360,7 @@ Public Class Loading
             'Next
 
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -385,7 +385,7 @@ Public Class Loading
                 Label1.Text = "Cannot connect to local server..."
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
@@ -393,7 +393,7 @@ Public Class Loading
             ProgressBar1.Value = e.ProgressPercentage
             Label2.Text = e.ProgressPercentage
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
@@ -407,7 +407,7 @@ Public Class Loading
                                 ProgressBar1.Maximum = 0
                                 Dim TotalRows = UPDATE_CATEGORY_DATATABLE.Rows.Count + UPDATE_PRODUCTS_DATATABLE.Rows.Count + UPDATE_FORMULA_DATATABLE.Rows.Count + UPDATE_INVENTORY_DATATABLE.Rows.Count + UPDATE_PRICE_CHANGE_DATATABLE.Rows.Count + UPDATE_COUPON_APPROVAL_DATATABLE.Rows.Count + UPDATE_CUSTOM_PROD_APP_DATATABLE.Rows.Count + UPDATE_PARTNERS_DATATABLE.Rows.Count + UPDATE_COUPONS_DATATABLE.Rows.Count
                                 ProgressBar1.Maximum = TotalRows
-                                AuditTrail.LogToAuditTral("System", "Loading: Update Detected, ", "Normal")
+                                AuditTrail.LogToAuditTrail("System", "Loading: Update Detected, ", "Normal")
                                 BackgroundWorkerInstallUpdates.WorkerReportsProgress = True
                                 BackgroundWorkerInstallUpdates.WorkerSupportsCancellation = True
                                 BackgroundWorkerInstallUpdates.RunWorkerAsync()
@@ -477,7 +477,7 @@ Public Class Loading
                 ConnectionIsClose()
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker2_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker2.DoWork
@@ -514,7 +514,7 @@ Public Class Loading
                 e.Cancel = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     '===========================================================================================
@@ -529,7 +529,7 @@ Public Class Loading
                 Application.Exit()
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ConnectionIsClose()
@@ -542,7 +542,7 @@ Public Class Loading
                 Application.Exit()
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub NoInternetConnection()
@@ -559,7 +559,7 @@ Public Class Loading
                 Application.Exit()
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub GetLocalPosData()
@@ -590,7 +590,7 @@ Public Class Loading
             Login.Focus()
             Login.txtusername.Focus()
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub Temptinventory()
@@ -603,7 +603,7 @@ Public Class Loading
                 .ExecuteNonQuery()
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub ResetStocks()
@@ -616,7 +616,7 @@ Public Class Loading
                 .ExecuteNonQuery()
             End With
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub BackgroundWorker2_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker2.ProgressChanged
@@ -640,7 +640,7 @@ Public Class Loading
         Try
             GLOBAL_SELECT_ALL_FUNCTION("loc_script_runner", "created_at", DataGridViewScript)
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
     Private Sub RunScript()
@@ -692,7 +692,7 @@ Public Class Loading
                 Next
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
         End Try
     End Sub
 
@@ -747,13 +747,13 @@ Public Class Loading
             If UPDATE_WORKER_CANCEL Then
                 MsgBox("Cannot fetch data. Please check your internet connection")
             End If
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", ex.ToString, "Critical")
             Exit Sub
         End Try
     End Sub
 
     Private Sub BackgroundWorkerInstallUpdates_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorkerInstallUpdates.RunWorkerCompleted
-        AuditTrail.LogToAuditTral("System", "Loading: Update successful, ", "Normal")
+        AuditTrail.LogToAuditTrail("System", "Loading: Update successful, ", "Normal")
 
         If S_Layout = "" Then
             ChooseLayout.Show()

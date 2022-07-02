@@ -34,7 +34,7 @@
                 e.Handled = True
             End If
         Catch ex As Exception
-            SendErrorReport(ex.ToString)
+            AuditTrail.LogToAuditTrail("System", "TransactionTypeInfo/DisallowedCharacters: " & ex.ToString, "Critical")
         End Try
     End Sub
 
