@@ -752,8 +752,8 @@ Module publicfunctions
             RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "GRAB", NUMBERFORMAT(ZXGrabFood), FontDefault, 5, 0)
             FillEJournalContent("GRAB          " & NUMBERFORMAT(ZXGrabFood), {"GRAB", NUMBERFORMAT(ZXGrabFood)}, "LR", False, False)
             RECEIPTLINECOUNT += 10
-            RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "COMPLIMENTARY EXPENSES", NUMBERFORMAT(ZXRepExpense), FontDefault, 5, 0)
-            FillEJournalContent("COMPLIMENTARY EXPENSES          " & NUMBERFORMAT(ZXRepExpense), {"COMPLIMENTARY EXPENSES", NUMBERFORMAT(ZXRepExpense)}, "LR", False, False)
+            RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "COMPLIMENTARY", NUMBERFORMAT(ZXRepExpense), FontDefault, 5, 0)
+            FillEJournalContent("COMPLIMENTARY          " & NUMBERFORMAT(ZXRepExpense), {"COMPLIMENTARY", NUMBERFORMAT(ZXRepExpense)}, "LR", False, False)
             RECEIPTLINECOUNT += 10
             RightToLeftDisplay(sender, e, RECEIPTLINECOUNT, "OTHERS", NUMBERFORMAT(ZXCashlessOthers), FontDefault, 5, 0)
             FillEJournalContent("OTHERS          " & NUMBERFORMAT(ZXCashlessOthers), {"OTHERS", NUMBERFORMAT(ZXCashlessOthers)}, "LR", False, False)
