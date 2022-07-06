@@ -57,8 +57,9 @@ Public Class AuditTrail
 
     Public Sub LogToAuditTrail(GroupName As String, Description As String, Severity As String)
         Try
-            MessageBox.Show("An error occured. Please contact the System Administrator", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
-
+            If Severity = "Critical" Then
+                MessageBox.Show("An error occured. Please contact the System Administrator", "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
             If ValidLocalConnection Then
 
                 Dim ConnectionLocal As MySqlConnection = LocalhostConn()
